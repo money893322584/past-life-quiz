@@ -2,756 +2,328 @@
 <html lang="zh-CN">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
-<title>前世人物志 | 你像哪位历史人物？</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+<title>你与哪位历史人物相似？</title>
 <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
 <style>
-:root{
-  --purple:#7C6FE8; --purple-d:#6a5cd8; --purple-l:#EFECFB; --purple-t:#9B90EE;
-  --ink:#26224A; --gray:#9A96B0; --bg-top:#F5F2FC; --bg-bot:#EDE9F8;
-}
 *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
-html,body{overscroll-behavior:none}
-body{font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;color:var(--ink);min-height:100vh;display:flex;justify-content:center;
-  background:linear-gradient(180deg,var(--bg-top) 0%,var(--bg-bot) 100%)}
-.app{width:100%;max-width:480px;min-height:100vh;position:relative;
-  padding:calc(14px + env(safe-area-inset-top)) 14px calc(24px + env(safe-area-inset-bottom));
-  background:linear-gradient(180deg,#F5F2FC 0%,#EDE9F8 100%)}
-.screen{display:none}
-.screen.active{display:block;animation:fadeIn .4s ease}
-@keyframes fadeIn{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
-
-/* ===== 大圆角白色主卡片 ===== */
-.main-card{background:rgba(255,255,255,.72);backdrop-filter:blur(10px);
-  border-radius:28px;padding:34px 22px 30px;box-shadow:0 8px 30px rgba(124,111,232,.10)}
-.hero-icon{width:86px;height:86px;border-radius:26px;margin:10px auto 22px;
-  background:linear-gradient(145deg,#8B7CF0,#6C5CE7);
-  display:flex;align-items:center;justify-content:center;font-size:42px;
-  box-shadow:0 12px 28px rgba(108,92,231,.35)}
-.step-tag{text-align:center;color:var(--purple-t);font-size:13px;font-weight:600;
-  letter-spacing:6px;margin-bottom:18px}
-h1.title{text-align:center;font-size:30px;font-weight:800;line-height:1.35;letter-spacing:1px}
-h1.title em{font-style:normal;color:var(--purple)}
-.title-sm{font-size:24px;text-align:left;margin-bottom:8px}
-.en-tag{text-align:center;color:var(--purple-t);font-size:13px;font-weight:600;
-  letter-spacing:5px;margin:12px 0 20px}
-.desc{text-align:center;color:#6B678A;font-size:15px;line-height:1.9;margin-bottom:24px}
-.desc-left{text-align:left;color:var(--gray);font-size:13.5px;margin-bottom:20px}
-.note-box{background:rgba(255,255,255,.85);border-left:4px solid var(--purple);
-  border-radius:14px;padding:16px;margin-bottom:26px}
-.note-box h4{font-size:15px;margin-bottom:8px}
-.note-box p{color:var(--gray);font-size:13.5px;line-height:1.8}
-
-/* ===== 按钮 ===== */
-.btn{display:block;width:100%;border:none;border-radius:16px;padding:16px;
-  font-size:17px;font-weight:700;cursor:pointer;transition:.2s;text-align:center}
-.btn-primary{background:linear-gradient(135deg,#8677EF,#6C5CE7);color:#fff;
-  box-shadow:0 10px 24px rgba(108,92,231,.38)}
-.btn-primary:active{transform:scale(.97);background:var(--purple-d)}
-.btn-ghost{background:#fff;color:var(--ink);border:1.5px solid #E2DDF3;margin-top:12px}
-.btn-row{display:flex;gap:12px;margin-top:26px}
-.btn-row .btn{margin-top:0}
-.btn-row .btn-back{flex:0 0 30%;background:#fff;border:1.5px solid #E2DDF3;color:var(--ink);border-radius:16px}
-
-/* ===== 密码门 ===== */
-.pwd-input{width:100%;border:1.5px solid #E2DDF3;border-radius:14px;padding:15px;
-  font-size:22px;text-align:center;letter-spacing:10px;outline:none;color:var(--ink);background:#fff}
-.pwd-input:focus{border-color:var(--purple)}
-.pwd-err{color:#e74c3c;font-size:13px;text-align:center;min-height:22px;margin-top:10px}
-.pwd-tip{color:var(--gray);font-size:12px;text-align:center;margin-top:14px}
-
-/* ===== 偏好选项 ===== */
-.opt-card{display:flex;align-items:center;gap:14px;background:#fff;
-  border:2px solid #EBE7F8;border-radius:20px;padding:18px 16px;margin-bottom:14px;
-  cursor:pointer;transition:.2s;box-shadow:0 3px 12px rgba(124,111,232,.06)}
-.opt-card .avatar{flex:0 0 50px;height:50px;border-radius:14px;color:#fff;
-  display:flex;align-items:center;justify-content:center;font-size:20px;font-weight:800;
-  background:linear-gradient(145deg,#8B7CF0,#6C5CE7);box-shadow:0 6px 14px rgba(108,92,231,.3)}
-.opt-card h3{font-size:17px;font-weight:800;margin-bottom:4px}
-.opt-card p{font-size:13px;color:var(--gray)}
-.opt-card.sel{border-color:var(--purple);background:var(--purple-l);
-  box-shadow:0 6px 18px rgba(108,92,231,.16)}
-
-/* ===== 答题页 ===== */
-.quiz-card{background:rgba(255,255,255,.85);border-radius:28px;padding:26px 20px 24px;
-  box-shadow:0 8px 30px rgba(124,111,232,.10)}
-.progress-wrap{background:#E7E2F6;border-radius:99px;height:8px;overflow:hidden;margin:10px 0 22px}
-.progress-bar{height:100%;background:linear-gradient(90deg,#9B8CF2,var(--purple));border-radius:99px;transition:width .3s}
-.q-count{text-align:center;font-size:13px;color:var(--purple-t);font-weight:700;letter-spacing:2px}
-.q-text{font-size:16px;font-weight:700;line-height:1.7;margin-bottom:20px;white-space:pre-line}
-.q-story{color:var(--purple);font-weight:700}
-.ans-btn{display:block;width:100%;text-align:left;background:#fff;border:1.5px solid #EBE7F8;
-  border-radius:16px;padding:15px 16px;font-size:15px;line-height:1.6;color:var(--ink);
-  margin-bottom:12px;cursor:pointer;transition:.15s;box-shadow:0 3px 10px rgba(124,111,232,.05)}
-.ans-btn:active{background:var(--purple-l);border-color:var(--purple);transform:scale(.98)}
-
-/* ===== 结果页 ===== */
-.result-card{background:linear-gradient(160deg,#8B7CF0 0%,#6a5cd8 100%);
-  border-radius:26px;padding:28px 20px;color:#fff;text-align:center;
-  box-shadow:0 14px 34px rgba(106,92,216,.4)}
-.rc-dynasty{font-size:12px;letter-spacing:6px;opacity:.85}
-.rc-name{font-size:32px;font-weight:800;margin:10px 0 6px;text-shadow:0 2px 8px rgba(0,0,0,.2)}
-.rc-title{display:inline-block;background:rgba(255,255,255,.18);border:1px solid rgba(255,255,255,.4);
-  border-radius:99px;padding:5px 18px;font-size:14px;margin-bottom:14px}
-.rc-sim{font-size:13px;opacity:.9}
-.rc-sim b{font-size:32px;font-weight:800}
-.rc-quote{margin-top:16px;font-size:14px;line-height:1.7;background:rgba(255,255,255,.12);border-radius:12px;padding:12px}
-.rc-scene{margin-top:10px;font-size:13px;line-height:1.7;opacity:.92;text-align:left}
-#radar{display:block;margin:16px auto 4px;background:rgba(255,255,255,.1);border-radius:16px}
-.rc-radar-cap{font-size:12px;opacity:.8;margin-top:2px}
-.rc-footer{margin-top:14px;font-size:12px;opacity:.75}
-.dim-block{margin-bottom:8px}
-.dim-head{display:flex;justify-content:space-between;font-size:14px;font-weight:700;margin-bottom:5px}
-.dim-head span:last-child{color:var(--purple)}
-.dim-track{background:#E7E2F6;border-radius:99px;height:9px;overflow:hidden}
-.dim-fill{height:100%;border-radius:99px;background:linear-gradient(90deg,#9a8cf2,var(--purple));transition:width .8s ease}
-.dim-text{font-size:13px;color:var(--gray);line-height:1.7;margin-top:7px}
-.mirror-tip{background:var(--purple-l);border-left:4px solid var(--purple);border-radius:12px;
-  padding:14px;font-size:13px;line-height:1.8;color:var(--purple-d);margin:18px 0}
-
-/* ===== 🎨 结果页四套配色主题 ===== */
-#scr-result{--ac:#7C6FE8;--acd:#6a5cd8;--acl:#EFECFB;--pt:#9B90EE}
-#scr-result.theme-terracotta{--ac:#B5744A;--acd:#9A5A2E;--acl:#F6EADC;--pt:#D9A876}
-#scr-result.theme-celadon{--ac:#3E8E7E;--acd:#2F7A6B;--acl:#E6F2ED;--pt:#6FB3A1}
-#scr-result.theme-brick{--ac:#B03A2E;--acd:#922B21;--acl:#F7E8E5;--pt:#CE6B5C}
-#scr-result .result-card{background:linear-gradient(160deg,var(--ac) 0%,var(--acd) 100%);box-shadow:0 14px 34px rgba(0,0,0,.18)}
-#scr-result .mirror-tip{background:var(--acl);border-left-color:var(--ac);color:var(--acd)}
-#scr-result .dim-head span:last-child{color:var(--ac)}
-#scr-result .dim-fill{background:linear-gradient(90deg,var(--pt),var(--ac))}
-#scr-result .theme-bar{display:flex;align-items:center;justify-content:space-between;
-  background:#fff;border-radius:16px;padding:14px 16px;margin:16px 0;box-shadow:0 4px 14px rgba(124,111,232,.08)}
-#scr-result .theme-label{font-size:14px;font-weight:700}
-#scr-result .theme-dots{display:flex;gap:12px}
-.t-dot{width:34px;height:34px;border-radius:50%;border:3px solid #fff;
-  box-shadow:0 3px 10px rgba(0,0,0,.18);cursor:pointer;padding:0}
-.t-dot.active{outline:2.5px solid #26224A;outline-offset:2.5px}
-.t-purple{background:#7C6FE8}.t-terracotta{background:#B5744A}
-.t-celadon{background:#3E8E7E}.t-brick{background:#B03A2E}
-
-/* ===== 弹窗 ===== */
-.mask{display:none;position:fixed;inset:0;background:rgba(38,34,74,.55);z-index:50;
-  align-items:center;justify-content:center;padding:24px;
-  padding-bottom:calc(24px + env(safe-area-inset-bottom))}
+body{font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;background:#f7f4ec;color:#3a3630;min-height:100vh}
+.page{display:none;max-width:520px;margin:0 auto;padding:24px 20px 60px;min-height:100vh}
+.page.active{display:block}
+.tag{display:inline-block;font-size:12px;letter-spacing:3px;color:#a08c5a;border:1px solid #d8c9a3;padding:3px 10px;border-radius:20px;margin-bottom:14px}
+h1{font-size:34px;line-height:1.35;font-weight:800}
+h1 .hl{background:linear-gradient(transparent 62%,#ffe08a 62%)}
+.sub{color:#8b8474;font-size:14px;margin:12px 0 22px;line-height:1.8}
+.btn{display:block;width:100%;border:none;background:#3a3630;color:#fdf6e3;font-size:17px;font-weight:700;padding:15px;border-radius:14px;margin-top:18px;cursor:pointer}
+.btn:active{transform:scale(.98)}
+.btn.ghost{background:#fff;color:#3a3630;border:1.5px solid #d8cbb0}
+.btn:disabled{opacity:.35}
+.dirs{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:8px}
+.dir{background:#fff;border:2px solid #e6dcc4;border-radius:14px;padding:18px 12px;text-align:center;font-size:15px;font-weight:700;cursor:pointer}
+.dir:active,.dir.sel{border-color:#c9a44c;background:#fdf6e3}
+.topbar{display:flex;justify-content:space-between;font-size:13px;color:#8b8474;margin-bottom:10px}
+.bar{height:6px;background:#e8e0cd;border-radius:3px;overflow:hidden;margin-bottom:26px}
+.bar i{display:block;height:100%;width:0;background:linear-gradient(90deg,#c9a44c,#e0b45e);border-radius:3px;transition:width .3s}
+.qdim{font-size:13px;color:#a08c5a;letter-spacing:2px;margin-bottom:8px}
+.qtext{font-size:21px;font-weight:800;line-height:1.5;margin-bottom:22px}
+.opt{background:#fff;border:1.5px solid #e6dcc4;border-radius:14px;padding:15px 16px;font-size:15px;margin-bottom:12px;cursor:pointer;line-height:1.5}
+.opt:active{border-color:#c9a44c;background:#fdf6e3}
+.backbar{display:flex;justify-content:space-between;align-items:center;margin-top:20px}
+.backbar button{background:none;border:none;color:#a08c5a;font-size:14px;cursor:pointer;padding:8px 4px}
+.center{text-align:center}
+.big{font-size:56px;margin:30px 0 10px}
+.card{background:#fff;border:1px solid #e6dcc4;border-radius:18px;padding:20px;margin-bottom:16px}
+.card h3{font-size:15px;color:#a08c5a;letter-spacing:2px;margin-bottom:10px}
+.card p{font-size:14.5px;line-height:1.9;color:#4a453b}
+.name{font-size:30px;font-weight:800;margin:6px 0 2px}
+.dyn{color:#a08c5a;font-size:14px;margin-bottom:8px}
+.quotes p{font-size:15px;font-weight:700;margin:8px 0;padding-left:12px;border-left:3px solid #e0b45e}
+.warn{color:#a05a4a}
+canvas{width:100%;max-width:320px;display:block;margin:6px auto}
+.foot{font-size:11px;color:#b3ab98;text-align:center;margin-top:26px;line-height:1.8}
+/* 封面 */
+.center-page{text-align:center;display:flex;flex-direction:column;justify-content:center}
+.center-page .tag{align-self:center}
+.cover-title{font-size:36px;text-align:center}
+.feats4{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:10px 0 12px}
+.f4{background:#fff;border:2px solid #d8c9a3;border-radius:16px;padding:18px 10px;box-shadow:0 3px 10px rgba(160,140,90,.12)}
+.f4 b{display:block;font-size:16px;color:#3a3630;margin-bottom:5px}
+.f4 span{font-size:12px;color:#a08c5a;letter-spacing:1px}
+.tiny-note{font-size:11px;color:#c0b8a2;line-height:1.7;margin-top:16px}
+/* 密码页 */
+.pwbox{background:#fff;border:2px solid #d8c9a3;border-radius:16px;padding:26px 20px;text-align:center;margin-top:30px}
+.pwbox input{width:100%;font-size:26px;letter-spacing:10px;text-align:center;border:2px solid #d8c9a3;border-radius:12px;padding:12px;outline:none;background:#fdfbf4;color:#3a3630}
+.pwbox input:focus{border-color:#c9a44c}
+.pwmsg{font-size:13px;color:#a05a4a;margin-top:12px;min-height:18px}
+/* 弹窗 */
+.mask{display:none;position:fixed;inset:0;background:rgba(40,35,25,.55);z-index:99;align-items:center;justify-content:center;padding:24px}
 .mask.show{display:flex}
-.modal{background:#fff;border-radius:24px;padding:26px 22px;max-width:360px;width:100%;text-align:center;
-  max-height:86vh;max-height:86dvh;overflow-y:auto;touch-action:pan-y}
-.modal h3{font-size:19px;margin-bottom:12px}
-.modal p{font-size:14px;color:var(--gray);line-height:1.8;margin-bottom:14px}
-.modal img{max-width:100%;border-radius:12px;margin-bottom:12px;border:1px solid #eee}
-.gift-emoji{font-size:46px;margin-bottom:10px}
-.modal .btn-ghost{margin-top:12px}
-
-@media (max-width:360px){
-  .app{padding-left:8px;padding-right:8px}
-  .main-card{padding:26px 16px 24px}
-  h1.title{font-size:25px}
-  .q-text{font-size:15px}
-  .ans-btn{font-size:14px;padding:13px 14px}
-  .rc-name{font-size:26px}
-}
-@media (orientation:landscape) and (max-height:500px){.app{max-width:520px}}
-@media (min-width:481px){.app{padding-top:calc(24px + env(safe-area-inset-top))}}
+.modal{background:#fff;border-radius:20px;max-width:400px;width:100%;padding:26px 22px;text-align:center;max-height:86vh;overflow-y:auto}
+.modal h3{font-size:19px;margin-bottom:12px;color:#3a3630}
+.modal p{font-size:14px;color:#6b6350;line-height:1.9;margin-bottom:8px}
+.modal img{width:100%;border-radius:10px;border:1px solid #eee;margin:10px 0}
+@media(max-width:380px){.cover-title{font-size:30px}.qtext{font-size:19px}.f4 b{font-size:14px}}
 </style>
 </head>
 <body>
-<div class="app">
 
-  <!-- ① 密码门 -->
-  <div id="scr-gate" class="screen active">
-    <div class="main-card">
-      <div class="hero-icon">🏛️</div>
-      <div class="step-tag">前 世 人 物 志</div>
-      <h1 class="title">你与哪位<em>历史人物</em><br>相似？</h1>
-      <div class="en-tag">FIGURE ATLAS · ANCIENT ARCHIVE</div>
-      <p class="desc">通过一组历史情境选择，读取你的决断、洞察、<br>表达与担当。<br>输入档案密钥，解锁属于你的前世档案。</p>
-      <input id="pwdInput" class="pwd-input" type="tel" maxlength="8" placeholder="····" inputmode="numeric">
-      <div class="pwd-err" id="pwdErr"></div>
-      <button class="btn btn-primary" onclick="checkPwd()">解锁档案库</button>
-      <p class="pwd-tip" id="pwdTip">每个密钥可开启 3 份档案（全站共享计数）</p>
-    </div>
+<!-- 密码页 -->
+<div class="page active center-page" id="pPW">
+  <div class="tag">FIGURE ATLAS · 古人档案局</div>
+  <h1 class="cover-title">你与哪位<span class="hl">历史人物</span><br>相似？</h1>
+  <div class="pwbox">
+    <p style="font-size:14px;color:#8b8474;margin-bottom:16px">🔒 本测评需凭密码进入<br>每个密码可完成 <b style="color:#a08c5a">3 次</b> 测评</p>
+    <input id="pwInput" type="tel" maxlength="10" placeholder="请输入密码" inputmode="numeric">
+    <div class="pwmsg" id="pwMsg"></div>
+    <button class="btn" onclick="checkPw()">解锁测评</button>
   </div>
+  <p class="tiny-note">本测试仅供娱乐参考 · 没有标准答案</p>
+</div>
 
-  <!-- ② 画像偏好 -->
-  <div id="scr-pref" class="screen">
-    <div class="main-card">
-      <div class="hero-icon">🧭</div>
-      <div class="step-tag">第一步 · 档案映射偏好</div>
-      <h1 class="title title-sm">选择你更有代入感的人物方向</h1>
-      <p class="desc-left">这只影响最终人物候选范围，不影响答题内容与分数计算。</p>
-
-      <div class="opt-card sel" data-g="F" onclick="pickGender(this)">
-        <div class="avatar">女</div>
-        <div><h3>女性人物优先</h3><p>从女性历史人物中寻找最相似的你</p></div>
-      </div>
-      <div class="opt-card" data-g="M" onclick="pickGender(this)">
-        <div class="avatar">男</div>
-        <div><h3>男性人物优先</h3><p>从男性历史人物中寻找最相似的你</p></div>
-      </div>
-      <div class="opt-card" data-g="A" onclick="pickGender(this)">
-        <div class="avatar">皆</div>
-        <div><h3>不限性别</h3><p>开放完整人物档案库，纯粹按性格匹配</p></div>
-      </div>
-
-      <div class="btn-row">
-        <button class="btn btn-back" onclick="go('scr-gate')">返回</button>
-        <button class="btn btn-primary" style="flex:1" onclick="startQuiz()">进入情境测试</button>
-      </div>
-    </div>
+<!-- 封面 -->
+<div class="page center-page" id="p0">
+  <div class="tag">FIGURE ATLAS · 古人档案局</div>
+  <h1 class="cover-title">你与哪位<span class="hl">历史人物</span>相似？</h1>
+  <p class="sub">通过一组情境选择，读取你的决断、洞察、表达与担当。<br>系统将从 24 位历史人物中，为你找出最相似的那一位。</p>
+  <div class="feats4">
+    <div class="f4"><b>👥 24 位人物</b><span>男女群像皆有</span></div>
+    <div class="f4"><b>📊 六维分析</b><span>性格精细建模</span></div>
+    <div class="f4"><b>🖼️ 长图保存</b><span>一键存结果</span></div>
+    <div class="f4"><b>🔗 链接分享</b><span>发给好友测</span></div>
   </div>
+  <button class="btn" onclick="go(1)">开始测试 · 约 3 分钟</button>
+  <button class="btn ghost" onclick="go(9)">看看如何匹配</button>
+  <p class="tiny-note">本测试仅供娱乐参考 · 没有标准答案，请选择最接近真实自己的反应</p>
+</div>
 
-  <!-- ③ 答题 -->
-  <div id="scr-quiz" class="screen">
-    <div class="quiz-card">
-      <div class="q-count" id="qCount">第 1 / 24 题</div>
-      <div class="progress-wrap"><div class="progress-bar" id="qBar" style="width:4%"></div></div>
-      <div class="q-text" id="qText"></div>
-      <div id="optArea"></div>
-      <div class="btn-row">
-        <button class="btn btn-back" id="backBtn" onclick="prevQ()">← 上一题</button>
-      </div>
-    </div>
+<!-- 匹配原理 -->
+<div class="page" id="p9">
+  <div class="tag">HOW IT WORKS · 匹配原理</div>
+  <h1 style="font-size:24px">你的档案是这样生成的</h1>
+  <p class="sub">全程可追溯，无随机、无玄学，四步算出最像你的那位古人。</p>
+  <div class="card"><h3>STEP 1 · 六维能力向量</h3><p>系统从六个维度为你建模：<b>决断、洞察、表达、担当、谋略、仁心</b>。这六项组合起来，就是你的“能力指纹”。</p></div>
+  <div class="card"><h3>STEP 2 · 每道题都在计分</h3><p>24 道情境题中，每个选项背后都预设了 0~3 分的维度权重。你感觉在“选答案”，实际是在为六个维度投票——没有对错，只有倾向。</p></div>
+  <div class="card"><h3>STEP 3 · 与人物库比对</h3><p>档案库中的 24 位历史人物（男女各 12 位），都依据史书记载的关键抉择与行事风格，预先标注了六维向量。系统计算你的向量与每位人物的剖面距离，取<b>最相近的一位</b>作为你的原型。</p></div>
+  <div class="card"><h3>STEP 4 · 方向影响候选池</h3><p>开头选择的人物方向（女性人物优先 / 男性人物优先 / 不限于性别）只决定在哪个池子里找，不改变你的六维得分，放心按真实感受作答。</p></div>
+  <div class="card"><h3>雷达图示例</h3><p>这是某位测试者的六维图谱示意，你的结果页也会生成同样的一张：</p><canvas id="demoRadar" width="640" height="560"></canvas></div>
+  <div class="card"><h3>一个小提醒</h3><p>人物匹配是“气质与行事风格的相似”，不是能力高低的评判。测出诸葛亮不代表你该鞠躬尽瘁，测出李白也不代表你要辞职去流浪——它是镜子，不是剧本。</p></div>
+  <button class="btn" onclick="go(0)">明白了，返回封面</button>
+</div>
+
+<!-- 方向选择 -->
+<div class="page" id="p1">
+  <div class="tag">第一步 · 人物方向</div>
+  <h1 style="font-size:24px">你更有代入感的人物方向是？</h1>
+  <p class="sub">只影响候选人物池，不影响答题与计分。<br>人物库共 24 位，男女皆有。</p>
+  <div class="dirs" style="grid-template-columns:1fr">
+    <div class="dir" data-d="f" onclick="pickDir(this)">👩 女性人物优先<br><small style="font-weight:400;color:#8b8474">花木兰 · 武则天 · 李清照 等 12 位</small></div>
+    <div class="dir" data-d="m" onclick="pickDir(this)">👨 男性人物优先<br><small style="font-weight:400;color:#8b8474">曹操 · 苏轼 · 诸葛亮 等 12 位</small></div>
+    <div class="dir" data-d="all" onclick="pickDir(this)">🎲 不限于性别<br><small style="font-weight:400;color:#8b8474">全人物池 24 位</small></div>
   </div>
+  <button class="btn" id="dirBtn" onclick="go(2)" style="opacity:.4;pointer-events:none">进入情境测试</button>
+</div>
 
-  <!-- ④ 解压动画 -->
-  <div id="scr-load" class="screen">
-    <div class="main-card" style="text-align:center;padding-top:90px;padding-bottom:90px">
-      <div class="hero-icon" style="animation:fadeIn .6s infinite alternate">📜</div>
-      <p style="color:var(--purple);font-size:15px;font-weight:700;letter-spacing:2px" id="loadText">正在读取千年档案…</p>
-    </div>
-  </div>
-
-  <!-- ⑤ 结果 -->
-  <div id="scr-result" class="screen">
-    <div id="saveCard">
-      <div class="result-card">
-        <div class="rc-dynasty" id="rDynasty"></div>
-        <div class="rc-name" id="rName"></div>
-        <div class="rc-title" id="rTitle"></div>
-        <div class="rc-sim">人格相似度 <b id="rSim"></b></div>
-        <canvas id="radar" width="300" height="300"></canvas>
-        <div class="rc-radar-cap">实线：你的六维人格 · 虚线：TA 的原型轮廓</div>
-        <div class="rc-quote" id="rQuote"></div>
-        <div class="rc-scene" id="rScene"></div>
-        <div class="rc-footer">前世人物志 · FIGURE ATLAS · 六维人格建模生成</div>
-      </div>
-    </div>
-
-    <div class="theme-bar">
-      <span class="theme-label">🎨 档案配色</span>
-      <div class="theme-dots">
-        <button class="t-dot t-purple" title="紫罗兰" onclick="setTheme('purple',this)"></button>
-        <button class="t-dot t-terracotta" title="陶土暖杏" onclick="setTheme('terracotta',this)"></button>
-        <button class="t-dot t-celadon" title="青瓷绿" onclick="setTheme('celadon',this)"></button>
-        <button class="t-dot t-brick" title="砖红" onclick="setTheme('brick',this)"></button>
-      </div>
-    </div>
-
-    <div class="mirror-tip" id="mirrorTip"></div>
-
-    <div class="quiz-card" style="margin-bottom:16px">
-      <h3 style="margin-bottom:14px;font-size:16px">📊 你的六维人格解析</h3>
-      <div id="dimArea"></div>
-    </div>
-
-    <button class="btn btn-primary" id="saveBtn" onclick="saveImage(this)">📷 保存档案长图</button>
-    <button class="btn btn-ghost" onclick="copyLink()">🔗 复制结果链接，发给朋友测同款</button>
-    <button class="btn btn-ghost" onclick="retest()">🔄 再测一次</button>
-    <button class="btn btn-ghost" onclick="showModal('gift')">🎁 好评有礼</button>
+<!-- 答题 -->
+<div class="page" id="p2">
+  <div class="topbar"><span id="qdimTop">⚖️ 决策方式</span><span id="qnum">1 / 24</span></div>
+  <div class="bar"><i id="qbar"></i></div>
+  <div class="qdim" id="qdim2"></div>
+  <div class="qtext" id="qtext"></div>
+  <div id="qopts"></div>
+  <div class="backbar">
+    <button id="backBtn" onclick="goBack()">← 返回上一题</button>
+    <span style="font-size:12px;color:#c0b8a2">答完 24 题出结果</span>
   </div>
 </div>
 
-<!-- 保存长图弹窗 -->
-<div class="mask" id="mSave">
-  <div class="modal">
-    <h3>长图已生成 ✅</h3>
-    <p><b>手机端</b>：长按下方图片 →「保存图片 / 添加到照片」<br><b>微信内</b>：长按图片 →「保存图片」<br><b>电脑端</b>：点击下方下载按钮</p>
-    <img id="saveImg" alt="测评结果长图">
-    <a id="dlLink" class="btn btn-primary" style="display:block;text-decoration:none" download="前世人物志.png">⬇️ 下载图片</a>
-    <button class="btn btn-ghost" onclick="hideModal('mSave')">关闭</button>
-  </div>
+<!-- 计算中 -->
+<div class="page center" id="p3">
+  <div class="big">🏛️</div>
+  <h1 style="font-size:22px">正在比对千年档案…</h1>
+  <p class="sub">正在计算你的能力向量与 24 位历史人物的相似度</p>
 </div>
 
-<!-- 好评有礼弹窗 -->
-<div class="mask" id="mGift">
-  <div class="modal">
-    <div class="gift-emoji">🎁</div>
-    <h3>好评有礼</h3>
-    <p>动动手指给我们一个<b style="color:var(--purple)">五星好评</b>，<br>然后联系客服发送<b>好评截图</b>，即可免费解锁<br><b>更多趣味测评工具</b>（共 6 款可选）！<br><br>客服微信：<b>qingce-888</b></p>
-    <button class="btn btn-primary" onclick="copyText('qingce-888','客服微信号已复制')">复制客服微信</button>
-    <button class="btn btn-ghost" onclick="hideModal('mGift')">我知道了</button>
+<!-- 结果 -->
+<div class="page" id="p4">
+  <div id="resultCap">
+    <div class="tag center" style="display:block">FIGURE ATLAS · 古人档案局</div>
+    <div class="center">
+      <div style="font-size:52px" id="rEmoji">👑</div>
+      <div class="name" id="rName"></div>
+      <div class="dyn" id="rDyn"></div>
+    </div>
+    <canvas id="radar" width="640" height="560"></canvas>
+    <div class="card"><h3>01 · 人物自画像</h3><p id="rBio"></p></div>
+    <div class="card"><h3>02 · 你与 TA 的共同底色</h3><p id="rCommon"></p></div>
+    <div class="card"><h3>03 · 现实中的你</h3><p id="rReal"></p></div>
+    <div class="card"><h3>04 · 性格盲点与风险提醒</h3><p id="rBlind"></p><p class="warn" id="rRisk"></p></div>
+    <div class="card"><h3>05 · 给你的建议</h3><p id="rAdv"></p></div>
+    <div class="card quotes"><h3>06 · 你的三句人物台词</h3><div id="rQuotes"></div></div>
+    <p class="foot">本测试用于趣味性自我探索，不构成心理测评或历史评价。</p>
   </div>
+  <button class="btn" onclick="saveImg()">🖼️ 保存结果长图</button>
+  <button class="btn ghost" onclick="copyLink()">🔗 复制结果分享链接</button>
+  <button class="btn" onclick="location.href=location.pathname+'?v=9'">🔄 再测一次</button>
+  <button class="btn ghost" onclick="showModal('gift')">🎁 好评有礼</button>
+</div>
+
+<!-- 通用弹窗 -->
+<div class="mask" id="mask" onclick="if(event.target===this)hideModal()">
+  <div class="modal" id="modalBox"></div>
 </div>
 
 <script>
-/* ============ Supabase 配置（部署前替换为你的真实值）============ */
-const SUPABASE_URL = 'https://osgebypmdulrofsdkhsh.supabase.co';
-const SUPABASE_ANON_KEY = 'eyJhbGciOisb_publishable_WHcS5vfDyg_Qbf3T8nfF7Q_HZ6E2H5R';
-const PASS = '8890', MAX = 3;
-let db = null;
-if (typeof supabase !== 'undefined' && !SUPABASE_URL.includes('xxxxxxxx')) {
-  db = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+/* ===== 密码门（每个密码 3 次，本地记录）===== */
+const PW="8890",MAXUSE=3;
+function useCount(){return parseInt(localStorage.getItem("figatlas_used")||"0")}
+function checkPw(){
+  const v=document.getElementById("pwInput").value.trim(),msg=document.getElementById("pwMsg");
+  if(v!==PW){msg.textContent="密码不正确，请重新输入";return}
+  if(useCount()>=MAXUSE){msg.textContent="该密码的 3 次测评机会已用完，请联系获取新密码";return}
+  go(0);
 }
-
-/* ============ 六维解析文案 ============ */
-const DIMS = {
-  A:{name:'决断 · 快刀斩乱麻',
-     hi:'你在信息不全时也敢拍板，天生的行动派。别人还在开会，你已经出发——代价偶尔有，但你更怕错过窗口期。',
-     mid:'你并非优柔寡断，只是习惯在关键处多想一步。你的决断像弹簧，压到临界点时出手又快又准。',
-     lo:'你是"谋定而后动"型。不轻易表态不是怯懦，而是你对确定性要求更高。试着从小决定开始练习"先选再说"。'},
-  B:{name:'洞察 · 看穿牌桌',
-     hi:'你能读懂场面话背后的真实意图，群聊里的@、饭桌上的座次、领导没说完的半句话，都逃不过你的眼睛。',
-     mid:'你具备不错的局势感，尤其在熟悉的领域判断很准。偶尔会"当局者迷"——身在局中时，记得退半步再看。',
-     lo:'你更愿意就事论事，不去揣测人心。这让你活得简单坦荡，但也容易在复杂局面里吃亏，可选择性补一课"听弦外之音"。'},
-  C:{name:'表达 · 让人心动',
-     hi:'你是天然的氛围核心：会安慰人、会暖场、能把话说进心坎里。你的情绪感染力，是你最被低估的超能力。',
-     mid:'你能表达、愿表达，只是在熟人面前才完全打开。在信任的关系里，你的感染力其实非常强。',
-     lo:'你话不多，感情都藏在行动里。你的表达方式是"做事"而非"说话"——身边的人其实都懂。'},
-  D:{name:'担当 · 天塌我顶',
-     hi:'你是身边人的"定海神针"。出了事你不先问"谁的错"，而是先问"怎么办"。被你护着的人，都很有安全感。',
-     mid:'份内的责任你从不含糊，超出预期的担子你会掂量后再接。这是成熟而可持续的担当方式。',
-     lo:'你倾向先照顾好自己的边界，不轻易为他人扛事。这不是自私，是自我保护——偶尔试试"多接一寸"，关系会更近。'},
-  E:{name:'变通 · 此路不通换条路',
-     hi:'规则和死胡同困不住你。你总能找到第三条路：换个角度、借个力、绕个弯——你的人生字典里没有"只能这样"。',
-     mid:'你在熟悉的事务上灵活高效，遇到全新领域会先观望再动手。你的变通是"有准备的灵活"。',
-     lo:'你偏好确定路径，讨厌朝令夕改。稳定性是你的优势，但世界转弯时，记得给自己留一条备用车道。'},
-  F:{name:'坚守 · 认准了不动摇',
-     hi:'你有自己的原则线，风吹不动、利诱不移。长期主义的你在时间复利下，会走得比所有人都远。',
-     mid:'大方向上你很稳，小事上愿意随和。你的坚守是柔中带刚——原则在心，姿态随和。',
-     lo:'你是环境适应者，习惯随势而动。灵活是你的天赋，但建议为自己立一两根"绝不动摇"的桩，人生会更稳。'}
-};
-
-/* ============ 24 道历史故事情境题 ============ */
-const QUESTIONS = [
- {q:'📜 <span class="q-story">官渡之战后，曹操缴获一箱部下私通袁绍的信件，众将惶恐。他看都不看，下令当场烧光："烧了，谁都别查了。"</span>\n——你是团队负责人，翻到几名同事私下给竞争对手投简历的聊天记录。你会？',o:[
-  ['当众一句话带过："看过就翻篇，以后谁也别提。"','A'],
-  ['先不动声色，查清楚是谁、为什么想走，再定对策','B'],
-  ['组一次坦诚茶话会，先讲自己的难处，让大家敢说真话','C'],
-  ['一个个私聊："有难处跟我说，我帮你想办法。"','D']]},
- {q:'📜 <span class="q-story">司马懿十五万大军压境，诸葛亮城头焚香抚琴。司马懿听出的不是琴声，而是"此人一生谨慎，无险不设伏"——空城计吓退大军。</span>\n——谈判对手拍出一份"隔壁公司出价更高"的报价单施压。你会？',o:[
-  ['从付款条件、决策流程等细节里找破绽，判断真假','B'],
-  ['笑着捧一句"贵司实力强"，先把气氛稳住再谈','C'],
-  ['直接表态："就算别人价高，我们也认这份合作。"','D'],
-  ['顺势借力："那正好，我们调整方案，各取所长。"','E']]},
- {q:'📜 <span class="q-story">廉颇不服蔺相如位居其上，处处寻衅；蔺相如处处避让。得知对方是"先国家之急而后私仇"，廉颇背荆条上门请罪，将相和。</span>\n——曾在会上让你难堪的老同事，突然主动找你示好。你会？',o:[
-  ['热情接住台阶，当场把话说开，一笑泯恩仇','C'],
-  ['大方接受道歉，此后公开场合主动替他说话','D'],
-  ['保持礼貌合作，但把合作边界重新划清楚','E'],
-  ['心里记下了这件事，此后共事多留一分谨慎','F']]},
- {q:'📜 <span class="q-story">鲧治水九年，只知筑堤硬堵，堤塌水患更烈；其子大禹改堵为疏，开渠引流，十三年三过家门而不入，终平水患。</span>\n——小区业主群为充电桩选址吵了三个月，物业没辙，大家推你出面。你会？',o:[
-  ['挑头组织协调会，拍胸脯把这事负责到底','D'],
-  ['提新方案：不争选址，先做各方都能接受的试点','E'],
-  ['定下公开透明的投票规则，一次定案，不再反复','F'],
-  ['给物业下最后通牒：一周内拿方案，不然集体投诉','A']]},
- {q:'📜 <span class="q-story">田忌与齐王赛马屡战屡败。孙膑只调了出场顺序：下等马对上等马，上等马对中等马，中等马对下等马——二胜一负，反赢千金。</span>\n——你带的组实力不如隔壁组，季度PK在即，老板要看结果。你会？',o:[
-  ['重排打法：把优势资源集中在最可能赢的两个项目','E'],
-  ['不玩策略，把每个项目都做扎实，实力说话','F'],
-  ['跟老板谈判：换赛道PK，避开对方最强领域','A'],
-  ['先摸清对方组的人手配置和强项弱项，再定战术','B']]},
- {q:'📜 <span class="q-story">商鞅变法前在都城南门立了根木头：搬到北门赏五十金。围观者将信将疑，有人搬了，商鞅当场兑现——新法自此令行禁止。</span>\n——你新官上任，团队都在观望"新领导说话算不算数"。你会？',o:[
-  ['承诺过的一件件兑现，哪怕对自己不利也不打折','F'],
-  ['挑一件最难啃的事先拿下，用结果立威','A'],
-  ['观察团队里最有影响力的老员工，先争取他','B'],
-  ['开个见面会把原则和打算讲透，先立信任','C']]},
- {q:'📜 <span class="q-story">勾践兵败被俘，为夫差尝粪问疾三年。归国后睡柴草、悬苦胆，每日自问"你忘了会稽之耻吗"，十年生聚，终灭吴国。</span>\n——你被调到一个边缘岗位，明眼人都知道是被"发配"了。你会？',o:[
-  ['表面接受安排，暗中开始准备翻身的那盘棋','A'],
-  ['先想明白：是得罪了人，还是站错了队','B'],
-  ['不动声色处好身边每个人，等时机再亮相','C'],
-  ['既来之则安之，把手头小事做到无可挑剔','D']]},
- {q:'📜 <span class="q-story">刘备三次冒雪拜访隆中草庐，前两次扑空仍不改其志。诸葛亮感其诚，隆中一对定三分天下。</span>\n——你想挖一位业内大神，他已经两次婉拒你的邀约。你会？',o:[
-  ['先搞清他真正在意的：薪资、平台，还是价值感','B'],
-  ['写一封信，只谈他的作品和理想，不谈岗位','C'],
-  ['承诺兜底：团队他挑、方案他定，出了事我担','D'],
-  ['不死磕入职，先邀他做外部顾问，慢慢加深','E']]},
- {q:'📜 <span class="q-story">鸿门宴上杀机四伏：刘邦卑辞言和、张良从容周旋、樊哙闯帐护主，君臣三人配合无间，终从虎口脱身。</span>\n——公司年会上，明显针对你的上司频频举杯"敬你"，话里带刺。你会？',o:[
-  ['举杯笑纳，句句接得漂亮，让全场看到你的大气','C'],
-  ['关键时刻挡在团队前面，替手下的"锅"出头','D'],
-  ['借敬酒之机绕到主桌领导身边，自然化解围堵','E'],
-  ['低调自持，只谈工作不接话茬，不给把柄','F']]},
- {q:'📜 <span class="q-story">巨鹿之战，项羽率军渡河后砸锅沉船，只带三日粮，示士卒必死、无一还心——九战九捷，大破秦军主力。</span>\n——你的副业到了关键期：再投入半年就能起飞，但必须辞职。你会？',o:[
-  ['和家人安排好三年生活保障，全力一搏','D'],
-  ['找折中方案：先谈停薪留职，降低风险','E'],
-  ['定铁律：存款低于警戒线立即回头，绝不恋战','F'],
-  ['想清楚了就辞职，不留退路','A']]},
- {q:'📜 <span class="q-story">赵太后不肯送儿子去齐国为质，扬言"老妇必唾其面"。触龙入宫绝口不提人质，只聊家常，从"父母之爱子，则为之计深远"说起，太后欣然应允。</span>\n——你爸执意把养老钱投进一个明显不靠谱的"高息理财"。你会？',o:[
-  ['不硬顶，先陪他研究合同条款，让他自己发现问题','E'],
-  ['坚持立场，宁可吵翻也绝不让钱投进去','F'],
-  ['直接查该平台监管备案，用权威结果说话','A'],
-  ['打听他的老伙伴谁投过、结果如何，再劝不迟','B']]},
- {q:'📜 <span class="q-story">少年韩信当街被屠夫挑衅："要么刺死我，要么钻我裤裆。"韩信凝视良久，俯身钻过，满街哄笑。多年后他封侯拜将，找到那屠夫，反授其职。</span>\n——同学聚会上，当年看不起你的人如今混得平平，却阴阳怪气暗讽你。你会？',o:[
-  ['不接招不还击，保持风度，让时间说话','F'],
-  ['笑着回一句软中带硬的话，一次把话说透','A'],
-  ['听懂他的酸味来自哪里，不接情绪只接事实','B'],
-  ['主动举杯："当年多谢你，让我明白了很多。"','C']]},
- {q:'📜 <span class="q-story">孙权送来巨象，满朝文武争论"秤不够大怎么称"。七岁的曹冲只说了一句：把象牵上船刻水位，再换石头称。</span>\n——部门为"爆款单品"定价吵了三天没结论，你是主持人。你会？',o:[
-  ['当场拍板：先小批量试卖两周，用数据说话','A'],
-  ['点破本质：大家争的不是价格，是各自部门的KPI','B'],
-  ['让分歧双方各陈述三分钟，不掐不断','C'],
-  ['主动提出："定价责任我来担，先定一版跑起来。"','D']]},
- {q:'📜 <span class="q-story">群童嬉戏，一孩坠入大水缸，众人哭喊着去找大人。只有司马光搬起石头砸破水缸，放水救人。</span>\n——项目演示前一小时，核心文件损坏且无备份，团队乱作一团。你会？',o:[
-  ['快速盘点：哪些能找回？哪个环节还能补？','B'],
-  ['先稳军心："慌没用，我们一起想，来得及。"','C'],
-  ['主动承担最难的补救："这块我来，你们照常备。"','D'],
-  ['改方案：用截图和口头讲解替代，先把演示撑过去','E']]},
- {q:'📜 <span class="q-story">征兵名册上有年迈的父亲，花木兰连夜置办鞍马，替父从军十二年。凯旋归来，"火伴始惊忙"——同行十二年，不知木兰是女郎。</span>\n——家里出了急事需要有人长期照应，兄弟姐妹都脱不开身。你会？',o:[
-  ['主动开口："我离家近，我来"，说明白不憋屈','C'],
-  ['直接把担子接过来，安排好一切再通知大家','D'],
-  ['提议全家分摊：我出力，其他人出钱请护工','E'],
-  ['定下轮流照顾的规矩，写进家庭群公告','F']]},
- {q:'📜 <span class="q-story">秦王假意以十五城换和氏璧。蔺相如捧璧而立："璧有微瑕，请指示王"，趁机收回宝璧，倚柱怒斥，以命相搏——宝璧完璧归赵。</span>\n——客户拿"再降15%就签约"压你，还暗示别家更便宜。你会？',o:[
-  ['亮底线："这已是诚意价，服务出了问题我担。"','D'],
-  ['拿出替代方案：价格不动，加赠增值服务','E'],
-  ['咬住报价不松口，宁可丢单不破价格体系','F'],
-  ['给出期限："这个价保留到明天，之后恢复原价。"','A']]},
- {q:'📜 <span class="q-story">邹忌比美后悟出：妻美我、客有求于我，皆非真话。遂以己事讽喻齐王，齐王下令"面刺寡人者受上赏"，燕赵闻之皆来朝。</span>\n——你的方案被领导当面否了，散会后同事私下都说"其实你的更好"。你会？',o:[
-  ['换个方式再提：先附和新方向，再递上你的数据','E'],
-  ['没想清楚就不提；认定对了，就找机会再争取','F'],
-  ['约领导十分钟，直接请他说出否定的具体理由','A'],
-  ['先弄清领导的真实顾虑：方案问题，还是时机与人','B']]},
- {q:'📜 <span class="q-story">张骞出使西域，途中被匈奴扣留十三年，娶妻生子仍"持汉节不失"。归汉时百人队伍只剩两人，而西域自此凿空，纳入版图。</span>\n——你坚持三年的副业迟迟不见起色，家人都劝你放弃。你会？',o:[
-  ['不动摇：定个最后年限，不到那天绝不收手','F'],
-  ['当机立断调整：砍掉不赚钱的部分，聚焦主线','A'],
-  ['复盘三年数据：是方向错了，还是火候未到','B'],
-  ['把坚持的故事发上社交平台，收获同路人','C']]},
- {q:'📜 <span class="q-story">永乐帝力排众议派船队下西洋：两万七千人、两百余艘宝船，郑和七次远航，最远抵达非洲东海岸，海上丝路自此贯通。</span>\n——你提的新方向终于获批试点，但预算只有要价的三分之一。你会？',o:[
-  ['接下预算就开干：先做最小版本，用成绩换投入','A'],
-  ['精算聚焦：砍掉所有支线，全押最可能成的一个点','B'],
-  ['拉愿意共担风险的部门凑资源，一起干','C'],
-  ['向老板立军令状："预算虽少，半年后交结果。"','D']]},
- {q:'📜 <span class="q-story">管仲与鲍叔牙合伙经商，管仲总多分利，鲍叔牙不以为贪，知他家贫。管仲叹："生我者父母，知我者鲍子也。"</span>\n——好友创业邀你入伙，你对项目有顾虑，但很看重这份交情。你会？',o:[
-  ['先弄清顾虑本质：怕项目风险，还是怕伤交情','B'],
-  ['坦诚相告："项目我有一说一，但人我随时帮。"','C'],
-  ['不入股但承诺兜底：有难处出力不出资','D'],
-  ['先以顾问身份帮三个月，彼此看合不合拍','E']]},
- {q:'📜 <span class="q-story">王羲之临池学书，日日洗笔，一池清水尽染成墨。数十年后，一篇《兰亭集序》成为"天下第一行书"。</span>\n——你定了"每天背20个单词"的目标，坚持到第9天断了。你会？',o:[
-  ['发朋友圈立flag打卡，让朋友监督重新开始','C'],
-  ['找个学伴互相督促，"你来当我的监督人"','D'],
-  ['承认方法太重，改成每天10个，先把习惯养回来','E'],
-  ['不找借口，从第10天直接补上，规则不改','F']]},
- {q:'📜 <span class="q-story">边塞老翁丢了马，他说"未必是祸"；马带回骏马，他说"未必是福"；儿子骑马摔断腿，他说"未必不是福"——战事起，独其子免征。</span>\n——你最看好的晋升名额，被空降的"关系户"拿走了。你会？',o:[
-  ['主动接下没人愿啃的硬骨头，用担当换下个名额','D'],
-  ['顺势而为：新领导新打法，先研究怎么搭上新船','E'],
-  ['不为所动，把手头业绩做扎实，机会总会再来','F'],
-  ['直接约HR面谈，明确表达意愿和资格','A']]},
- {q:'📜 <span class="q-story">玄奘孤身西行五万里，穿越八百里流沙时四天滴水未进，立誓"宁可就西而死，岂归东而生"。十七年后，携六百余部经书东归。</span>\n——你备考通过率极低的资格证，第一次差了3分。你会？',o:[
-  ['按原计划再来一年，目标不变，方法微调','E'],
-  ['复盘后立即换打法：报冲刺班，主攻失分模块','F'],
-  ['先算清投入产出：这证值不值得再赌一年','A'],
-  ['加入考友群公开打卡，抱团取暖','B']]},
- {q:'📜 <span class="q-story">秦军围邯郸，平原君选二十名门客赴楚求援。无名小卒毛遂站出来，众人讥笑。他答："锥处囊中，其末立见——今天就是把我放进囊中的时候。"谈判僵局时他按剑而上，说服楚王。</span>\n——公司竞聘新项目负责人，你资历不是最深。要不要主动举手？',o:[
-  ['不慌不举，先把手头项目做出成绩，机会自然来','F'],
-  ['第一时间报名："不试试怎么知道。"','A'],
-  ['先打探竞聘对手和评审看重什么，再做决定','B'],
-  ['把竞聘演讲讲成好故事，让人记住你而不只是PPT','C']]}
+/* ===== 分享链接直达结果 ===== */
+const rp=new URLSearchParams(location.search).get("r");
+let fromShare=false;
+if(rp&&rp.length===25){
+  const dm=["f","m","all"],d=dm[+rp[0]];
+  if(d){dir=d;fromShare=true;for(let i=1;i<25;i++)answersIdx.push(+rp[i]);window.addEventListener("load",()=>{setTimeout(()=>showResult(true),50)})}
+}
+/* ===== 题目 ===== */
+const QS=[
+ {d:0,t:"项目陷入僵局，团队都在等你拿主意，你会：",o:[["拍板定一个方案，错了再改",3,0,0,0,0,0],["先收集更多信息再说",0,2,0,0,1,0],["让大家投票，少数服从多数",0,0,1,1,0,1],["先把风险列清楚再决定",0,1,0,0,2,0]]},
+ {d:0,t:"机会窗口只有一晚，信息还不完整，你会：",o:[["赌一把，先上再说",3,0,0,1,0,0],["放弃，准备不充分宁可不做",0,1,0,0,1,1],["找人商量后立刻决定",0,1,2,0,0,0],["小范围试一下再看",0,1,0,0,2,0]]},
+ {d:0,t:"两条路都对但互斥时，你的第一反应是：",o:[["选更难但更值得的那条",1,0,0,2,1,0],["选更稳妥的那条",0,1,0,0,1,1],["想办法都要一点",0,0,0,0,3,0],["听信任直觉的那条",2,0,1,0,0,0]]},
+ {d:0,t:"计划被临时推翻，你会：",o:[["五分钟内给出新计划",3,0,0,1,0,0],["先处理情绪再谈计划",0,0,1,0,0,2],["找出是谁的问题",0,2,0,0,1,0],["顺势而为，见招拆招",0,1,0,0,2,0]]},
+ {d:1,t:"聚会上有个人一直沉默，你会：",o:[["注意到他，找机会聊两句",0,3,1,0,0,1],["尊重他的安静，不打扰",0,1,0,0,0,2],["主动带动他参与话题",0,1,2,0,0,1],["观察他和谁关系微妙",0,3,0,0,1,0]]},
+ {d:1,t:"朋友说“我没事”，你通常：",o:[["看得出来他有没有事",0,3,0,0,0,1],["他说没事就当没事",0,0,0,0,0,1],["直接问到底怎么了",0,1,2,1,0,1],["默默陪着他",0,1,0,0,0,3]]},
+ {d:1,t:"新环境里，你最先进注意的是：",o:[["权力和利益关系",0,2,0,0,2,0],["每个人的性格特点",0,3,0,0,0,1],["规则和潜在风险",0,2,0,0,2,0],["有没有被忽视的人",0,1,0,0,0,3]]},
+ {d:1,t:"别人还没说出口的需求，你：",o:[["常常能提前猜到",0,3,1,0,0,1],["说出口我才反应过来",0,0,0,0,0,0],["会直接问对方要什么",0,1,2,0,0,1],["从细节里自己拼出来",0,3,0,0,1,0]]},
+ {d:2,t:"需要当众说服一群人时，你会：",o:[["讲逻辑、摆事实",0,1,2,0,1,0],["讲故事、动感情",0,0,3,0,0,1],["找关键人物私下沟通",0,1,1,0,2,0],["拿结果和数据说话",1,0,2,1,0,0]]},
+ {d:2,t:"朋友向你倾诉烦恼，你更多是：",o:[["帮他分析解决办法",0,2,0,1,1,0],["先共情，陪他骂两句",0,1,2,0,0,2],["给他打气、鼓励行动",0,0,2,2,0,0],["安静听完，给他空间",0,1,0,0,0,3]]},
+ {d:2,t:"你的文字/朋友圈风格更接近：",o:[["简洁有力，直击重点",1,0,2,0,1,0],["有趣有梗，才华横溢",0,0,3,0,0,0],["温暖细腻，常被夸走心",0,1,1,0,0,3],["很少发，神秘低调",0,1,0,0,2,0]]},
+ {d:2,t:"被人误解时，你会：",o:[["当场说清楚，不留疙瘩",0,0,3,1,0,0],["清者自清，时间会证明",0,1,0,1,1,0],["找共同好友帮忙转达",0,1,1,0,1,0],["先反思自己哪里做错了",0,1,0,0,0,2]]},
+ {d:3,t:"团队出了事故，领导追责时，你会：",o:[["是我的锅我先认",0,0,0,3,0,1],["实事求是说明各方责任",0,2,0,2,0,0],["先保护组员再谈责任",0,0,0,2,0,2],["想办法把影响降到最小",0,1,0,1,2,0]]},
+ {d:3,t:"看到不公平的事，你通常：",o:[["忍不住要管一管",0,0,1,2,0,2],["量力而行，先保全自己",0,1,0,0,2,0],["暗中帮助受委屈的一方",0,1,0,1,1,2],["心里不平但很少行动",0,1,0,0,0,1]]},
+ {d:3,t:"答应别人的事遇到困难，你会：",o:[["砸锅卖铁也要办到",0,0,0,3,0,1],["提前说明情况、重新商量",0,1,2,1,0,1],["想办法绕过去完成",0,0,0,1,2,0],["尽力而为，问心无愧就好",0,1,0,1,0,2]]},
+ {d:3,t:"如果生在乱世，你更可能：",o:[["揭竿而起，自己干一场",1,0,1,3,1,0],["辅佐明主，运筹帷幄",0,1,0,1,3,0],["守护身边人平安",0,0,0,2,0,3],["归隐避世，独善其身",0,1,0,0,1,1]]},
+ {d:4,t:"做重要决定前，你习惯：",o:[["推演各种后果再动手",0,1,0,0,3,0],["跟着感觉走",2,1,0,1,0,0],["请教有经验的人",0,1,1,0,1,1],["边做边调整",1,0,0,1,1,0]]},
+ {d:4,t:"棋逢对手的博弈中，你更擅长：",o:[["长线布局，后发制人",0,1,0,0,3,0],["正面硬刚，实力碾压",1,0,1,2,0,0],["借力打力，四两拨千斤",0,1,0,0,3,0],["化敌为友，不战而胜",0,1,1,0,1,2]]},
+ {d:4,t:"你更认同哪种成功路径：",o:[["厚积薄发，等待时机",0,1,0,0,3,0],["敢闯敢拼，先到先得",2,0,0,2,0,0],["广结善缘，众人拾柴",0,1,1,0,1,2],["深耕专业，无可替代",0,2,0,1,1,0]]},
+ {d:4,t:"秘密被人套话时，你会：",o:[["滴水不漏，笑着岔开",0,2,1,0,3,0],["不太会藏，脸上全写着",0,0,2,0,0,2],["半真半假地模糊过去",0,2,0,0,2,0],["看人，值得信才说",0,2,0,0,1,1]]},
+ {d:5,t:"下属/晚辈犯了低级错误，你会：",o:[["先解决问题，再谈对错",0,1,0,1,1,2],["严肃指出，避免再犯",1,0,0,2,1,0],["帮他把面子圆过去",0,0,1,0,0,3],["让他自己长记性",0,1,0,1,1,0]]},
+ {d:5,t:"利益分配时，你的底线是：",o:[["自己吃点亏也要公平",0,0,0,1,0,3],["亲兄弟明算账",0,1,0,1,1,0],["照顾弱势的那一方",0,0,0,0,0,3],["按贡献说话最合理",1,0,0,1,2,0]]},
+ {d:5,t:"对待“没有用”的人（帮不上你的），你：",o:[["一样真诚相待",0,1,0,0,0,3],["保持礼貌但不深交",0,1,0,0,1,0],["看人品，值得就交",0,2,0,0,1,0],["时间有限，聚焦重点",0,1,0,1,2,0]]},
+ {d:5,t:"如果功成名就，你最想做的是：",o:[["回馈帮过我的人",0,0,0,1,0,3],["继续做更大的事业",2,0,0,2,1,0],["潇洒退场，享受生活",0,1,1,0,1,0],["为更多人发声做事",0,0,1,1,0,3]]}
 ];
-
-/* ============ 24 位人物原型库 ============ */
-const CHARS=[
- {n:'魏武帝 · 曹操',dyn:'东汉末',t:'乱世里的狠人',g:'M',v:[92,88,65,55,80,45],
-  quote:'宁我负人的代价，是永远不能回头。',
-  scene:'名场面 · 官渡之战后烧光通敌书信——"烧了，谁都别查了。"人心与胜负，他永远先选后者。',
-  share:'测出我是曹操：不是奸，是快。快到别人还在开会，我已经赢了。'},
- {n:'武乡侯 · 诸葛亮',dyn:'三国',t:'谋定后动的操盘手',g:'M',v:[60,95,60,95,50,95],
-  quote:'把一生押在一份《出师表》上。',
-  scene:'名场面 · 空城抚琴。弹的不是曲子，是对对手心理的精确计算。',
-  share:'我是诸葛亮型人格：社畜中的六边形战士，唯一的敌人是"我来吧"三个字。'},
- {n:'东坡居士 · 苏轼',dyn:'北宋',t:'打不倒的表达者',g:'M',v:[55,65,98,60,92,60],
-  quote:'被贬到哪，就把哪吃出名堂。',
-  scene:'名场面 · 黄州发明东坡肉，惠州"日啖荔枝三百颗"。命运给他流放，他给命运点菜。',
-  share:'我是苏轼型人格：命运给我发配，我给命运点菜。'},
- {n:'心学宗师 · 王阳明',dyn:'明',t:'知行合一的开悟者',g:'M',v:[80,95,70,75,75,95],
-  quote:'龙场一个石棺，想通全世界。',
-  scene:'名场面 · 被贬蛮荒反而悟道——"圣人之道，吾性自足。"想得透，更做得成。',
-  share:'我是王阳明型人格：内耗终结者。遇事先问一句——事上练了吗？'},
- {n:'淮阴侯 · 韩信',dyn:'西汉',t:'忍辱负重的兵仙',g:'M',v:[70,85,45,50,90,55],
-  quote:'能钻裤裆的手，也能托起整个天下。',
-  scene:'名场面 · 当街受胯下之辱而不发，封侯拜将后找到那屠夫，反授其职——胸中装的是天下，不是一时意气。',
-  share:'我是韩信型人格：忍得下所有委屈，也接得住所有机会。'},
- {n:'西楚霸王 · 项羽',dyn:'秦末',t:'破釜沉舟的豪赌者',g:'M',v:[95,50,55,75,30,60],
-  quote:'三千江东子弟，一次豪赌定乾坤。',
-  scene:'名场面 · 巨鹿之战砸锅沉船，只带三日粮，九战九捷——成也果决，败也不肯过江东。',
-  share:'我是项羽型人格：要么不做，要做就做到极致。'},
- {n:'温国公 · 司马光',dyn:'北宋',t:'急时敢破局的稳健派',g:'M',v:[62,70,48,82,68,95],
-  quote:'平时守规矩，急时敢破局。',
-  scene:'名场面 · 群童慌乱找大人时，他已搬起石头砸向水缸——规矩留给平日，救人就在当下。',
-  share:'我是司马光型人格：平时最靠谱，出事第一个站出来。'},
- {n:'仓曹属 · 曹冲',dyn:'东汉末',t:'换角度解题的天才',g:'M',v:[50,90,60,55,95,45],
-  quote:'秤称不了的，就换个东西来称。',
-  scene:'名场面 · 满朝争"秤不够大"，七岁的他只说了一句：把象牵上船，刻水位，再换石头称。',
-  share:'我是曹冲型人格：你们在争问题，我在换问法。'},
- {n:'上大夫 · 蔺相如',dyn:'战国',t:'以柔克刚的外交家',g:'M',v:[70,85,80,90,65,80],
-  quote:'先礼后兵，礼到则兵不必出。',
-  scene:'名场面 · 完璧归赵——捧璧倚柱、以命相搏而不失分寸；对廉颇又处处退让，将相和。',
-  share:'我是蔺相如型人格：温柔是选择，硬气是实力。'},
- {n:'博望侯 · 张骞',dyn:'西汉',t:'持节不失的开拓者',g:'M',v:[65,60,45,90,70,98],
-  quote:'被扣十三年，汉节上的牦毛掉光了，节还在。',
-  scene:'名场面 · 出使西域被匈奴扣留十三年，娶妻生子仍"持汉节不失"，归汉时百人只剩两人，而西域自此凿空。',
-  share:'我是张骞型人格：路再远，方向不丢。'},
- {n:'三藏法师 · 玄奘',dyn:'唐',t:'宁向西而死的长行者',g:'M',v:[70,55,50,85,60,98],
-  quote:'宁可就西而死，岂归东而生。',
-  scene:'名场面 · 八百里流沙四天滴水未进，立誓绝不东归一步——十七年后，携六百余部经书归来。',
-  share:'我是玄奘型人格：认准的路，走也要走到。'},
- {n:'平原君客 · 毛遂',dyn:'战国',t:'锥处囊中的自荐者',g:'M',v:[88,70,92,75,55,60],
-  quote:'是锥子，就要露出尖来。',
-  scene:'名场面 · 众人讥笑无名小卒自荐出使，谈判僵局时他按剑而上，一席话定楚赵之盟。',
-  share:'我是毛遂型人格：机会不等人，我先举的手。'},
- {n:'则天大圣皇帝 · 武则天',dyn:'唐',t:'无字碑的野心家',g:'F',v:[95,85,60,70,75,70],
-  quote:'从才人到皇帝，走完别人想都不敢想的路。',
-  scene:'名场面 · 驯狮子骢——"三物服之：铁鞭、铁楇、匕首。"任何牌桌上，她都敢当庄家。',
-  share:'我是武则天型人格：不解释，用结果解释。'},
- {n:'孝烈将军 · 花木兰',dyn:'南北朝',t:'沉默的守护者',g:'F',v:[70,55,50,98,60,85],
-  quote:'不爱红妆爱武装，为家扛起一整支军队。',
-  scene:'名场面 · "阿爷无大儿，木兰无长兄，愿为市鞍马，从此替爷征。"同行十二年，无人识她是女郎。',
-  share:'我是花木兰型人格：家里的定海神针，所有人的"没事，有我"。'},
- {n:'易安居士 · 李清照',dyn:'宋',t:'锋芒毕露的才女',g:'F',v:[60,80,98,55,55,75],
-  quote:'一半婉约，一半"生当作人杰"。',
-  scene:'名场面 · 国破家亡后带着十几车金石文物南渡，一场没落，全护住了。',
-  share:'我是李清照型人格：能写"凄凄惨惨戚戚"，也能写"不肯过江东"。'},
- {n:'巾帼宰相 · 上官婉儿',dyn:'唐',t:'乱局中的斡旋者',g:'F',v:[60,92,85,60,88,50],
-  quote:'从罪臣之女，到称量天下才士。',
-  scene:'名场面 · 梅花妆——额头上的伤，硬是被她变成了盛唐最流行的妆。',
-  share:'我是上官婉儿型人格：职场高情商天花板，缺点是太懂事了。'},
- {n:'咏絮之才 · 谢道韫',dyn:'东晋',t:'大场面里不慌的人',g:'F',v:[65,90,90,70,60,85],
-  quote:'平时是氛围组，出事是定心丸。',
-  scene:'名场面 · 孙恩之乱兵临城下，她抱着外孙、提刀出门。优雅与胆识，从来并存。',
-  share:'我是谢道韫型人格：平时是氛围组，出事是定心丸。'},
- {n:'布衣发明家 · 黄道婆',dyn:'宋末元初',t:'动手改变命运的人',g:'F',v:[70,60,50,65,95,90],
-  quote:'从流落崖州的童养媳，到改写整个江南的手工业。',
-  scene:'名场面 · 改良三锭脚踏纺车，效率翻倍，松江布从此"衣被天下"。',
-  share:'我是黄道婆型人格：话不多，但经我手的东西，就是不一样。'},
- {n:'曹家女史 · 班昭',dyn:'东汉',t:'续写青史的女师',g:'F',v:[55,75,85,70,60,92],
-  quote:'兄长未竟的《汉书》，由她一笔一笔续完。',
-  scene:'名场面 · 兄长班固冤死狱中，她奉诏入东观藏书阁续修国史——史上唯一参与正史的女性史家，宫中尊称"曹大家"。',
-  share:'我是班昭型人格：别人写不完的，我来写完。'},
- {n:'唐室公主 · 平阳昭公主',dyn:'隋唐',t:'娘子关下的统帅',g:'F',v:[80,70,60,95,65,85],
-  quote:'娘子军来守关，山河为证。',
-  scene:'名场面 · 变卖家资招募义军，亲率"娘子军"为父攻城略地，驻守娘子关——中国历史上唯一以军礼下葬的公主。',
-  share:'我是平阳公主型人格：谁的江山，不是打出来的？'},
- {n:'商国王后 · 妇好',dyn:'商',t:'执钺出征的大将军',g:'F',v:[85,75,55,90,60,75],
-  quote:'中国有史可考的第一位女将军。',
-  scene:'名场面 · 商王武丁的王后，手持大铜钺统兵一万三千出征，甲骨文里刻着她北伐羌方、东征夷国的战果。',
-  share:'我是妇好型人格：上得庙堂，下得战场。'},
- {n:'文姬 · 蔡琰',dyn:'东汉末',t:'乱世里记下文明的人',g:'F',v:[50,70,95,60,60,70],
-  quote:'凭记忆默写古籍四百篇，一个字没错。',
-  scene:'名场面 · 流落匈奴十二年，归汉后凭记忆默写出父亲蔡邕散佚的四百篇藏书，续上断掉的文脉。',
-  share:'我是蔡文姬型人格：命运抢得走一切，抢不走我脑子里的东西。'},
- {n:'文成公主 · 李雪雁',dyn:'唐',t:'远行千里的人桥',g:'F',v:[55,75,70,80,80,90],
-  quote:'一条唐蕃古道，走了两年半。',
-  scene:'名场面 · 携佛像、工匠、典籍、五谷种子入藏，把中原的技术与文化带上雪域高原，大昭寺因她而建。',
-  share:'我是文成公主型人格：走到哪里，就把哪里当家。'},
- {n:'女医国手 · 谈允贤',dyn:'明',t:'破例行医的女国手',g:'F',v:[60,70,55,80,85,90],
-  quote:'医术不问男女，只问生死。',
-  scene:'名场面 · 明代女眷不便见男医，她以一身医术立身悬壶，晚年著《女医杂言》，开中国女医之先河。',
-  share:'我是谈允贤型人格：规矩说不行？我行给你看。'}
+/* ===== 人物库（24 位：女性池 f · 男性池 m）===== */
+const FIGS=[
+{g:"f",e:"⚔️",name:"花木兰",dyn:"北魏 · 巾帼名将",v:[3,2,1,3,2,3],bio:"替父从军的女儿身——不是不知道怕，而是把责任看得比害怕更重。她能隐忍多年，也能策马冲锋。她的勇敢不是不怕，而是怕了依然向前。",common:"你们都有一颗「该我扛」的心。答应的事拼尽全力，看不得身边人受委屈，关键时刻从不掉链子。",real:"你是团队里最让人放心的人：不抢功、不甩锅，出了事第一个站出来。",blind:"太能扛，什么都自己扛着，很少开口求人。",risk:"警惕「责任感透支」——先照顾好自己，再照顾别人。",adv:"学会把担子分出去。求助不是软弱，是给别人信任你的机会。",q:["万里赴戎机，关山度若飞。","谁说女儿不如男。","将军百战死，壮士十年归。"]},
+{g:"f",e:"🔥",name:"武则天",dyn:"武周 · 一代女皇",v:[3,3,3,3,3,1],bio:"从才人到皇帝，每一步都走在无人敢想的路上。在男权世界的最高处，她证明了规则是给不敢打破的人定的。无字碑空着——功过留给后人评说。",common:"你们都有极强的目标感和翻盘能力：环境越不利，越能找到破局点。",real:"你是天生的掌局者：善于隐忍、精于判断，该出手时绝不犹豫。",blind:"太擅长赢，有时忘了问「赢了之后要什么」。",risk:"警惕「孤独的高位」——身边多的是附和，缺的是真话。",adv:"留几个不图你什么的旧友，信任要主动去攒。",q:["花须连夜发，莫待晓风吹。","身为女子，何须让须眉。","无字碑上千秋事，留与后人论短长。"]},
+{g:"f",e:"📜",name:"李清照",dyn:"两宋 · 千古第一才女",v:[1,3,3,2,1,2],bio:"前半生写「知否知否」，后半生国破家亡、颠沛流离，依然把词写成一代宗师。她证明了细腻与刚烈可以并存于一人。",common:"你们都敏感细腻、审美出众，外表柔和，骨子里有不将就的倔强。",real:"你品位出众、情感丰沛，直觉极准。你在意的不是对不对，而是真不真、美不美。",blind:"情感浓度太高，容易被情绪和回忆困住。",risk:"警惕「沉溺过去」——回忆可以停留，人要向前走。",adv:"把感受写下来、做出来。你的敏感不是弱点，是天赋的入口。",q:["知否，知否？应是绿肥红瘦。","生当作人杰，死亦为鬼雄。","此情无计可消除，才下眉头，却上心头。"]},
+{g:"f",e:"🕊️",name:"王昭君",dyn:"西汉 · 和亲使者",v:[2,2,2,3,1,3],bio:"本是无名宫女，却远嫁塞外，用一个人的离开换来数十年边关安宁。落雁之名流传千古，她的选择比美貌更动人。",common:"你们都有「以柔克刚」的担当：不爱争抢，但关键时刻敢做别人不敢做的决定。",real:"你温和隐忍、顾全大局，是化解矛盾的人。你的力量不在锋芒，而在承受。",blind:"太会成全别人，容易委屈了自己。",risk:"警惕「沉默的牺牲」——成全要有边界，别让隐忍变成理所当然。",adv:"大方表达自己的需要。你的付出值得被看见、被回报。",q:["一去紫台连朔漠，独留青冢向黄昏。","群山万壑赴荆门，生长明妃尚有村。","汉恩自浅胡自深，人生乐在相知心。"]},
+{g:"f",e:"🎶",name:"蔡文姬",dyn:"东汉末 · 一代才女",v:[1,3,3,1,1,3],bio:"博学能文、精通音律，却被掳匈奴十二年。归来后凭记忆默写古籍四百余篇，《胡笳十八拍》是才情也是血泪。",common:"你们都才华内敛、共情极深，能在苦难里守住内心的秩序与热爱。",real:"你安静而有力量，善于倾听和记录，是朋友心中「最懂」的那个人。",blind:"逆来顺受的忍耐，有时会错过自救的时机。",risk:"警惕「认命感」——困境里也要为自己争取一次。",adv:"你的经历本身就是价值。把它表达出来，伤口也会变成光。",q:["文姬归汉，胡笳十八拍。","感时念父母，哀叹无穷已。","茕茕对孤景，怛咤糜肝肺。"]},
+{g:"f",e:"🖋️",name:"上官婉儿",dyn:"唐 · 巾帼宰相",v:[2,3,3,2,3,2],bio:"从罪臣之女做到权力中枢，「称量天下士」多年，是武则天身边最有权势的女官。一支笔，就是她的刀与剑。",common:"你们都头脑清醒，擅长在复杂关系里找到自己的位置，靠专业和情商立足。",real:"你是职场多面手：会协调、能落地、懂分寸，领导离不开你。",blind:"太懂得权衡，有时会模糊自己的立场。",risk:"警惕「迷失于依附」——平台的光环不等于你自己的底气。",adv:"培养一份离开谁都能立足的核心能力，那才是真正的安全感。",q:["称量天下士。","势如连璧友，心似臭兰人。","叶下洞庭初，思君万里余。"]},
+{g:"f",e:"💃",name:"卓文君",dyn:"西汉 · 敢爱奇女子",v:[3,2,3,2,1,2],bio:"家境殷实却为爱私奔，当垆卖酒也不觉得丢人；司马相如变心，她一首《白头吟》把局面扳了回来。爱得起，也放得下。",common:"你们都敢作敢当、爱憎分明，为了想要的生活敢打破规则。",real:"你有主见、有行动力，感情和事业都自己做主。别人眼中的冒险是你的日常。",blind:"冲动上头时容易不计后果。",risk:"警惕「感性压过理性」——重要决定先冷静一晚再拍板。",adv:"保留你的勇敢，给勇敢装上方向盘。",q:["愿得一心人，白头不相离。","闻君有两意，故来相决绝。","凄凄复凄凄，嫁娶不须啼。"]},
+{g:"f",e:"📚",name:"班昭",dyn:"东汉 · 曹大家",v:[1,3,2,2,2,3],bio:"续写《汉书》补齐兄长遗稿，是史上第一位女史学家，用学问在那个时代赢得了「大家」之尊。",common:"你们都勤勉自律、以才学立身，相信长期积累的力量。",real:"你是靠谱的知识型选手：学得进、坐得住、写得出来。",blind:"规矩意识太强，容易自我设限。",risk:"警惕「完美主义内耗」——完成比完美更重要。",adv:"你的严谨是稀缺品质，但记得给生活留一点不守规矩的乐趣。",q:["执笔续史，巾帼不让。","专注学问，方得始终。","博学高才，宜有善名。"]},
+{g:"f",e:"🚩",name:"平阳昭公主",dyn:"唐 · 娘子军统帅",v:[3,2,1,3,3,2],bio:"父亲起兵时，她独自在关中拉起数万人的「娘子军」，为大唐立下战功，娘子关因她得名。",common:"你们都有组织力和号召力，能一呼百应，是天生的主心骨。",real:"你资源整合能力极强：能拉队伍、能扛大事，是大家眼里「能成事」的人。",blind:"习惯做主，有时听不进不同声音。",risk:"警惕「强势压人」——领袖力在于凝聚，而不在于压制。",adv:"多问一句「你们怎么看」，团队会给你惊喜。",q:["娘子军威名今犹在。","雄关名曰娘子关。","巾帼亦能定乾坤。"]},
+{g:"f",e:"🥁",name:"梁红玉",dyn:"南宋 · 击鼓抗金",v:[3,1,2,3,2,2],bio:"出身低微却成为名将韩世忠的并肩战友，黄天荡之战亲执桴鼓、助夫阻敌四十八日。出身不能选择，人可以选择成为谁。",common:"你们都不认命、能翻身，越是低谷越有往上爬的狠劲。",real:"你行动力爆表，说到就做到，是执行力惊人的人。",blind:"好胜心太强，容易硬扛不必要的战场。",risk:"警惕「以命相搏式努力」——身体是本钱，别透支。",adv:"选对战场再发力。你的狠劲用在刀刃上，回报翻倍。",q:["红玉桴鼓，助战黄天荡。","巾帼击鼓，声震江淮。","出身不由己，道路自己选。"]},
+{g:"f",e:"🏔️",name:"文成公主",dyn:"唐 · 雪域使者",v:[2,2,2,3,2,3],bio:"远离长安远嫁吐蕃，带去典籍、工匠与谷物种子，把一生献给汉藏交融。她用温柔的方式，完成了一件无比坚韧的事。",common:"你们都有「把陌生变成熟悉」的能力：入乡随俗却不失本色，默默把事情做好。",real:"你适应力强、有大局观，善于在新环境里扎根生长。",blind:"太顾全大局，容易忽略自己的感受。",risk:"警惕「过度适应」——融入别人之前，先别弄丢自己。",adv:"你的柔软是最深的韧性，但也请为自己留一片自留地。",q:["一去西域万里遥。","和亲之路，亦是桥梁。","柔可克刚，静可致远。"]},
+{g:"f",e:"🛡️",name:"冼夫人",dyn:"南朝 · 岭南圣母",v:[3,2,2,3,3,2],bio:"她历经三朝仍保岭南安定，周恩来赞她「中国巾帼英雄第一人」。不逞一时之气，只为百姓谋百年之安。",common:"你们都沉稳有远见，做事看长线，护短处也护大局。",real:"你是家族和团队里的定盘星：遇事不慌、说话有分量、办事有着落。",blind:"责任范围太大，容易把所有人的事都当成自己的事。",risk:"警惕「大包大揽」——学会让下一代接棒，才算真正的成功。",adv:"把经验变成制度传承下去，比亲力亲为更有价值。",q:["我事三代主，唯用一好心。","岭南安定，皆赖夫人。","忠义传家，久安之道。"]},
+{g:"m",e:"👑",name:"曹操",dyn:"东汉末 · 魏武帝",v:[3,3,3,2,3,1],bio:"治世之能臣，乱世之奸雄。他敢挟天子以令诸侯，也敢横槊赋诗叹人生苦短。他的字典里没有「等」，只有「干」。",common:"你们都厌恶拖泥带水，认定的事九头牛拉不回。你看人看势很准，做事讲效率。",real:"你是天生的行动派和领导者：别人还在开会，你已经干完了。",blind:"太信自己的判断，容易听不进反对意见。",risk:"警惕「刚愎」——聪明人最大的坑，是觉得只有自己聪明。",adv:"留一两个敢说真话的人在身边。疑人不用，但也别把话说死。",q:["对酒当歌，人生几何？","宁教我负天下人，休教天下人负我。","老骥伏枥，志在千里。"]},
+{g:"m",e:"🖌️",name:"苏轼",dyn:"北宋 · 东坡居士",v:[1,3,3,2,2,3],bio:"被贬黄州就发明东坡肉，被贬惠州就日啖荔枝三百颗。命运一再把他摔进泥里，他偏偏能在泥里种出花来。豁达才是他最大的才华。",common:"你们都有一种「打不死的乐观」：再难的日子也能过出滋味，还能把趣事讲给别人听。",real:"你是朋友圈的氛围担当：有趣、共情力强，总能把糟糕的事讲成段子。",blind:"用幽默化解一切，有时也把该处理的情绪压了下去。",risk:"警惕「微笑抑郁」——允许自己不豁达地难过一场。",adv:"不必事事有趣。真正的强大，是能笑着说也能哭着说。",q:["竹杖芒鞋轻胜马，谁怕？一蓑烟雨任平生。","人间有味是清欢。","但愿人长久，千里共婵娟。"]},
+{g:"m",e:"🌙",name:"李白",dyn:"盛唐 · 诗仙",v:[2,2,3,1,1,2],bio:"天子呼来不上船，自称臣是酒中仙。他一生求仕不得志，却把失意都写成了千古名篇。天生我材必有用，是他对世界的宣言。",common:"你们骨子里都住着一个自由的灵魂：讨厌被安排、被定义，渴望活得淋漓尽致。",real:"你灵感充沛、表达惊人，常被人夸有才华。但你也容易三分钟热度。",blind:"理想主义，容易低估现实的摩擦力。",risk:"警惕「才华内耗」——得给自己建一套节奏系统。",adv:"把大梦想拆成小台阶。自由是不想做什么就有能力不做什么。",q:["天生我材必有用，千金散尽还复来。","仰天大笑出门去，我辈岂是蓬蒿人。","长风破浪会有时，直挂云帆济沧海。"]},
+{g:"m",e:"🏮",name:"诸葛亮",dyn:"三国 · 蜀汉丞相",v:[2,3,2,3,3,2],bio:"未出茅庐已知三分天下。他一生谨慎周密，算无遗策。白帝城托孤后，明知不可为而为之，鞠躬尽瘁死而后已。",common:"你们都是「谋定后动」型选手：做事有计划、有底线，讨厌失控的感觉。",real:"你是团队的大脑：预判问题、备好方案、兜住风险。",blind:"追求完美，事必躬亲，很难真正放手。",risk:"警惕「累死自己还养出巨婴团队」——你的价值在方向而非细节。",adv:"留三分余地给自己。可持续才是一切的根。",q:["非淡泊无以明志，非宁静无以致远。","鞠躬尽瘁，死而后已。","凡事预则立，不预则废。"]},
+{g:"m",e:"🧭",name:"张骞",dyn:"西汉 · 凿空西域",v:[2,2,1,3,2,2],bio:"奉命出使西域，被扣留十三年而不改其志，逃出后做的第一件事是——继续完成使命。一根使节杖走出了丝绸之路。",common:"你们都有一股「认准了就走到底」的韧劲：不被理解也好，你认定的事会默默走完。",real:"你是不动声色的长期主义者：不喧哗、不放弃，用时间打败聪明人。",blind:"太能忍，容易让委屈在心里堆积成疾。",risk:"警惕「沉默的消耗」——别把自己熬成孤岛。",adv:"把目标告诉更多人。同行者会让长路短一半。",q:["使者相望于道，商旅不绝于途。","持节不失，虽远必达。","路虽远，行则将至。"]},
+{g:"m",e:"🖋️",name:"王阳明",dyn:"明 · 心学宗师",v:[2,3,2,3,3,3],bio:"龙场悟道开创心学，平定宁王之乱只用了四十三天。他一生被贬、被疑，却越挫越通透——此心光明，亦复何言。",common:"你们都习惯向内求答案：外界再乱，你心里自有一套坐标。",real:"你是朋友圈的「定海神针」：通透、稳定、一针见血。",blind:"想得太透，有时对世俗的热情就淡了。",risk:"警惕「过度清醒」——有些答案得活出来，不是想出来的。",adv:"知行合一的关键在「行」。想清楚了，就去做，去犯错，去修正。",q:["此心光明，亦复何言。","知行合一。","人须在事上磨，方立得住。"]},
+{g:"m",e:"🗡️",name:"项羽",dyn:"秦末 · 西楚霸王",v:[3,1,2,3,1,2],bio:"力拔山兮气盖世。巨鹿之战破釜沉舟，以少胜多威震天下。他一生光明磊落地战斗，最终乌江自刎，宁折不弯。",common:"你们都有赤子般的血性：认定的事全力以赴，不耍心机，靠实力说话。",real:"你爆发力惊人，关键时刻敢押上全部，是让人热血沸腾的队友。",blind:"太刚易折，不善迂回，情绪上头时容易做错决定。",risk:"警惕「孤注一掷」——留退路不是懦弱，是智慧。",adv:"赢了要能守，错了要能退。学会低头，才能站得更久。",q:["力拔山兮气盖世，时不利兮骓不逝。","破釜沉舟，百二秦关终属楚。","生当作人杰，死亦为鬼雄。"]},
+{g:"m",e:"🏹",name:"岳飞",dyn:"南宋 · 精忠报国",v:[2,1,2,3,2,3],bio:"背刺「精忠报国」四字，岳家军令金人叹「撼山易，撼岳家军难」。他把忠诚刻进了骨头，也把遗憾留给了风波亭。",common:"你们都有强烈的使命感：答应的事拼死也要做到，最见不得背叛与不公。",real:"你是可托付的人：原则性强、说到做到，朋友有事第一个想到你。",blind:"太讲原则，有时不懂得保护自己。",risk:"警惕「愚忠式硬扛」——坚持之前，先看清值不值。",adv:"你的忠诚很贵，请留给值得的人和事。",q:["精忠报国，还我河山。","莫等闲，白了少年头，空悲切。","壮志饥餐胡虏肉，笑谈渴饮匈奴血。"]},
+{g:"m",e:"📖",name:"司马迁",dyn:"西汉 · 太史公",v:[1,3,3,3,2,2],bio:"受奇耻大辱而不死，只为完成《史记》——究天人之际，通古今之变，成一家之言。他把苦难写成了不朽。",common:"你们都有「为了重要的事可以忍受一切」的定力：目标清晰，就不惧屈辱与低谷。",real:"你抗压能力极强，认定的长期目标能坚守多年不动摇。",blind:"对自己太狠，容易忽略身心的警报。",risk:"警惕「殉道者心态」——活着完成使命，比牺牲更难也更值。",adv:"把大使命切成小里程碑，每完成一步，就奖励自己一次。",q:["人固有一死，或重于泰山，或轻于鸿毛。","究天人之际，通古今之变，成一家之言。","燕雀安知鸿鹄之志。"]},
+{g:"m",e:"💰",name:"范蠡",dyn:"春秋 · 商圣陶朱公",v:[2,3,2,2,3,2],bio:"助勾践复国后急流勇退，三成巨富三散家财。他懂进退、知兴衰，是史上把「见好就收」做成艺术的第一人。",common:"你们都懂人性、知分寸：知道什么时候全力进取，什么时候转身离场。",real:"你商业嗅觉和风险意识兼具，总能比别人早半步布局、早一步撤退。",blind:"算得太清，有时显得不够投入真情。",risk:"警惕「过度理性」——人生有些最好的回报，来自不计回报。",adv:"留一段不谈利弊的热爱，那是你灵感的来源。",q:["飞鸟尽，良弓藏；狡兔死，走狗烹。","旱则资舟，水则资车。","财散人聚，财聚人散。"]},
+{g:"m",e:"🍃",name:"陶渊明",dyn:"东晋 · 五柳先生",v:[1,2,2,2,1,3],bio:"不为五斗米折腰，辞官归田，「采菊东篱下，悠然见南山」。他用一生证明：另一种活法是存在的。",common:"你们都内心澄澈、不喜逢迎：宁可少得到一点，也不愿活得拧巴。",real:"你淡泊随性、真诚待人，在人人内卷的时代守着自己的节奏。",blind:"回避冲突，有时会错过本该争取的东西。",risk:"警惕「消极避世」——真正的从容，是选过之后的不悔。",adv:"守住你的节奏没错，但重要的人和机会，值得你主动一次。",q:["采菊东篱下，悠然见南山。","不为五斗米折腰。","久在樊笼里，复得返自然。"]},
+{g:"m",e:"⛵",name:"郑和",dyn:"明 · 七下西洋",v:[2,2,1,3,2,2],bio:"率两百余艘宝船、两万七千人七下西洋，比哥伦布早八十七年。他没有征服一块土地，却让万国来朝。",common:"你们都有「把大目标拆成一次次远航」的执行力：重准备、守纪律、能扛长期任务。",real:"你是可靠的组织者：复杂的事到你手里就变得井井有条。",blind:"太守规矩，创造性冒险偏少。",risk:"警惕「流程依赖」——计划之外的变化，也需要胆量去接。",adv:"定期做一件没有攻略的事，练一练随机应变。",q:["宝船七下西洋，威德遐被。","海纳百川，有容乃大。","远航之志，不在风浪，在人心。"]}
 ];
-
-/* ============ 🎨 主题配置 ============ */
-const THEMES={
- purple:{bg1:'#F5F2FC',bg2:'#EDE9F8',grid:'rgba(255,255,255,.25)',axis:'rgba(255,255,255,.2)',
-   lbl:'rgba(255,255,255,.85)',cv:'rgba(255,255,255,.6)',cvF:'rgba(255,255,255,.12)',
-   uv:'#FFD86B',uvF:'rgba(255,216,107,.3)'},
- terracotta:{bg1:'#F8F1E4',bg2:'#F1E4CE',grid:'rgba(255,255,255,.5)',axis:'rgba(255,255,255,.42)',
-   lbl:'rgba(255,255,255,.95)',cv:'rgba(255,255,255,.75)',cvF:'rgba(255,255,255,.22)',
-   uv:'#FFE2B8',uvF:'rgba(255,226,184,.35)'},
- celadon:{bg1:'#EDF6F1',bg2:'#DCEDE5',grid:'rgba(255,255,255,.5)',axis:'rgba(255,255,255,.42)',
-   lbl:'rgba(255,255,255,.95)',cv:'rgba(255,255,255,.75)',cvF:'rgba(255,255,255,.22)',
-   uv:'#FFE9A8',uvF:'rgba(255,233,168,.35)'},
- brick:{bg1:'#FAF0EE',bg2:'#F3DDD7',grid:'rgba(255,255,255,.5)',axis:'rgba(255,255,255,.42)',
-   lbl:'rgba(255,255,255,.95)',cv:'rgba(255,255,255,.75)',cvF:'rgba(255,255,255,.22)',
-   uv:'#FFD9A0',uvF:'rgba(255,217,160,.35)'}
-};
-let currentTheme=localStorage.getItem('qwzs_theme')||'purple', currentCV=null;
-
-function applyResultTheme(){
-  const sc=document.getElementById('scr-result');
-  sc.classList.remove('theme-terracotta','theme-celadon','theme-brick');
-  if(currentTheme!=='purple')sc.classList.add('theme-'+currentTheme);
-  document.querySelectorAll('.t-dot').forEach(d=>
-    d.classList.toggle('active',d.classList.contains('t-'+currentTheme)));
-  document.querySelector('.app').style.background=
-    `linear-gradient(180deg,${THEMES[currentTheme].bg1} 0%,${THEMES[currentTheme].bg2} 100%)`;
-}
-function setTheme(t){
-  currentTheme=t;localStorage.setItem('qwzs_theme',t);
-  applyResultTheme();
-  if(result&&currentCV)drawRadar(result.scores,currentCV);
-}
-
-/* ============ 流程控制 ============ */
-const DIMORDER=['A','B','C','D','E','F'];
-let gender='F', qIdx=0, answers=[], userV=[0,0,0,0,0,0], result=null, dimMismatch=false;
-
-function go(id){document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));document.getElementById(id).classList.add('active');window.scrollTo(0,0);
-  if(id!=='scr-result'){document.querySelector('.app').style.background='linear-gradient(180deg,#F5F2FC 0%,#EDE9F8 100%)';}}
-function showModal(id){document.getElementById(id).classList.add('show');}
-function hideModal(id){document.getElementById(id).classList.remove('show');}
-
-/* ---- 密码门 ---- */
-async function checkPwd(){
-  const v=document.getElementById('pwdInput').value.trim(), err=document.getElementById('pwdErr');
-  if(v!==PASS){err.textContent='密钥不正确，请重试';return;}
-  if(!db){
-    const used=parseInt(localStorage.getItem('qwzs_used')||'0',10);
-    if(used>=MAX){err.textContent='该密钥在本设备已用完 3 次机会';return;}
-    err.textContent='';go('scr-pref');return;
-  }
-  err.textContent='正在校验密钥…';
-  const {data,error}=await db.rpc('verify_key',{p_pwd:v});
-  if(error){err.textContent='网络异常，请稍后重试';return;}
-  if(!data){err.textContent='该密钥的 3 次机会已用完';return;}
-  err.textContent='';go('scr-pref');
-}
-
-/* ---- 偏好 ---- */
-function pickGender(el){document.querySelectorAll('.opt-card').forEach(c=>c.classList.remove('sel'));el.classList.add('sel');gender=el.dataset.g;}
-
-/* ---- 答题 ---- */
-function startQuiz(){qIdx=0;answers=[];renderQ();go('scr-quiz');}
+/* ===== 状态 ===== */
+let dir="",cur=0,answersIdx=[],shareMode=false;
+const DMD=["f","m","all"];
+function go(n){document.querySelectorAll(".page").forEach(p=>p.classList.remove("active"));document.getElementById("p"+n).classList.add("active");window.scrollTo(0,0);if(n===3)setTimeout(()=>showResult(false),1600)}
+function pickDir(el){document.querySelectorAll(".dir").forEach(d=>d.classList.remove("sel"));el.classList.add("sel");dir=el.dataset.d;const b=document.getElementById("dirBtn");b.style.opacity=1;b.style.pointerEvents="auto"}
+/* ===== 答题（支持返回）===== */
 function renderQ(){
-  const q=QUESTIONS[qIdx];
-  document.getElementById('qCount').textContent=`第 ${qIdx+1} / ${QUESTIONS.length} 题`;
-  document.getElementById('qBar').style.width=((qIdx)/QUESTIONS.length*100+2)+'%';
-  document.getElementById('qText').innerHTML=q.q;
-  const area=document.getElementById('optArea');area.innerHTML='';
-  q.o.forEach((opt,i)=>{
-    const b=document.createElement('button');b.className='ans-btn';
-    b.textContent=['A ','B ','C ','D '][i]+opt[0];
-    b.onclick=()=>pick(i);area.appendChild(b);
-  });
-  document.getElementById('backBtn').style.visibility=qIdx===0?'hidden':'visible';
+  const q=QS[cur];
+  document.getElementById("qnum").textContent=(cur+1)+" / "+QS.length;
+  document.getElementById("qbar").style.width=(cur/QS.length*100)+"%";
+  document.getElementById("qdimTop").textContent=["⚖️","👁️","💬","🛡️","♟️","💗"][q.d]+" "+["决策方式","洞察力","表达力","担当","谋略","仁心"][q.d];
+  document.getElementById("qdim2").textContent="第 "+(cur+1)+" / "+QS.length+" 题";
+  document.getElementById("qtext").textContent=q.t;
+  document.getElementById("backBtn").style.visibility=cur===0?"hidden":"visible";
+  const box=document.getElementById("qopts");box.innerHTML="";
+  q.o.forEach((o,i)=>{const d=document.createElement("div");d.className="opt";d.textContent=String.fromCharCode(65+i)+". "+o[0];d.onclick=()=>{answersIdx[cur]=i;cur++;cur<QS.length?renderQ():go(3)};box.appendChild(d)});
 }
-function pick(i){answers[qIdx]=i;if(qIdx<QUESTIONS.length-1){qIdx++;renderQ();}else finish();}
-function prevQ(){if(qIdx>0){qIdx--;renderQ();}}
-
-/* ---- 计分与匹配 ---- */
-function cosine(a,b){let dot=0,na=0,nb=0;for(let i=0;i<6;i++){dot+=a[i]*b[i];na+=a[i]*a[i];nb+=b[i]*b[i];}return dot/(Math.sqrt(na)*Math.sqrt(nb)||1);}
-
-async function finish(){
-  userV=[0,0,0,0,0,0];
-  answers.forEach((ai,qi)=>{const d=QUESTIONS[qi].o[ai][1];userV[DIMORDER.indexOf(d)]++;});
-  const scores=userV.map(s=>Math.round(s/16*100));
-
-  dimMismatch=false;
-  const d7=QUESTIONS[6].o[answers[6]][1], d19=QUESTIONS[18].o[answers[18]][1];
-  if(d7!==d19) dimMismatch=true;
-
-  if(db){
-    const ok=await db.rpc('consume_key',{p_pwd:PASS});
-    if(!ok){alert('该密钥的 3 次机会已用完');go('scr-gate');return;}
-  }else{
-    localStorage.setItem('qwzs_used',(parseInt(localStorage.getItem('qwzs_used')||'0',10)+1));
-  }
-
-  const pool=CHARS.filter(c=>gender==='A'||c.g===gender);
-  let best=null,second=null;
-  pool.forEach(c=>{const sim=cosine(scores,c.v);
-    if(!best||sim>best.sim){second=best;best={c,sim};}else if(!second||sim>second.sim)second={c,sim};});
-
-  if(db){
-    db.rpc('save_result',{p_matched:best.c.n,p_sim:Math.round(best.sim*100),
-      p_scores:JSON.stringify(scores),p_pref:gender});
-  }
-  showResult(best,second,scores);
+function goBack(){if(cur>0){cur--;renderQ()}}
+/* ===== 结果 ===== */
+function showResult(isShare){
+  const w=[0,0,0,0,0,0];
+  answersIdx.forEach((oi,qi)=>{const o=QS[qi].o[oi];for(let i=0;i<6;i++)w[i]+=o[i+1]||0});
+  const norm=w.map(x=>Math.round(x/12*100));
+  let pool=FIGS.filter(f=>dir==="all"||f.g===dir);if(!pool.length)pool=FIGS;
+  let best=null,bs=-1;
+  pool.forEach(f=>{let s=0;f.v.forEach((x,i)=>{s+=Math.max(0,3-Math.abs(x-norm[i]/34))});if(s>bs){bs=s;best=f}});
+  const f=best;
+  document.getElementById("rEmoji").textContent=f.e;
+  document.getElementById("rName").textContent=f.name;
+  document.getElementById("rDyn").textContent=f.dyn;
+  document.getElementById("rBio").textContent=f.bio;
+  document.getElementById("rCommon").textContent=f.common;
+  document.getElementById("rReal").textContent=f.real;
+  document.getElementById("rBlind").textContent="可能的盲点："+f.blind;
+  document.getElementById("rRisk").textContent="风险提醒："+f.risk;
+  document.getElementById("rAdv").textContent=f.adv;
+  document.getElementById("rQuotes").innerHTML=f.q.map(q=>"<p>「"+q+"」</p>").join("");
+  drawRadarOn(document.getElementById("radar"),norm);
+  go(4);
+  if(!isShare){const c=useCount()+1;localStorage.setItem("figatlas_used",String(c))}
 }
-
-const LOADS=['正在读取千年档案…','正在比对 24 位历史人物人格向量…','正在生成你的前世档案…'];
-function showResult(best,second,scores){
-  go('scr-load');let i=0;
-  const t=setInterval(()=>{i++;document.getElementById('loadText').textContent=LOADS[Math.min(i,2)];
-    if(i>=3){clearInterval(t);renderResult(best,second,scores);go('scr-result');}},700);
+/* ===== 长图保存 ===== */
+function saveImg(){
+  showModal('<h3>🖼️ 正在生成结果长图…</h3><p>请稍候 1~3 秒</p>');
+  html2canvas(document.getElementById("resultCap"),{scale:2,useCORS:true,backgroundColor:"#f7f4ec"}).then(cv=>{
+    const data=cv.toDataURL("image/png");
+    showModal('<h3>✅ 长图已生成</h3><p style="font-size:13px;color:#a05a4a"><b>手机：</b>长按下方图片 → 保存到相册<br><b>电脑：</b>右键图片 → 图片另存为</p><img id="saveImgEl" src="'+data+'"><a class="btn" style="display:block;text-align:center;text-decoration:none" download="我的历史人物档案.png" href="'+data+'">⬇️ 直接下载</a><button class="btn ghost" onclick="hideModal()">关闭</button>');
+  }).catch(()=>{showModal('<h3>⚠️ 生成失败</h3><p>请截图保存结果页，或更换浏览器重试。</p><button class="btn ghost" onclick="hideModal()">知道了</button>')});
 }
-function renderResult(best,second,scores){
-  const c=best.c;
-  result={scores,char:c.name};
-  document.getElementById('rDynasty').textContent=`${c.dyn} · FIGURE ATLAS`;
-  document.getElementById('rName').textContent=c.n;
-  document.getElementById('rTitle').textContent=c.t;
-  document.getElementById('rSim').textContent=Math.round(best.sim*100)+'%';
-  document.getElementById('rQuote').textContent='「'+c.quote+'」';
-  document.getElementById('rScene').textContent=c.scene;
-  document.getElementById('mirrorTip').innerHTML=
-    `🪞 <b>千年镜像：</b>你还带着 <b>${second.c.n}</b> 的影子（相似度 ${Math.round(second.sim*100)}%）——那是你性格里的另一面。`+
-    (dimMismatch?'<br>📌 <b>档案提示：</b>你在两道相似情境中的选择不同，说明你是"看情况出牌"的灵活型，结果建议参考而非定论。':'');
-  currentCV=c.v;
-  applyResultTheme();
-  drawRadar(scores,c.v);
-  const area=document.getElementById('dimArea');area.innerHTML='';
-  DIMORDER.forEach((k,i)=>{
-    const s=scores[i],band=s>=75?'hi':s>=45?'mid':'lo';
-    const d=document.createElement('div');d.className='dim-block';
-    d.innerHTML=`<div class="dim-head"><span>${DIMS[k].name}</span><span>${s} 分</span></div>
-      <div class="dim-track"><div class="dim-fill" style="width:0%"></div></div>
-      <div class="dim-text">${DIMS[k][band]}</div>`;
-    area.appendChild(d);
-    setTimeout(()=>d.querySelector('.dim-fill').style.width=s+'%',100+i*120);
-  });
+/* ===== 分享链接 ===== */
+function copyLink(){
+  const code=DMD.indexOf(dir)+answersIdx.join("");
+  const url=location.origin+location.pathname+"?r="+code;
+  const done=()=>showModal('<h3>🔗 链接已复制</h3><p>把链接发给好友，打开即可看到你的测评结果，也能直接测TA自己的。</p><p style="font-size:12px;color:#b3ab98;word-break:break-all">'+url+'</p><button class="btn ghost" onclick="hideModal()">好的</button>');
+  if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(url).then(done).catch(()=>fallback())}else fallback();
+  function fallback(){const t=document.createElement("textarea");t.value=url;document.body.appendChild(t);t.select();document.execCommand("copy");document.body.removeChild(t);done()}
 }
-
-/* ---- 雷达图（主题感知版）---- */
-function drawRadar(uv,cv){
-  const T=THEMES[currentTheme];
-  const cvEl=document.getElementById('radar'),ctx=cvEl.getContext('2d'),W=300,cx=W/2,cy=W/2+6,R=98;
-  ctx.clearRect(0,0,W,W);
-  for(let ring=1;ring<=4;ring++){ctx.beginPath();
-    for(let i=0;i<=6;i++){const a=Math.PI*2*i/6-Math.PI/2,r=R*ring/4;
-      ctx[i?'lineTo':'moveTo'](cx+r*Math.cos(a),cy+r*Math.sin(a));}
-    ctx.strokeStyle=T.grid;ctx.stroke();}
-  for(let i=0;i<6;i++){const a=Math.PI*2*i/6-Math.PI/2;
-    ctx.beginPath();ctx.moveTo(cx,cy);ctx.lineTo(cx+R*Math.cos(a),cy+R*Math.sin(a));
-    ctx.strokeStyle=T.axis;ctx.stroke();
-    ctx.fillStyle=T.lbl;ctx.font='11px sans-serif';ctx.textAlign='center';
-    ctx.fillText(['决断','洞察','表达','担当','变通','坚守'][i],cx+(R+18)*Math.cos(a),cy+(R+16)*Math.sin(a)+4);}
-  const poly=(v,stroke,fill,dash)=>{ctx.beginPath();ctx.setLineDash(dash||[]);
-    for(let i=0;i<=6;i++){const a=Math.PI*2*(i%6)/6-Math.PI/2,r=R*v[i%6]/100;
-      ctx[i?'lineTo':'moveTo'](cx+r*Math.cos(a),cy+r*Math.sin(a));}
-    ctx.strokeStyle=stroke;ctx.lineWidth=2;if(fill){ctx.fillStyle=fill;ctx.fill();}ctx.stroke();ctx.setLineDash([]);};
-  poly(cv,T.cv,T.cvF,[5,4]);
-  poly(uv,T.uv,T.uvF);
+/* ===== 弹窗 ===== */
+function showModal(type){
+  const box=document.getElementById("modalBox");
+  if(type==="gift"){box.innerHTML='<h3>🎁 好评有礼</h3><p>🎉 感谢你的喜欢！</p><p>前往店铺给本测评一个<b style="color:#c9a44c">好评</b>，然后<b>联系客服发送好评截图</b>，即可免费领取其他趣味测评工具一份！</p><p style="font-size:12px;color:#b3ab98">活动最终解释权归店铺所有</p><button class="btn" onclick="hideModal()">知道了，去好评</button>'}
+  else box.innerHTML=type;
+  document.getElementById("mask").classList.add("show");
 }
-
-/* ---- 保存长图（主题底色跟随）---- */
-async function saveImage(btn){
-  btn.disabled=true;const old=btn.textContent;btn.textContent='正在生成…';
-  try{
-    const node=document.getElementById('saveCard');
-    const canvas=await html2canvas(node,{scale:2,useCORS:true,logging:false,
-      backgroundColor:THEMES[currentTheme].bg1,width:node.offsetWidth,height:node.offsetHeight});
-    const url=canvas.toDataURL('image/jpeg',0.95);
-    document.getElementById('saveImg').src=url;
-    const dl=document.getElementById('dlLink');dl.href=url;dl.download='前世人物志.png';
-    showModal('mSave');
-  }catch(e){
-    alert('生成失败，请重试。若在微信内打开，建议点击右上角"..."选择在浏览器打开。');
-  }finally{btn.disabled=false;btn.textContent=old;}
+function hideModal(){document.getElementById("mask").classList.remove("show")}
+/* ===== 雷达图 ===== */
+function drawRadarOn(c,v){
+  const x=c.getContext("2d"),W=c.width,H=c.height,cx=W/2,cy=H/2+10,R=170,n=6;
+  const labels=["决断","洞察","表达","担当","谋略","仁心"];
+  const pt=(i,r)=>{const a=-Math.PI/2+i*2*Math.PI/n;return[cx+r*Math.cos(a),cy+r*Math.sin(a)]};
+  x.clearRect(0,0,W,H);
+  for(let k=1;k<=4;k++){x.beginPath();for(let i=0;i<=n;i++){const p=pt(i%n,R*k/4);i?x.lineTo(...p):x.moveTo(...p)}x.strokeStyle="#e3d9c2";x.stroke()}
+  x.beginPath();for(let i=0;i<n;i++){const p=pt(i,R);x.moveTo(cx,cy);x.lineTo(...p)}x.strokeStyle="#e3d9c2";x.stroke();
+  x.beginPath();for(let i=0;i<=n;i++){const p=pt(i%n,R*v[i%n]/100);i?x.lineTo(...p):x.moveTo(...p)}
+  x.closePath();x.fillStyle="rgba(201,164,76,.28)";x.fill();x.strokeStyle="#c9a44c";x.lineWidth=3;x.stroke();
+  x.fillStyle="#c9a44c";for(let i=0;i<n;i++){const p=pt(i,R*v[i]/100);x.beginPath();x.arc(p[0],p[1],7,0,7);x.fill()}
+  x.fillStyle="#6b6350";x.font="600 28px sans-serif";x.textAlign="center";
+  for(let i=0;i<n;i++){const p=pt(i,R+52);x.fillText(labels[i],p[0],p[1]+10)}
 }
-
-/* ---- 分享链接 ---- */
-function buildLink(){
-  const payload=btoa(unescape(encodeURIComponent(JSON.stringify({s:result.scores,n:result.name}))));
-  return location.origin+location.pathname+'#r='+payload;
-}
-function copyLink(){copyText(buildLink(),'结果链接已复制，快去发给朋友吧！');}
-function copyText(t,msg){
-  const done=()=>alert(msg);
-  if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(t).then(done).catch(()=>fallback(t,done));}
-  else fallback(t,done);
-}
-function fallback(t,done){const ta=document.createElement('textarea');ta.value=t;document.body.appendChild(ta);ta.select();document.execCommand('copy');document.body.removeChild(ta);done();}
-
-/* ---- 再测一次 ---- */
-function retest(){go('scr-pref');}
-
-/* ---- 通过分享链接直达结果页 ---- */
-(function(){
-  const m=location.hash.match(/#r=(.+)$/);
-  if(!m)return;
-  try{
-    const d=JSON.parse(decodeURIComponent(escape(atob(m[1]))));
-    const c=CHARS.find(x=>x.n===d.n)||CHARS[0];
-    result={scores:d.s,char:c.n};
-    renderResult({c,sim:.85},{c,sim:.7},d.s);go('scr-result');
-  }catch(e){}
-})();
+drawRadarOn(document.getElementById("demoRadar"),[80,65,55,70,75,60]);
+if(!rp){cur=0;renderQ()}
 </script>
 </body>
 </html>
