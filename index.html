@@ -38,16 +38,17 @@ h1 .hl{background:linear-gradient(transparent 62%,#ffe08a 62%)}
 .card{background:#fff;border:1px solid #e6dcc4;border-radius:18px;padding:20px;margin-bottom:16px}
 .card h3{font-size:15px;color:#a08c5a;letter-spacing:2px;margin-bottom:10px}
 .card p{font-size:14.5px;line-height:1.9;color:#4a453b}
-.name{font-size:30px;font-weight:800;margin:6px 0 2px}
+.name{font-size:42px;font-weight:900;margin:2px 0 4px;letter-spacing:2px;background:linear-gradient(transparent 68%,#ffe08a 68%);display:inline-block}
+.trait{font-size:14px;color:#a08c5a;margin:8px 0 2px;letter-spacing:1px}
 .dyn{color:#a08c5a;font-size:14px;margin-bottom:8px}
 .quotes p{font-size:15px;font-weight:700;margin:8px 0;padding-left:12px;border-left:3px solid #e0b45e}
 .warn{color:#a05a4a}
-canvas{width:100%;max-width:320px;display:block;margin:6px auto}
+canvas{width:100%;max-width:360px;display:block;margin:6px auto}
 .foot{font-size:11px;color:#b3ab98;text-align:center;margin-top:26px;line-height:1.8}
-.feats3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin:10px 0 12px}
+.feats4{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:10px 0 12px}
 .f4{background:#fff;border:2px solid #d8c9a3;border-radius:16px;padding:18px 10px;box-shadow:0 3px 10px rgba(160,140,90,.12)}
 .f4 b{display:block;font-size:15px;color:#3a3630;margin-bottom:5px}
-.f4 span{font-size:11px;color:#a08c5a;letter-spacing:1px}
+.f4 span{font-size:12px;color:#a08c5a;letter-spacing:1px}
 .tiny-note{font-size:11px;color:#c0b8a2;line-height:1.7;margin-top:16px}
 .pwbox{background:#fff;border:2px solid #d8c9a3;border-radius:16px;padding:26px 20px;text-align:center;margin-top:30px}
 .pwbox input{width:100%;font-size:26px;letter-spacing:10px;text-align:center;border:2px solid #d8c9a3;border-radius:12px;padding:12px;outline:none;background:#fdfbf4;color:#3a3630}
@@ -88,7 +89,7 @@ canvas{width:100%;max-width:320px;display:block;margin:6px auto}
 .sk .over{color:#a05a4a}
 .sk .fix{color:#5a7a50}
 .sechead{margin:26px 0 12px;font-size:13px;letter-spacing:3px;color:#fff;background:#3a3630;display:inline-block;padding:5px 14px;border-radius:20px}
-@media(max-width:380px){.cover-title{font-size:30px}.qtext{font-size:19px}.f4 b{font-size:13px}}
+@media(max-width:380px){.cover-title{font-size:30px}.qtext{font-size:19px}.f4 b{font-size:13px}.name{font-size:34px}}
 </style>
 </head>
 <body>
@@ -111,10 +112,11 @@ canvas{width:100%;max-width:320px;display:block;margin:6px auto}
   <div class="tag">FIGURE ATLAS · 古人档案局</div>
   <h1 class="cover-title">你与哪位<span class="hl">历史人物</span>相似？</h1>
   <p class="sub">通过一组情境选择，读取你的决断、洞察、表达与担当。<br>系统将为你找出最相似的那一位。</p>
-  <div class="feats3">
-    <div class="f4"><b>📊 六维分析</b><span>性格精细建模</span></div>
-    <div class="f4"><b>🖼️ 长图保存</b><span>一键存结果</span></div>
-    <div class="f4"><b>🔗 链接分享</b><span>发给好友测</span></div>
+  <div class="feats4">
+    <div class="f4"><b>🏛️ 古代群像</b><span>历代风云人物</span></div>
+    <div class="f4"><b>⚖️ 男女皆有</b><span>多元角色</span></div>
+    <div class="f4"><b>📊 多维分析</b><span>性格建模</span></div>
+    <div class="f4"><b>⚡ 快速完成</b><span>即时出档案</span></div>
   </div>
   <button class="btn" onclick="go(1)">开始测试 · 约 3 分钟</button>
   <button class="btn ghost" onclick="go(9)">看看如何匹配</button>
@@ -175,14 +177,14 @@ canvas{width:100%;max-width:320px;display:block;margin:6px auto}
   <div id="resultCap">
     <div class="tag center" style="display:block">FIGURE ATLAS · 古人档案局</div>
     <div class="center">
-      <div style="font-size:52px" id="rEmoji">👑</div>
       <div class="name" id="rName"></div>
+      <div class="trait" id="rTrait"></div>
       <div class="dyn" id="rDyn"></div>
       <div class="simbig" id="rSim"></div>
       <div class="simlab" id="rSimLab">总体相似度</div>
     </div>
-    <canvas id="radar" width="640" height="560"></canvas>
-    <p class="foot" id="radarNote" style="margin-top:2px">六维能力图谱 · 金色为你的得分</p>
+    <canvas id="radar" width="750" height="700"></canvas>
+    <p class="foot" id="radarNote" style="margin-top:2px">六维能力图谱 · 金色实线为你 · 虚线为原型</p>
 
     <div class="sechead">第一部分 · 你是谁</div>
     <div class="card"><h3>① 人物自画像</h3><p id="rBio"></p><p id="rPortrait" style="margin-top:8px"></p></div>
@@ -347,8 +349,10 @@ function showResult(isShare){
   pool.sort((a,b)=>b._s-a._s);
   const f=pool[0];
   const simP=Math.round(f._s/18*100);
-  document.getElementById("rEmoji").textContent=f.e;
   document.getElementById("rName").textContent=f.name;
+  const tord=f.v.map((x,i)=>({x,i})).sort((a,b)=>b.x-a.x);
+  const t2=tord.slice(0,2).map(t=>DIMN[t.i]),t1=tord[5];
+  document.getElementById("rTrait").textContent="以「"+t2[0]+"」「"+t2[1]+"」立身 · "+DIMN[t1.i]+"稍敛";
   document.getElementById("rDyn").textContent=f.dyn;
   document.getElementById("rSim").textContent=simP+"%";
   document.getElementById("rSimLab").textContent="你与 "+f.name+" 的总体相似度";
@@ -359,7 +363,7 @@ function showResult(isShare){
   document.getElementById("rRisk").textContent="风险提醒："+f.risk;
   document.getElementById("rAdv").textContent=f.adv;
   document.getElementById("rQuotes").innerHTML=f.q.map(q=>"<p>「"+q+"」</p>").join("");
-  document.getElementById("radarNote").textContent="六维能力图谱 · "+f.name+" 原型 · 金色为你的得分";
+  document.getElementById("radarNote").textContent="六维能力图谱 · 金色实线为你 · 虚线为"+f.name+"原型";
   const fv=f.v.map(x=>Math.round(x/3*100));
   const ford=fv.map((u,i)=>({u,i})).sort((a,b)=>b.u-a.u);
   document.getElementById("rPortrait").innerHTML="从六维看，"+f.name+"最锋利的两把刀是「<b>"+DIMN[ford[0].i]+"</b>」和「<b>"+DIMN[ford[1].i]+"</b>」——这是 TA 留名青史的看家本事；而「<b>"+DIMN[ford[5].i]+"</b>」是 TA 的软肋，也是史册里 TA 跌过的坑。你们在"+DIMN[ford[0].i]+"上的得分是 "+norm[ford[0].i]+" vs "+fv[ford[0].i]+"——你"+(norm[ford[0].i]>=fv[ford[0].i]?"完全不输原型，甚至更胜一筹":"略逊半筹，但同属此道中人")+"。";
@@ -397,7 +401,7 @@ function showResult(isShare){
   let ah="";
   pool.slice(1,4).forEach(x=>{ah+='<div class="altfig"><div class="ae">'+x.e+'</div><div><div class="an">'+x.name+'</div><div class="ad">'+x.dyn+'</div></div><div class="ap">'+Math.round(x._s/18*100)+"%</div></div>"});
   document.getElementById("rAlts").innerHTML=ah;
-  drawRadarOn(document.getElementById("radar"),norm);
+  drawRadarOn(document.getElementById("radar"),norm,fv);
   go(4);
   if(!isShare){const c=useCount()+1;localStorage.setItem("figatlas_used",String(c))}
 }
@@ -427,19 +431,34 @@ function showModal(type){
 }
 function hideModal(){document.getElementById("mask").classList.remove("show")}
 
-/* ===== 雷达图 ===== */
-function drawRadarOn(c,v){
-  const x=c.getContext("2d"),W=c.width,H=c.height,cx=W/2,cy=H/2+10,R=170,n=6;
+/* ===== 雷达图（双层：金色实线=你，虚线=原型）===== */
+function drawRadarOn(c,vu,vt){
+  const dpr=window.devicePixelRatio||1;
+  const W=750,H=700;
+  c.width=W*dpr;c.height=H*dpr;
+  c.style.width="100%";c.style.maxWidth="360px";c.style.height="auto";
+  const x=c.getContext("2d");x.scale(dpr,dpr);
+  const cx=W/2,cy=H/2+6,R=215,n=6;
   const labels=["决断","洞察","表达","担当","谋略","仁心"];
   const pt=(i,r)=>{const a=-Math.PI/2+i*2*Math.PI/n;return[cx+r*Math.cos(a),cy+r*Math.sin(a)]};
   x.clearRect(0,0,W,H);
-  for(let k=1;k<=4;k++){x.beginPath();for(let i=0;i<=n;i++){const p=pt(i%n,R*k/4);i?x.lineTo(...p):x.moveTo(...p)}x.strokeStyle="#e3d9c2";x.stroke()}
-  x.beginPath();for(let i=0;i<n;i++){const p=pt(i,R);x.moveTo(cx,cy);x.lineTo(...p)}x.strokeStyle="#e3d9c2";x.stroke();
-  x.beginPath();for(let i=0;i<=n;i++){const p=pt(i%n,R*v[i%n]/100);i?x.lineTo(...p):x.moveTo(...p)}
-  x.closePath();x.fillStyle="rgba(201,164,76,.28)";x.fill();x.strokeStyle="#c9a44c";x.lineWidth=3;x.stroke();
-  x.fillStyle="#c9a44c";for(let i=0;i<n;i++){const p=pt(i,R*v[i]/100);x.beginPath();x.arc(p[0],p[1],7,0,7);x.fill()}
-  x.fillStyle="#6b6350";x.font="600 28px sans-serif";x.textAlign="center";
-  for(let i=0;i<n;i++){const p=pt(i,R+52);x.fillText(labels[i],p[0],p[1]+10)}
+  for(let k=1;k<=4;k++){x.beginPath();for(let i=0;i<=n;i++){const p=pt(i%n,R*k/4);i?x.lineTo(...p):x.moveTo(...p)}x.strokeStyle="#e3d9c2";x.lineWidth=1.5;x.stroke()}
+  x.beginPath();for(let i=0;i<n;i++){const p=pt(i,R);x.moveTo(cx,cy);x.lineTo(...p)}x.strokeStyle="#e3d9c2";x.lineWidth=1.5;x.stroke();
+  if(vt){x.beginPath();for(let i=0;i<=n;i++){const p=pt(i%n,R*vt[i%n]/100);i?x.lineTo(...p):x.moveTo(...p)}
+    x.closePath();x.fillStyle="rgba(176,166,140,.16)";x.fill();x.strokeStyle="#b0a68c";x.lineWidth=2.5;x.setLineDash([9,7]);x.stroke();x.setLineDash([]);}
+  x.beginPath();for(let i=0;i<=n;i++){const p=pt(i%n,R*vu[i%n]/100);i?x.lineTo(...p):x.moveTo(...p)}
+  x.closePath();x.fillStyle="rgba(201,164,76,.30)";x.fill();x.strokeStyle="#c9a44c";x.lineWidth=3.5;x.stroke();
+  x.fillStyle="#c9a44c";for(let i=0;i<n;i++){const p=pt(i,R*vu[i]/100);x.beginPath();x.arc(p[0],p[1],8,0,7);x.fill()}
+  x.font="600 30px -apple-system,'PingFang SC',sans-serif";x.textAlign="center";x.textBaseline="middle";
+  for(let i=0;i<n;i++){
+    const p=pt(i,R+62);
+    x.fillStyle="#5a5346";
+    x.fillText(labels[i],p[0],p[1]);
+    const vp=pt(i,R+96);
+    x.fillStyle="#a08c5a";x.font="500 24px sans-serif";
+    x.fillText(vu[i]+"分",vp[0],vp[1]);
+    x.font="600 30px -apple-system,'PingFang SC',sans-serif";
+  }
 }
 cur=0;renderQ();
 </script>
