@@ -87,6 +87,7 @@ canvas{width:100%;max-width:320px;display:block;margin:6px auto}
 .sk.weak .lab{background:#f6e4dc;color:#a05a4a}
 .sk .over{color:#a05a4a}
 .sk .fix{color:#5a7a50}
+.sechead{margin:26px 0 12px;font-size:13px;letter-spacing:3px;color:#fff;background:#3a3630;display:inline-block;padding:5px 14px;border-radius:20px}
 @media(max-width:380px){.cover-title{font-size:30px}.qtext{font-size:19px}.f4 b{font-size:14px}}
 </style>
 </head>
@@ -109,14 +110,16 @@ canvas{width:100%;max-width:320px;display:block;margin:6px auto}
 <div class="page center-page" id="p0">
   <div class="tag">FIGURE ATLAS · 古人档案局</div>
   <h1 class="cover-title">你与哪位<span class="hl">历史人物</span>相似？</h1>
-  <p class="sub">通过一组情境选择，读取你的决断、洞察、表达与担当。<br>系统将从 24 位历史人物中，为你找出最相似的那一位。</p>
+  <p class="sub">通过一组情境选择，读取你的决断、洞察、表达与担当。<br>系统将为你找出最相似的那一位。</p>
   <div class="feats4">
-    <div class="f4"><b>👥 24 位人物</b><span>男女群像皆有</span></div>
+    <div class="f4"><b>👥 <span id="figCount">24</span> 位人物</b><span>男女群像皆有</span></div>
     <div class="f4"><b>📊 六维分析</b><span>性格精细建模</span></div>
     <div class="f4"><b>🖼️ 长图保存</b><span>一键存结果</span></div>
     <div class="f4"><b>🔗 链接分享</b><span>发给好友测</span></div>
   </div>
   <button class="btn" onclick="go(1)">开始测试 · 约 3 分钟</button>
+  <button class="btn ghost" onclick="toggleFigList()">📋 查看全部人物</button>
+  <div class="card" id="figListBox" style="display:none;text-align:left"><h3>人物库 · 共 <span id="figCount2"></span> 位</h3><div id="figListBody"></div></div>
   <button class="btn ghost" onclick="go(9)">看看如何匹配</button>
   <p class="tiny-note">本测试仅供娱乐参考 · 没有标准答案，请选择最接近真实自己的反应</p>
 </div>
@@ -129,7 +132,7 @@ canvas{width:100%;max-width:320px;display:block;margin:6px auto}
   <p class="sub">全程可追溯，无随机、无玄学，四步算出最像你的那位古人。</p>
   <div class="card"><h3>STEP 1 · 六维能力向量</h3><p>系统从六个维度为你建模：<b>决断、洞察、表达、担当、谋略、仁心</b>。这六项组合起来，就是你的“能力指纹”。</p></div>
   <div class="card"><h3>STEP 2 · 每道题都在计分</h3><p>24 道情境题中，每个选项背后都预设了 0~3 分的维度权重。你感觉在“选答案”，实际是在为六个维度投票——没有对错，只有倾向。</p></div>
-  <div class="card"><h3>STEP 3 · 与人物库比对</h3><p>档案库中的 24 位历史人物（男女各 12 位），都依据史书记载的关键抉择与行事风格，预先标注了六维向量。系统计算你的向量与每位人物的剖面距离，取<b>最相近的一位</b>作为你的原型。</p></div>
+  <div class="card"><h3>STEP 3 · 与人物库比对</h3><p>档案库中的 <b id="howCount">24</b> 位历史人物（男女皆有），都依据史书记载的关键抉择与行事风格，预先标注了六维向量。系统计算你的向量与每位人物的剖面距离，取<b>最相近的一位</b>作为你的原型。</p></div>
   <div class="card"><h3>STEP 4 · 方向影响候选池</h3><p>开头选择的人物方向（女性人物优先 / 男性人物优先 / 不限于性别）只决定在哪个池子里找，不改变你的六维得分，放心按真实感受作答。</p></div>
   <div class="card"><h3>一个小提醒</h3><p>人物匹配是“气质与行事风格的相似”，不是能力高低的评判。它是镜子，不是剧本。</p></div>
   <button class="btn" onclick="go(0)">明白了，返回封面</button>
@@ -140,11 +143,11 @@ canvas{width:100%;max-width:320px;display:block;margin:6px auto}
   <button class="navback" onclick="go(0)">← 返回封面</button>
   <div class="tag">第一步 · 人物方向</div>
   <h1 style="font-size:24px">你更有代入感的人物方向是？</h1>
-  <p class="sub">只影响候选人物池，不影响答题与计分。<br>人物库共 24 位，男女皆有。</p>
+  <p class="sub">只影响候选人物池，不影响答题与计分。<br>人物库共 <span id="dirCount">24</span> 位，男女皆有。</p>
   <div class="dirs">
-    <div class="dir" data-d="f" onclick="pickDir(this)">👩 女性人物优先<br><small style="font-weight:400;color:#8b8474">花木兰 · 武则天 · 李清照 等 12 位</small></div>
-    <div class="dir" data-d="m" onclick="pickDir(this)">👨 男性人物优先<br><small style="font-weight:400;color:#8b8474">曹操 · 苏轼 · 诸葛亮 等 12 位</small></div>
-    <div class="dir" data-d="all" onclick="pickDir(this)">🎲 不限于性别<br><small style="font-weight:400;color:#8b8474">全人物池 24 位</small></div>
+    <div class="dir" data-d="f" onclick="pickDir(this)">👩 女性人物优先<br><small style="font-weight:400;color:#8b8474" id="dirF">加载中…</small></div>
+    <div class="dir" data-d="m" onclick="pickDir(this)">👨 男性人物优先<br><small style="font-weight:400;color:#8b8474" id="dirM">加载中…</small></div>
+    <div class="dir" data-d="all" onclick="pickDir(this)">🎲 不限于性别<br><small style="font-weight:400;color:#8b8474" id="dirAll">加载中…</small></div>
   </div>
   <button class="btn" id="dirBtn" onclick="go(2)" style="opacity:.4;pointer-events:none">进入情境测试</button>
 </div>
@@ -167,7 +170,7 @@ canvas{width:100%;max-width:320px;display:block;margin:6px auto}
 <div class="page center" id="p3">
   <div class="big">🏛️</div>
   <h1 style="font-size:22px">正在比对千年档案…</h1>
-  <p class="sub">正在计算你的能力向量与 24 位历史人物的相似度</p>
+  <p class="sub">正在计算你的能力向量与人物库的相似度</p>
 </div>
 
 <!-- 结果 -->
@@ -182,18 +185,27 @@ canvas{width:100%;max-width:320px;display:block;margin:6px auto}
       <div class="simlab" id="rSimLab">总体相似度</div>
     </div>
     <canvas id="radar" width="640" height="560"></canvas>
-    <div class="card"><h3>01 · 人物自画像</h3><p id="rBio"></p><p id="rPortrait" style="margin-top:8px"></p></div>
-    <div class="card"><h3>02 · 六维逐项对照</h3><div id="rDims"></div></div>
-    <div class="card"><h3>03 · 你们最像与最不同的地方</h3><p id="rDiff"></p></div>
-    <div class="card"><h3>04 · 你的核心优势（及其过当风险）</h3><div id="rStrengths"></div></div>
-    <div class="card"><h3>05 · 你的短板与化解</h3><div id="rWeaks"></div></div>
-    <div class="card"><h3>06 · 你与 TA 的共同底色</h3><p id="rCommon"></p></div>
-    <div class="card"><h3>07 · 现实中的你</h3><p id="rReal"></p></div>
-    <div class="card"><h3>08 · 性格盲点与风险提醒</h3><p id="rBlind"></p><p class="warn" id="rRisk"></p></div>
-    <div class="card"><h3>09 · 给你的建议</h3><p id="rAdv"></p></div>
+    <p class="foot" id="radarNote" style="margin-top:2px">六维能力图谱 · 金色为你的得分</p>
+
+    <div class="sechead">第一部分 · 你是谁</div>
+    <div class="card"><h3>① 人物自画像</h3><p id="rBio"></p><p id="rPortrait" style="margin-top:8px"></p></div>
+    <div class="card"><h3>② 你与 TA 的共同底色</h3><p id="rCommon"></p></div>
+    <div class="card"><h3>③ 现实中的你</h3><p id="rReal"></p></div>
+
+    <div class="sechead">第二部分 · 能力解剖</div>
+    <div class="card"><h3>④ 你的核心优势（及其过当风险）</h3><div id="rStrengths"></div></div>
+    <div class="card"><h3>⑤ 你的短板与化解</h3><div id="rWeaks"></div></div>
+    <div class="card"><h3>⑥ 性格盲点与风险提醒</h3><p id="rBlind"></p><p class="warn" id="rRisk"></p></div>
+    <div class="card"><h3>⑦ 给你的建议</h3><p id="rAdv"></p></div>
+
+    <div class="sechead">第三部分 · 数据对照</div>
+    <div class="card"><h3>⑧ 六维逐项对照</h3><div id="rDims"></div></div>
+    <div class="card"><h3>⑨ 你们最像与最不同的地方</h3><p id="rDiff"></p></div>
+
+    <div class="sechead">第四部分 · 写给你</div>
     <div class="letter" id="rLetter"></div>
-    <div class="card"><h3>10 · 其他与你相似的古人</h3><div id="rAlts"></div></div>
-    <div class="card quotes"><h3>11 · 你的三句人物台词</h3><div id="rQuotes"></div></div>
+    <div class="card"><h3>⑩ 其他与你相似的古人</h3><div id="rAlts"></div></div>
+    <div class="card quotes"><h3>⑪ 你的三句人物台词</h3><div id="rQuotes"></div></div>
     <p class="foot">本测试用于趣味性自我探索，不构成心理测评或历史评价。</p>
   </div>
   <button class="btn" onclick="saveImg()">🖼️ 保存结果长图</button>
@@ -257,7 +269,7 @@ const QS=[
  {d:5,t:"如果功成名就，你最想做的是：",o:[["回馈帮过我的人",0,0,0,1,0,3],["继续做更大的事业",2,0,0,2,1,0],["潇洒退场，享受生活",0,1,1,0,1,0],["为更多人发声做事",0,0,1,1,0,3]]}
 ];
 
-/* ===== 人物库（24 位）===== */
+/* ===== 人物库（24 位：f=女性池 m=男性池）===== */
 const FIGS=[
 {g:"f",e:"⚔️",name:"花木兰",dyn:"北魏 · 巾帼名将",v:[3,2,1,3,2,3],bio:"替父从军的女儿身——不是不知道怕，而是把责任看得比害怕更重。她能隐忍多年，也能策马冲锋。她的勇敢不是不怕，而是怕了依然向前。",common:"你们都有一颗「该我扛」的心。答应的事拼尽全力，看不得身边人受委屈，关键时刻从不掉链子。",real:"你是团队里最让人放心的人：不抢功、不甩锅，出了事第一个站出来。",blind:"太能扛，什么都自己扛着，很少开口求人。",risk:"警惕「责任感透支」——先照顾好自己，再照顾别人。",adv:"学会把担子分出去。求助不是软弱，是给别人信任你的机会。",q:["万里赴戎机，关山度若飞。","谁说女儿不如男。","将军百战死，壮士十年归。"]},
 {g:"f",e:"🔥",name:"武则天",dyn:"武周 · 一代女皇",v:[3,3,3,3,3,1],bio:"从才人到皇帝，每一步都走在无人敢想的路上。在男权世界的最高处，她证明了规则是给不敢打破的人定的。无字碑空着——功过留给后人评说。",common:"你们都有极强的目标感和翻盘能力：环境越不利，越能找到破局点。",real:"你是天生的掌局者：善于隐忍、精于判断，该出手时绝不犹豫。",blind:"太擅长赢，有时忘了问「赢了之后要什么」。",risk:"警惕「孤独的高位」——身边多的是附和，缺的是真话。",adv:"留几个不图你什么的旧友，信任要主动去攒。",q:["花须连夜发，莫待晓风吹。","身为女子，何须让须眉。","无字碑上千秋事，留与后人论短长。"]},
@@ -285,7 +297,31 @@ const FIGS=[
 {g:"m",e:"⛵",name:"郑和",dyn:"明 · 七下西洋",v:[2,2,1,3,2,2],bio:"率两百余艘宝船、两万七千人七下西洋，比哥伦布早八十七年。他没有征服一块土地，却让万国来朝。",common:"你们都有「把大目标拆成一次次远航」的执行力：重准备、守纪律、能扛长期任务。",real:"你是可靠的组织者：复杂的事到你手里就变得井井有条。",blind:"太守规矩，创造性冒险偏少。",risk:"警惕「流程依赖」——计划之外的变化，也需要胆量去接。",adv:"定期做一件没有攻略的事，练一练随机应变。",q:["宝船七下西洋，威德遐被。","海纳百川，有容乃大。","远航之志，不在风浪，在人心。"]}
 ];
 
-/* ===== 答题（支持返回）===== */
+/* ===== 动态人物库展示 ===== */
+function figNames(g,n){const list=FIGS.filter(f=>!g||f.g===g).map(f=>f.name);const show=list.slice(0,n).join(" · ");return show+(list.length>n?" 等 "+list.length+" 位":"")}
+function fillFigInfo(){
+  const nf=FIGS.filter(f=>f.g==="f").length,nm=FIGS.filter(f=>f.g==="m").length;
+  const c1=document.getElementById("figCount");if(c1)c1.textContent=FIGS.length;
+  const c2=document.getElementById("figCount2");if(c2)c2.textContent=FIGS.length;
+  const dc=document.getElementById("dirCount");if(dc)dc.textContent=FIGS.length;
+  const hc=document.getElementById("howCount");if(hc)hc.textContent=FIGS.length;
+  const dF=document.getElementById("dirF");if(dF)dF.textContent=figNames("f",3);
+  const dM=document.getElementById("dirM");if(dM)dM.textContent=figNames("m",3);
+  const dA=document.getElementById("dirAll");if(dA)dA.textContent="全人物池 "+FIGS.length+" 位";
+  const lb=document.getElementById("figListBody");
+  if(lb){
+    let h="";
+    [["f","👩 女性人物（"+nf+" 位）"],["m","👨 男性人物（"+nm+" 位）"]].forEach(([g,t])=>{
+      h+='<p style="margin:8px 0 4px"><b>'+t+'</b></p><p style="font-size:13px;color:#6b6350">'
+        +FIGS.filter(f=>f.g===g).map(f=>f.e+" "+f.name).join("　")+"</p>";
+    });
+    lb.innerHTML=h;
+  }
+}
+function toggleFigList(){const b=document.getElementById("figListBox");b.style.display=b.style.display==="none"?"block":"none"}
+fillFigInfo();
+
+/* ===== 答题（支持返回上一题）===== */
 function renderQ(){
   const q=QS[cur];
   document.getElementById("qnum").textContent=(cur+1)+" / "+QS.length;
@@ -299,7 +335,7 @@ function renderQ(){
 }
 function goBack(){if(cur>0){cur--;renderQ()}}
 
-/* ===== 结果 ===== */
+/* ===== 结果分析 ===== */
 const DIMN=["决断","洞察","表达","担当","谋略","仁心"];
 const DIME=["⚖️","👁️","💬","🛡️","♟️","💗"];
 const SKL=[
@@ -358,9 +394,10 @@ function showResult(isShare){
   document.getElementById("rRisk").textContent="风险提醒："+f.risk;
   document.getElementById("rAdv").textContent=f.adv;
   document.getElementById("rQuotes").innerHTML=f.q.map(q=>"<p>「"+q+"」</p>").join("");
+  document.getElementById("radarNote").textContent="六维能力图谱 · "+f.name+" 原型 · 金色为你的得分";
   const fv=f.v.map(x=>Math.round(x/3*100));
   const ford=fv.map((u,i)=>({u,i})).sort((a,b)=>b.u-a.u);
-  document.getElementById("rPortrait").innerHTML="从六维看，"+f.name+"最锋利的两把刀是「<b>"+DIMN[ford[0].i]+"</b>」和「<b>"+DIMN[ford[1].i]+"</b>」——这是 TA 留名青史的看家本事；而「<b>"+DIMN[ford[5].i]+"</b>」是 TA 的软肋，也是史册里 TA 跌过的坑。你们在"+DIMN[ford[0].i]+"上的得分是 "+norm[ford[0].i]+" vs "+fv[ford[0].i]+"——"+"你"+(norm[ford[0].i]>=fv[ford[0].i]?"完全不输原型，甚至更胜一筹":"略逊半筹，但同属此道中人")+"。";
+  document.getElementById("rPortrait").innerHTML="从六维看，"+f.name+"最锋利的两把刀是「<b>"+DIMN[ford[0].i]+"</b>」和「<b>"+DIMN[ford[1].i]+"</b>」——这是 TA 留名青史的看家本事；而「<b>"+DIMN[ford[5].i]+"</b>」是 TA 的软肋，也是史册里 TA 跌过的坑。你们在"+DIMN[ford[0].i]+"上的得分是 "+norm[ford[0].i]+" vs "+fv[ford[0].i]+"——你"+(norm[ford[0].i]>=fv[ford[0].i]?"完全不输原型，甚至更胜一筹":"略逊半筹，但同属此道中人")+"。";
   let dh="";
   norm.forEach((u,i)=>{
     const p=fv[i],diff=Math.abs(u-p);
@@ -375,24 +412,19 @@ function showResult(isShare){
   diffs.sort((a,b)=>a.d-b.d);
   const like=diffs.slice(0,2).map(x=>DIMN[x.i]),diff1=diffs[5];
   const dd=norm[diff1.i]>fv[diff1.i];
-  document.getElementById("rDiff").innerHTML="你们最像的地方是「<b>"+like[0]+"</b>」和「<b>"+like[1]+"</b>」——这两条底色几乎重合，是你读到这份档案时“被说中”的来源。<br>最大的不同在「<b>"+DIMN[diff1.i]+"</b>」："+
-    (dd?"你在这条路上比 "+f.name+" 走得更远，这是你比原型更立体之处。":f.name+" 在这条路上比你更极致——那不是差距，是你尚未启用的余量。");
+  document.getElementById("rDiff").innerHTML="你们最像的地方是「<b>"+like[0]+"</b>」和「<b>"+like[1]+"</b>」——这两条底色几乎重合，是你读到这份档案时“被说中”的来源。<br>最大的不同在「<b>"+DIMN[diff1.i]+"</b>」："+(dd?"你在这条路上比 "+f.name+" 走得更远，这是你比原型更立体之处。":f.name+" 在这条路上比你更极致——那不是差距，是你尚未启用的余量。");
   const uord=norm.map((u,i)=>({u,i})).sort((a,b)=>b.u-a.u);
   let sh="";
   uord.filter(x=>x.u>=55).slice(0,2).forEach(x=>{
     const k=SKL[x.i];
-    sh+='<div class="sk"><h4>'+DIME[x.i]+' '+k.n+" · "+x.u+'分</h4>'
-      +'<div class="row"><span class="lab">优势</span>'+k.s+"</div>"
-      +'<div class="row over"><span class="lab">过当风险</span>'+k.o+"</div></div>";
+    sh+='<div class="sk"><h4>'+DIME[x.i]+' '+k.n+" · "+x.u+'分</h4><div class="row"><span class="lab">优势</span>'+k.s+'</div><div class="row over"><span class="lab">过当风险</span>'+k.o+"</div></div>";
   });
   if(!sh)sh='<p style="font-size:14px;color:#8b8474">你的六维分布较为均衡，没有单项突出的锋芒——这本身就是一种优势：适应力强、不易被单一场景定义。历史上这类人往往是大隐隐于市的「全能型副手」。</p>';
   document.getElementById("rStrengths").innerHTML=sh;
   let wh="";
   uord.slice().reverse().filter(x=>x.u<45).slice(0,2).forEach(x=>{
     const k=SKL[x.i];
-    wh+='<div class="sk weak"><h4>'+DIME[x.i]+' '+k.n+" · "+x.u+'分</h4>'
-      +'<div class="row"><span class="lab">短板</span>'+k.w+"</div>"
-      +'<div class="row fix"><span class="lab">化解</span>'+k.f+"</div></div>";
+    wh+='<div class="sk weak"><h4>'+DIME[x.i]+' '+k.n+" · "+x.u+'分</h4><div class="row"><span class="lab">短板</span>'+k.w+'</div><div class="row fix"><span class="lab">化解</span>'+k.f+"</div></div>";
   });
   if(!wh)wh='<p style="font-size:14px;color:#8b8474">恭喜——你的六维没有明显短板，属于难得的「六边形」结构。要警惕的反而是平均带来的平庸感：不妨挑一个维度，刻意把它练成标签。</p>';
   document.getElementById("rWeaks").innerHTML=wh;
@@ -403,6 +435,7 @@ function showResult(isShare){
   pool.slice(1,4).forEach(x=>{ah+='<div class="altfig"><div class="ae">'+x.e+'</div><div><div class="an">'+x.name+'</div><div class="ad">'+x.dyn+'</div></div><div class="ap">'+Math.round(x._s/18*100)+"%</div></div>"});
   document.getElementById("rAlts").innerHTML=ah;
   drawRadarOn(document.getElementById("radar"),norm);
+  go(4);
   if(!isShare){const c=useCount()+1;localStorage.setItem("figatlas_used",String(c))}
 }
 function retry(){cur=0;answersIdx=[];dir="";document.querySelectorAll(".dir").forEach(d=>d.classList.remove("sel"));const b=document.getElementById("dirBtn");b.style.opacity=.4;b.style.pointerEvents="none";go(1)}
@@ -418,7 +451,7 @@ function saveImg(){
 /* ===== 分享链接 ===== */
 function copyLink(){
   const url=location.origin+location.pathname+"?r="+["f","m","all"].indexOf(dir)+answersIdx.join("");
-  const done=()=>showModal('<h3>🔗 链接已复制</h3><p>把链接发给好友，打开即可看到你的测评结果，也能直接测TA自己的。</p><p style="font-size:12px;color:#b3ab98;word-break:break-all">'+url+'</p><button class="btn ghost" onclick="hideModal()">好的</button>');
+  const done=()=>showModal('<h3>🔗 链接已复制</h3><p>把链接发给好友，打开即可看到你的测评结果。</p><p style="font-size:12px;color:#b3ab98;word-break:break-all">'+url+'</p><button class="btn ghost" onclick="hideModal()">好的</button>');
   if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(url).then(done).catch(()=>fb())}else fb();
   function fb(){const t=document.createElement("textarea");t.value=url;document.body.appendChild(t);t.select();document.execCommand("copy");document.body.removeChild(t);done()}
 }
