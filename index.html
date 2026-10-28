@@ -38,12 +38,11 @@ h1 .hl{background:linear-gradient(transparent 62%,#ffe08a 62%)}
 .card{background:#fff;border:1px solid #e6dcc4;border-radius:18px;padding:20px;margin-bottom:16px}
 .card h3{font-size:15px;color:#a08c5a;letter-spacing:2px;margin-bottom:10px}
 .card p{font-size:14.5px;line-height:1.9;color:#4a453b}
-.name{font-size:42px;font-weight:900;margin:2px 0 4px;letter-spacing:2px;background:linear-gradient(transparent 68%,#ffe08a 68%);display:inline-block}
-.trait{font-size:14px;color:#a08c5a;margin:8px 0 2px;letter-spacing:1px}
+.name{font-size:48px;font-weight:800;margin:8px 0 4px}
 .dyn{color:#a08c5a;font-size:14px;margin-bottom:8px}
 .quotes p{font-size:15px;font-weight:700;margin:8px 0;padding-left:12px;border-left:3px solid #e0b45e}
 .warn{color:#a05a4a}
-canvas{width:100%;max-width:360px;display:block;margin:6px auto}
+canvas{width:100%;max-width:420px;display:block;margin:6px auto}
 .foot{font-size:11px;color:#b3ab98;text-align:center;margin-top:26px;line-height:1.8}
 .feats4{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:10px 0 12px}
 .f4{background:#fff;border:2px solid #d8c9a3;border-radius:16px;padding:18px 10px;box-shadow:0 3px 10px rgba(160,140,90,.12)}
@@ -61,7 +60,7 @@ canvas{width:100%;max-width:360px;display:block;margin:6px auto}
 .modal h3{font-size:19px;margin-bottom:12px;color:#3a3630}
 .modal p{font-size:14px;color:#6b6350;line-height:1.9;margin-bottom:8px}
 .modal img{width:100%;border-radius:10px;border:1px solid #eee;margin:10px 0}
-.simbig{font-size:48px;font-weight:800;color:#c9a44c;line-height:1}
+.simbig{font-size:30px;font-weight:800;color:#c9a44c;line-height:1}
 .simlab{font-size:13px;color:#8b8474;margin-top:4px}
 .dimrow{padding:12px 0;border-bottom:1px dashed #eee}
 .dimrow:last-child{border-bottom:none}
@@ -89,7 +88,7 @@ canvas{width:100%;max-width:360px;display:block;margin:6px auto}
 .sk .over{color:#a05a4a}
 .sk .fix{color:#5a7a50}
 .sechead{margin:26px 0 12px;font-size:13px;letter-spacing:3px;color:#fff;background:#3a3630;display:inline-block;padding:5px 14px;border-radius:20px}
-@media(max-width:380px){.cover-title{font-size:30px}.qtext{font-size:19px}.f4 b{font-size:13px}.name{font-size:34px}}
+@media(max-width:380px){.cover-title{font-size:30px}.qtext{font-size:19px}.f4 b{font-size:13px}.name{font-size:42px}}
 </style>
 </head>
 <body>
@@ -177,11 +176,11 @@ canvas{width:100%;max-width:360px;display:block;margin:6px auto}
   <div id="resultCap">
     <div class="tag center" style="display:block">FIGURE ATLAS · 古人档案局</div>
     <div class="center">
-      <div class="name" id="rName"></div>
-      <div class="trait" id="rTrait"></div>
-      <div class="dyn" id="rDyn"></div>
+      <div style="font-size:52px" id="rEmoji">📜</div>
       <div class="simbig" id="rSim"></div>
       <div class="simlab" id="rSimLab">总体相似度</div>
+      <div class="name" id="rName"></div>
+      <div class="dyn" id="rDyn"></div>
     </div>
     <canvas id="radar" width="750" height="700"></canvas>
     <p class="foot" id="radarNote" style="margin-top:2px">六维能力图谱 · 金色实线为你 · 虚线为原型</p>
@@ -343,16 +342,16 @@ function simOf(f,norm){let s=0;f.v.forEach((x,i)=>{s+=Math.max(0,3-Math.abs(x-no
 function showResult(isShare){
   const w=[0,0,0,0,0,0];
   answersIdx.forEach((oi,qi)=>{const o=QS[qi].o[oi];for(let i=0;i<6;i++)w[i]+=o[i+1]||0});
-  const norm=w.map(x=>Math.round(x/12*100));
+  const maxD=[0,0,0,0,0,0];
+  QS.forEach(q=>{for(let i=0;i<6;i++){let m=0;q.o.forEach(o=>{if((o[i+1]||0)>m)m=o[i+1]});maxD[i]+=m}});
+  const norm=w.map((x,i)=>Math.min(100,Math.round(x/maxD[i]*100)));
   let pool=FIGS.filter(f=>dir==="all"||f.g===dir);if(!pool.length)pool=FIGS;
   pool.forEach(f=>f._s=simOf(f,norm));
   pool.sort((a,b)=>b._s-a._s);
   const f=pool[0];
   const simP=Math.round(f._s/18*100);
+  document.getElementById("rEmoji").textContent="📜";
   document.getElementById("rName").textContent=f.name;
-  const tord=f.v.map((x,i)=>({x,i})).sort((a,b)=>b.x-a.x);
-  const t2=tord.slice(0,2).map(t=>DIMN[t.i]),t1=tord[5];
-  document.getElementById("rTrait").textContent="以「"+t2[0]+"」「"+t2[1]+"」立身 · "+DIMN[t1.i]+"稍敛";
   document.getElementById("rDyn").textContent=f.dyn;
   document.getElementById("rSim").textContent=simP+"%";
   document.getElementById("rSimLab").textContent="你与 "+f.name+" 的总体相似度";
@@ -436,8 +435,9 @@ function drawRadarOn(c,vu,vt){
   const dpr=window.devicePixelRatio||1;
   const W=750,H=700;
   c.width=W*dpr;c.height=H*dpr;
-  c.style.width="100%";c.style.maxWidth="360px";c.style.height="auto";
+  c.style.width="100%";c.style.maxWidth="420px";c.style.height="auto";
   const x=c.getContext("2d");x.scale(dpr,dpr);
+  vu=vu.map(v=>Math.min(100,v));if(vt)vt=vt.map(v=>Math.min(100,v));
   const cx=W/2,cy=H/2+6,R=215,n=6;
   const labels=["决断","洞察","表达","担当","谋略","仁心"];
   const pt=(i,r)=>{const a=-Math.PI/2+i*2*Math.PI/n;return[cx+r*Math.cos(a),cy+r*Math.sin(a)]};
