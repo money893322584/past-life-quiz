@@ -89,27 +89,7 @@ canvas{width:100%;max-width:420px;display:block;margin:6px auto}
 .sk .over{color:#a05a4a}
 .sk .fix{color:#5a7a50}
 .sechead{margin:26px 0 12px;font-size:13px;letter-spacing:3px;color:#fff;background:#3a3630;display:inline-block;padding:5px 14px;border-radius:20px}
-.reTitle{font-size:15px;letter-spacing:6px;color:#3ba38b;text-align:center;font-weight:600;margin:16px 0 18px}
-.reCapsule{display:flex;align-items:center;justify-content:center;gap:8px;background:#eaf5ef;border:1.5px solid #bfe0d4;border-radius:30px;padding:10px 18px;margin:0 auto 30px;max-width:360px;font-size:15px;color:#2e7d68;font-weight:700}
-.reName{font-size:64px;font-weight:800;text-align:center;line-height:1.15;color:#3a3630}
-.reDivider{display:flex;align-items:center;justify-content:center;gap:10px;margin:14px auto 16px}
-.reDivider i{width:56px;height:2px;background:#cfe8de}
-.reDivider span{width:8px;height:8px;background:#3ba38b;border-radius:50%}
-.reSub{text-align:center;font-size:19px;font-weight:700;letter-spacing:4px;color:#3a3630}
-.reCross{text-align:center;font-size:13px;color:#3ba38b;font-weight:700;margin:14px 0 18px}
-.reQuote{text-align:center;font-size:17px;color:#6b6350;font-style:italic;padding:0 24px;line-height:1.9}
-.reTrio{display:flex;align-items:stretch;justify-content:center;margin:26px 0 8px}
-.t3{background:#fff;border:1px solid #e6dcc4;padding:18px 6px;text-align:center}
-.t3.side{flex:1;max-width:118px;margin-top:14px}
-.t3.side:first-child{border-radius:14px 0 0 14px}
-.t3.side:last-child{border-radius:0 14px 14px 0}
-.t3.mid{flex:1;max-width:130px;background:#4da58f;color:#fff;border:none;padding:26px 8px;border-radius:16px;box-shadow:0 8px 20px rgba(77,165,143,.35);position:relative;z-index:2}
-.t3 b{display:block;font-size:26px;font-weight:800;line-height:1.2}
-.t3.mid b{font-size:28px}
-.t3 span{display:block;font-size:13px;margin-top:6px;font-weight:700}
-.t3.mid span{color:#eafaf4;font-weight:400}
-.t3 small{display:block;font-size:11px;color:#b3ab98;margin-top:3px}
-@media(max-width:380px){.cover-title{font-size:30px}.qtext{font-size:19px}.f4 b{font-size:13px}.name{font-size:42px}.reName{font-size:52px}}
+@media(max-width:380px){.cover-title{font-size:30px}.qtext{font-size:19px}.f4 b{font-size:13px}.name{font-size:42px}}
 </style>
 </head>
 <body>
@@ -195,17 +175,13 @@ canvas{width:100%;max-width:420px;display:block;margin:6px auto}
 <!-- 结果 -->
 <div class="page" id="p4">
   <div id="resultCap">
-    <div class="reTitle">YOUR HISTORICAL ARCHETYPE</div>
-    <div class="reCapsule">◆ · 你的历史人物原型契合度 <b id="rSim">--%</b> ◆</div>
-    <div class="reName" id="rName">--</div>
-    <div class="reDivider"><i></i><span></span><i></i></div>
-    <div class="reSub" id="rSub">--</div>
-    <div class="reCross" id="rCross"></div>
-    <div class="reQuote" id="rQuote"></div>
-    <div class="reTrio">
-      <div class="t3 side"><b id="t3Hi">--</b><span id="t3HiLab">--</span><small>最高维度</small></div>
-      <div class="t3 mid"><b id="rSim2">--%</b><span>原型契合度</span></div>
-      <div class="t3 side"><b id="t3Lo">--</b><span id="t3LoLab">--</span><small>待提升</small></div>
+    <div class="tag center" style="display:block">FIGURE ATLAS · 古人档案局</div>
+    <div class="center">
+      <div style="font-size:52px;margin-bottom:20px" id="rEmoji">📜</div>
+      <div class="simbig" id="rSim"></div>
+      <div class="simlab" id="rSimLab">总体相似度</div>
+      <div class="name" id="rName"></div>
+      <div class="dyn" id="rDyn"></div>
     </div>
     <canvas id="radar" width="750" height="700"></canvas>
     <p class="foot" id="radarNote" style="margin-top:2px">六维能力图谱 · 金色实线为你 · 虚线为原型</p>
@@ -339,7 +315,6 @@ function goBack(){if(cur>0){cur--;renderQ()}}
 /* ===== 结果分析 ===== */
 const DIMN=["决断","洞察","表达","担当","谋略","仁心"];
 const DIME=["⚖️","👁️","💬","🛡️","♟️","💗"];
-const SUBS={"决断":"破局者 · 一锤定音","洞察":"洞察者 · 见微知著","表达":"表达者 · 直抵人心","担当":"担当者 · 扛事之人","谋略":"谋略者 · 落子三步","仁心":"仁心者 · 温柔有力"};
 const SKL=[
  {n:"决断",s:"在无人敢拍板的时刻，你能给出一锤定音的答案。这种确定感，是团队混乱时的定盘星，也是你比多数人更快抓住机会的原因。",
   o:"但决断用过劲，会变成「武断」——太快关闭讨论，可能漏掉关键信息，也会让身边的人觉得不被倾听，慢慢只执行、不再进言。",
@@ -379,18 +354,11 @@ function showResult(isShare){
   const f=pool[0];
   const simP=Math.round(f._s/18*100);
   lastFig=f;lastSim=simP;
-  const uord=norm.map((u,i)=>({u,i})).sort((a,b)=>b.u-a.u);
-  document.getElementById("rSim").textContent=simP+"%";
-  document.getElementById("rSim2").textContent=simP+"%";
+  document.getElementById("rEmoji").textContent="📜";
   document.getElementById("rName").textContent=f.name;
-  document.getElementById("rSub").textContent=SUBS[DIMN[uord[0].i]];
-  document.getElementById("rCross").textContent=f.dyn+" · 相似的是性格与选择方式";
-  document.getElementById("rQuote").textContent="「"+f.q[0]+"」";
-  document.getElementById("t3Hi").textContent=norm[uord[0].i];
-  document.getElementById("t3HiLab").textContent=DIMN[uord[0].i];
-  const lo=uord[uord.length-1];
-  document.getElementById("t3Lo").textContent=norm[lo.i];
-  document.getElementById("t3LoLab").textContent=DIMN[lo.i];
+  document.getElementById("rDyn").textContent=f.dyn;
+  document.getElementById("rSim").textContent=simP+"%";
+  document.getElementById("rSimLab").textContent="你与"+f.name+"的总体相似度";
   document.getElementById("rBio").textContent=f.bio;
   document.getElementById("rCommon").textContent=f.common;
   document.getElementById("rReal").textContent=f.real;
@@ -417,6 +385,7 @@ function showResult(isShare){
   const like=diffs.slice(0,2).map(x=>DIMN[x.i]),diff1=diffs[5];
   const dd=norm[diff1.i]>fv[diff1.i];
   document.getElementById("rDiff").innerHTML="你们最像的地方是「<b>"+like[0]+"</b>」和「<b>"+like[1]+"</b>」——这两条底色几乎重合，是你读到这份档案时“被说中”的来源。<br>最大的不同在「<b>"+DIMN[diff1.i]+"</b>」："+(dd?"你在这条路上比 "+f.name+" 走得更远，这是你比原型更立体之处。":f.name+" 在这条路上比你更极致——那不是差距，是你尚未启用的余量。");
+  const uord=norm.map((u,i)=>({u,i})).sort((a,b)=>b.u-a.u);
   let sh="";
   uord.filter(x=>x.u>=55).slice(0,2).forEach(x=>{
     const k=SKL[x.i];
