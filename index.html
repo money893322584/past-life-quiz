@@ -7,106 +7,108 @@
 <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
 <style>
 *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
-body{font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;background:#edf4f0;color:#2e3d38;min-height:100vh}
-.page{display:none;max-width:520px;margin:0 auto;padding:24px 18px 60px;min-height:100vh}
+body{font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;background:#f7f4ec;color:#3a3630;min-height:100vh}
+.page{display:none;max-width:520px;margin:0 auto;padding:24px 20px 60px;min-height:100vh}
 .page.active{display:block}
 .page.center-page{display:none;text-align:center;flex-direction:column;justify-content:center}
 .page.active.center-page{display:flex}
-.tag{display:inline-block;font-size:12px;letter-spacing:3px;color:#3ba38b;border:1px solid #bfe0d4;padding:3px 12px;border-radius:20px;margin-bottom:14px;background:#fff}
+.tag{display:inline-block;font-size:12px;letter-spacing:3px;color:#a08c5a;border:1px solid #d8c9a3;padding:3px 10px;border-radius:20px;margin-bottom:14px}
 .center-page .tag{align-self:center}
 h1{font-size:34px;line-height:1.35;font-weight:800}
-h1 .hl{background:linear-gradient(transparent 62%,#b9e6d8 62%)}
+h1 .hl{background:linear-gradient(transparent 62%,#ffe08a 62%)}
 .cover-title{font-size:36px;text-align:center}
-.sub{color:#7f938c;font-size:14px;margin:12px 0 22px;line-height:1.8}
-.btn{display:block;width:100%;border:none;background:#3ba38b;color:#fff;font-size:17px;font-weight:700;padding:15px;border-radius:14px;margin-top:18px;cursor:pointer;text-decoration:none;text-align:center}
+.sub{color:#8b8474;font-size:14px;margin:12px 0 22px;line-height:1.8}
+.btn{display:block;width:100%;border:none;background:#3a3630;color:#fdf6e3;font-size:17px;font-weight:700;padding:15px;border-radius:14px;margin-top:18px;cursor:pointer;text-decoration:none;text-align:center}
 .btn:active{transform:scale(.98)}
-.btn.ghost{background:#fff;color:#2e3d38;border:1.5px solid #cfe4da}
-.btn.gold{background:linear-gradient(135deg,#3ba38b,#5cbb9f);color:#fff}
+.btn.ghost{background:#fff;color:#3a3630;border:1.5px solid #d8cbb0}
+.btn.gold{background:linear-gradient(135deg,#c9a44c,#e0b45e);color:#fffdf6}
 .dirs{display:grid;grid-template-columns:1fr;gap:12px;margin-top:8px}
-.dir{background:#fff;border:2px solid #d8ebe2;border-radius:14px;padding:18px 12px;text-align:center;font-size:15px;font-weight:700;cursor:pointer}
-.dir:active,.dir.sel{border-color:#3ba38b;background:#eef8f3}
-.topbar{display:flex;justify-content:space-between;font-size:13px;color:#7f938c;margin-bottom:10px}
-.bar{height:6px;background:#d8ebe2;border-radius:3px;overflow:hidden;margin-bottom:26px}
-.bar i{display:block;height:100%;width:0;background:linear-gradient(90deg,#3ba38b,#5cbb9f);border-radius:3px;transition:width .3s}
-.qdim{font-size:13px;color:#3ba38b;letter-spacing:2px;margin-bottom:8px}
+.dir{background:#fff;border:2px solid #e6dcc4;border-radius:14px;padding:18px 12px;text-align:center;font-size:15px;font-weight:700;cursor:pointer}
+.dir:active,.dir.sel{border-color:#c9a44c;background:#fdf6e3}
+.topbar{display:flex;justify-content:space-between;font-size:13px;color:#8b8474;margin-bottom:10px}
+.bar{height:6px;background:#e8e0cd;border-radius:3px;overflow:hidden;margin-bottom:26px}
+.bar i{display:block;height:100%;width:0;background:linear-gradient(90deg,#c9a44c,#e0b45e);border-radius:3px;transition:width .3s}
+.qdim{font-size:13px;color:#a08c5a;letter-spacing:2px;margin-bottom:8px}
 .qtext{font-size:21px;font-weight:800;line-height:1.5;margin-bottom:22px}
-.opt{background:#fff;border:1.5px solid #d8ebe2;border-radius:14px;padding:15px 16px;font-size:15px;margin-bottom:12px;cursor:pointer;line-height:1.5}
-.opt:active{border-color:#3ba38b;background:#eef8f3}
+.opt{background:#fff;border:1.5px solid #e6dcc4;border-radius:14px;padding:15px 16px;font-size:15px;margin-bottom:12px;cursor:pointer;line-height:1.5}
+.opt:active{border-color:#c9a44c;background:#fdf6e3}
 .backbar{display:flex;justify-content:space-between;align-items:center;margin-top:20px}
-.backbar button{background:none;border:none;color:#3ba38b;font-size:14px;cursor:pointer;padding:8px 4px}
+.backbar button{background:none;border:none;color:#a08c5a;font-size:14px;cursor:pointer;padding:8px 4px}
 .center{text-align:center}
 .big{font-size:56px;margin:30px 0 10px}
-.card{background:#fff;border:1px solid #dcebe3;border-radius:18px;padding:20px;margin-bottom:16px}
-.card h3{font-size:15px;color:#3ba38b;letter-spacing:2px;margin-bottom:10px}
-.card p{font-size:14.5px;line-height:1.9;color:#41544c}
+.card{background:#fff;border:1px solid #e6dcc4;border-radius:18px;padding:20px;margin-bottom:16px}
+.card h3{font-size:15px;color:#a08c5a;letter-spacing:2px;margin-bottom:10px}
+.card p{font-size:14.5px;line-height:1.9;color:#4a453b}
 .name{font-size:48px;font-weight:800;margin:8px 0 4px}
-.dyn{color:#3ba38b;font-size:14px;margin-bottom:8px}
-.quotes p{font-size:15px;font-weight:700;margin:8px 0;padding-left:12px;border-left:3px solid #5cbb9f}
-.warn{color:#b0654e}
+.dyn{color:#a08c5a;font-size:14px;margin-bottom:8px}
+.quotes p{font-size:15px;font-weight:700;margin:8px 0;padding-left:12px;border-left:3px solid #e0b45e}
+.warn{color:#a05a4a}
 canvas{width:100%;max-width:420px;display:block;margin:6px auto}
-.foot{font-size:11px;color:#9ab0a7;text-align:center;margin-top:26px;line-height:1.8}
+.foot{font-size:11px;color:#b3ab98;text-align:center;margin-top:26px;line-height:1.8}
 .feats4{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:10px 0 12px}
-.f4{background:#fff;border:2px solid #cfe8de;border-radius:16px;padding:18px 10px;box-shadow:0 3px 10px rgba(59,163,139,.10)}
-.f4 b{display:block;font-size:15px;color:#2e3d38;margin-bottom:5px}
-.f4 span{font-size:12px;color:#3ba38b;letter-spacing:1px}
-.tiny-note{font-size:11px;color:#9ab0a7;line-height:1.7;margin-top:16px}
-.pwbox{background:#fff;border:2px solid #cfe8de;border-radius:16px;padding:26px 20px;text-align:center;margin-top:30px}
-.pwbox input{width:100%;font-size:26px;letter-spacing:10px;text-align:center;border:2px solid #cfe8de;border-radius:12px;padding:12px;outline:none;background:#f4faf7;color:#2e3d38}
-.pwbox input:focus{border-color:#3ba38b}
-.pwmsg{font-size:13px;color:#b0654e;margin-top:12px;min-height:18px}
-.navback{display:inline-block;font-size:14px;color:#3ba38b;text-decoration:none;margin-bottom:14px;padding:6px 0;background:none;border:none;cursor:pointer;font-family:inherit}
-.mask{display:none;position:fixed;inset:0;background:rgba(30,50,42,.55);z-index:99;align-items:center;justify-content:center;padding:24px}
+.f4{background:#fff;border:2px solid #d8c9a3;border-radius:16px;padding:18px 10px;box-shadow:0 3px 10px rgba(160,140,90,.12)}
+.f4 b{display:block;font-size:15px;color:#3a3630;margin-bottom:5px}
+.f4 span{font-size:12px;color:#a08c5a;letter-spacing:1px}
+.tiny-note{font-size:11px;color:#c0b8a2;line-height:1.7;margin-top:16px}
+.pwbox{background:#fff;border:2px solid #d8c9a3;border-radius:16px;padding:26px 20px;text-align:center;margin-top:30px}
+.pwbox input{width:100%;font-size:26px;letter-spacing:10px;text-align:center;border:2px solid #d8c9a3;border-radius:12px;padding:12px;outline:none;background:#fdfbf4;color:#3a3630}
+.pwbox input:focus{border-color:#c9a44c}
+.pwmsg{font-size:13px;color:#a05a4a;margin-top:12px;min-height:18px}
+.navback{display:inline-block;font-size:14px;color:#a08c5a;text-decoration:none;margin-bottom:14px;padding:6px 0;background:none;border:none;cursor:pointer;font-family:inherit}
+.mask{display:none;position:fixed;inset:0;background:rgba(40,35,25,.55);z-index:99;align-items:center;justify-content:center;padding:24px}
 .mask.show{display:flex}
 .modal{background:#fff;border-radius:20px;max-width:400px;width:100%;padding:26px 22px;text-align:center;max-height:86vh;overflow-y:auto}
-.modal h3{font-size:19px;margin-bottom:12px;color:#2e3d38}
-.modal p{font-size:14px;color:#5d7168;line-height:1.9;margin-bottom:8px}
-.modal img{width:100%;border-radius:10px;border:1px solid #e2efe9;margin:10px 0}
-.dimrow{padding:12px 0;border-bottom:1px dashed #e2efe9}
+.modal h3{font-size:19px;margin-bottom:12px;color:#3a3630}
+.modal p{font-size:14px;color:#6b6350;line-height:1.9;margin-bottom:8px}
+.modal img{width:100%;border-radius:10px;border:1px solid #eee;margin:10px 0}
+.simbig{font-size:32px;font-weight:800;color:#c9a44c;line-height:1}
+.simlab{font-size:13px;color:#8b8474;margin-top:4px}
+.dimrow{padding:12px 0;border-bottom:1px dashed #eee}
 .dimrow:last-child{border-bottom:none}
 .dimlab{font-size:14px;font-weight:700;margin-bottom:6px}
 .cmp{display:flex;align-items:center;gap:8px;margin:3px 0}
-.cmp span{font-size:12px;color:#7f938c;width:74px;flex:none}
-.cbar{flex:1;height:8px;background:#e6f1ec;border-radius:4px;overflow:hidden}
-.cbar i{display:block;height:100%;background:linear-gradient(90deg,#3ba38b,#5cbb9f);border-radius:4px}
-.cbar.ta i{background:#b9cdc4}
-.cmt{font-size:12px;color:#3ba38b;margin-top:4px}
-.letter{background:linear-gradient(180deg,#f4faf7,#eaf5ef);border:1.5px solid #cfe8de;border-radius:18px;padding:22px 20px;font-size:14.5px;line-height:2.1;color:#41544c;margin-bottom:16px}
-.letter .sig{text-align:right;color:#3ba38b;font-size:13px;margin-top:10px}
-.altfig{display:flex;align-items:center;gap:12px;padding:10px 0;border-bottom:1px dashed #e2efe9}
+.cmp span{font-size:12px;color:#8b8474;width:74px;flex:none}
+.cbar{flex:1;height:8px;background:#f0ead8;border-radius:4px;overflow:hidden}
+.cbar i{display:block;height:100%;background:linear-gradient(90deg,#c9a44c,#e0b45e);border-radius:4px}
+.cbar.ta i{background:#c8bfa8}
+.cmt{font-size:12px;color:#a08c5a;margin-top:4px}
+.letter{background:linear-gradient(180deg,#fffdf6,#fdf8ea);border:1.5px solid #e0d3ad;border-radius:18px;padding:22px 20px;font-size:14.5px;line-height:2.1;color:#4a453b;margin-bottom:16px}
+.letter .sig{text-align:right;color:#a08c5a;font-size:13px;margin-top:10px}
+.altfig{display:flex;align-items:center;gap:12px;padding:10px 0;border-bottom:1px dashed #eee}
 .altfig:last-child{border-bottom:none}
 .altfig .ae{font-size:26px}
 .altfig .an{font-weight:700;font-size:15px}
-.altfig .ad{font-size:12px;color:#7f938c}
-.altfig .ap{margin-left:auto;font-weight:800;color:#3ba38b;font-size:16px}
-.sk{background:#fff;border:1.5px solid #dcebe3;border-left:4px solid #3ba38b;border-radius:14px;padding:16px;margin-bottom:14px}
-.sk.weak{border-left-color:#b0654e}
-.sk h4{font-size:15px;margin-bottom:8px;color:#2e3d38}
-.sk .row{font-size:13.5px;line-height:1.9;color:#41544c;margin:4px 0}
-.sk .lab{display:inline-block;font-size:11px;padding:1px 8px;border-radius:10px;margin-right:6px;background:#eaf5ef;color:#2e7d68}
-.sk.weak .lab{background:#f6e8e2;color:#a05a3f}
-.sk .over{color:#b0654e}
-.sk .fix{color:#2e7d68}
-.sechead{margin:26px 0 12px;font-size:13px;letter-spacing:3px;color:#fff;background:#3ba38b;display:inline-block;padding:5px 14px;border-radius:20px}
-/* ===== 结果页头部（截图版式）===== */
+.altfig .ad{font-size:12px;color:#8b8474}
+.altfig .ap{margin-left:auto;font-weight:800;color:#c9a44c;font-size:16px}
+.sk{background:#fff;border:1.5px solid #e6dcc4;border-left:4px solid #c9a44c;border-radius:14px;padding:16px;margin-bottom:14px}
+.sk.weak{border-left-color:#b0785a}
+.sk h4{font-size:15px;margin-bottom:8px;color:#3a3630}
+.sk .row{font-size:13.5px;line-height:1.9;color:#4a453b;margin:4px 0}
+.sk .lab{display:inline-block;font-size:11px;padding:1px 8px;border-radius:10px;margin-right:6px;background:#f6eeda;color:#8b6f30}
+.sk.weak .lab{background:#f6e4dc;color:#a05a4a}
+.sk .over{color:#a05a4a}
+.sk .fix{color:#5a7a50}
+.sechead{margin:26px 0 12px;font-size:13px;letter-spacing:3px;color:#fff;background:#3a3630;display:inline-block;padding:5px 14px;border-radius:20px}
 .reTitle{font-size:15px;letter-spacing:6px;color:#3ba38b;text-align:center;font-weight:600;margin:16px 0 18px}
-.reCapsule{display:flex;align-items:center;justify-content:center;gap:8px;background:#fff;border:1.5px solid #bfe0d4;border-radius:30px;padding:10px 18px;margin:0 auto 26px;max-width:360px;font-size:15px;color:#2e3d38;font-weight:700}
-.reCapsule b{color:#3ba38b;font-size:16px}
-.reName{font-size:64px;font-weight:800;text-align:center;line-height:1.1;color:#22332d}
-.reDivider{display:flex;align-items:center;justify-content:center;gap:10px;margin:16px auto 18px}
-.reDivider i{width:56px;height:2px;background:#bfe0d4}
+.reCapsule{display:flex;align-items:center;justify-content:center;gap:8px;background:#eaf5ef;border:1.5px solid #bfe0d4;border-radius:30px;padding:10px 18px;margin:0 auto 30px;max-width:360px;font-size:15px;color:#2e7d68;font-weight:700}
+.reName{font-size:64px;font-weight:800;text-align:center;line-height:1.15;color:#3a3630}
+.reDivider{display:flex;align-items:center;justify-content:center;gap:10px;margin:14px auto 16px}
+.reDivider i{width:56px;height:2px;background:#cfe8de}
 .reDivider span{width:8px;height:8px;background:#3ba38b;border-radius:50%}
-.reSub{text-align:center;font-size:19px;font-weight:700;letter-spacing:4px;color:#33504a}
-.reCross{text-align:center;font-size:13px;color:#3ba38b;font-weight:700;margin:16px 0 20px;letter-spacing:1px}
-.reQuote{text-align:center;font-size:17px;color:#5d7168;font-style:italic;padding:0 24px;line-height:1.9}
-.reTrio{display:flex;align-items:stretch;justify-content:center;margin:28px 0 10px}
-.t3{flex:1;background:#fff;border:1px solid #dcebe3;padding:20px 6px;text-align:center}
-.t3.side{border-radius:16px;max-width:118px;margin-top:12px}
-.t3.mid{background:#3ba38b;color:#fff;border:none;border-radius:16px;padding:28px 8px;max-width:128px;box-shadow:0 8px 22px rgba(59,163,139,.35);position:relative;z-index:2}
+.reSub{text-align:center;font-size:19px;font-weight:700;letter-spacing:4px;color:#3a3630}
+.reCross{text-align:center;font-size:13px;color:#3ba38b;font-weight:700;margin:14px 0 18px}
+.reQuote{text-align:center;font-size:17px;color:#6b6350;font-style:italic;padding:0 24px;line-height:1.9}
+.reTrio{display:flex;align-items:stretch;justify-content:center;margin:26px 0 8px}
+.t3{background:#fff;border:1px solid #e6dcc4;padding:18px 6px;text-align:center}
+.t3.side{flex:1;max-width:118px;margin-top:14px}
+.t3.side:first-child{border-radius:14px 0 0 14px}
+.t3.side:last-child{border-radius:0 14px 14px 0}
+.t3.mid{flex:1;max-width:130px;background:#4da58f;color:#fff;border:none;padding:26px 8px;border-radius:16px;box-shadow:0 8px 20px rgba(77,165,143,.35);position:relative;z-index:2}
 .t3 b{display:block;font-size:26px;font-weight:800;line-height:1.2}
-.t3.mid b{font-size:30px}
-.t3 span{display:block;font-size:13px;margin-top:4px;font-weight:700}
-.t3 small{display:block;font-size:11px;color:#9ab0a7;margin-top:3px}
+.t3.mid b{font-size:28px}
+.t3 span{display:block;font-size:13px;margin-top:6px;font-weight:700}
 .t3.mid span{color:#eafaf4;font-weight:400}
+.t3 small{display:block;font-size:11px;color:#b3ab98;margin-top:3px}
 @media(max-width:380px){.cover-title{font-size:30px}.qtext{font-size:19px}.f4 b{font-size:13px}.name{font-size:42px}.reName{font-size:52px}}
 </style>
 </head>
@@ -117,7 +119,7 @@ canvas{width:100%;max-width:420px;display:block;margin:6px auto}
   <div class="tag">FIGURE ATLAS · 古人档案局</div>
   <h1 class="cover-title">你与哪位<span class="hl">历史人物</span><br>相似？</h1>
   <div class="pwbox">
-    <p style="font-size:14px;color:#7f938c;margin-bottom:16px">🔒 本测评需凭密码进入<br>每个密码可完成 <b style="color:#3ba38b">3 次</b> 测评</p>
+    <p style="font-size:14px;color:#8b8474;margin-bottom:16px">🔒 本测评需凭密码进入<br>每个密码可完成 <b style="color:#a08c5a">3 次</b> 测评</p>
     <input id="pwInput" type="tel" maxlength="10" placeholder="请输入密码" inputmode="numeric">
     <div class="pwmsg" id="pwMsg"></div>
     <button class="btn" onclick="checkPw()">解锁测评</button>
@@ -147,10 +149,11 @@ canvas{width:100%;max-width:420px;display:block;margin:6px auto}
   <div class="tag">HOW IT WORKS · 匹配原理</div>
   <h1 style="font-size:24px">你的档案是这样生成的</h1>
   <p class="sub">全程可追溯，无随机、无玄学，四步算出最像你的那位古人。</p>
-  <div class="card"><h3>STEP 1 · 六维能力向量</h3><p>系统从六个维度为你建模：<b>决断、洞察、表达、担当、谋略、仁心</b>。这六项组合起来，就是你的"能力指纹"。</p></div>
-  <div class="card"><h3>STEP 2 · 每道题都在计分</h3><p>24 道情境题中，每个选项背后都预设了 0~3 分的维度权重。你感觉在"选答案"，实际是在为六个维度投票——没有对错，只有倾向。</p></div>
+  <div class="card"><h3>STEP 1 · 六维能力向量</h3><p>系统从六个维度为你建模：<b>决断、洞察、表达、担当、谋略、仁心</b>。这六项组合起来，就是你的“能力指纹”。</p></div>
+  <div class="card"><h3>STEP 2 · 每道题都在计分</h3><p>24 道情境题中，每个选项背后都预设了 0~3 分的维度权重。你感觉在“选答案”，实际是在为六个维度投票——没有对错，只有倾向。</p></div>
   <div class="card"><h3>STEP 3 · 与人物原型比对</h3><p>档案库中的历史人物原型，都依据史书记载的关键抉择与行事风格，预先标注了六维向量。系统计算你的向量与每位人物的剖面距离，取<b>最相近的一位</b>作为你的原型。</p></div>
-  <div class="card"><h3>STEP 4 · 方向影响候选池</h3><p>开头选择的人物方向只决定在哪个池子里找，不改变你的六维得分，放心按真实感受作答。</p></div>
+  <div class="card"><h3>STEP 4 · 方向影响候选池</h3><p>开头选择的人物方向（女性人物优先 / 男性人物优先 / 根据性格匹配）只决定在哪个池子里找，不改变你的六维得分，放心按真实感受作答。</p></div>
+  <div class="card"><h3>一个小提醒</h3><p>人物匹配是“气质与行事风格的相似”，不是能力高低的评判。它是镜子，不是剧本。</p></div>
   <button class="btn" onclick="go(0)">明白了，返回封面</button>
 </div>
 
@@ -161,9 +164,9 @@ canvas{width:100%;max-width:420px;display:block;margin:6px auto}
   <h1 style="font-size:24px">你更有代入感的人物方向是？</h1>
   <p class="sub">只影响候选人物池，不影响答题与计分。</p>
   <div class="dirs">
-    <div class="dir" data-d="f" onclick="pickDir(this)">👩 女性人物优先<br><small style="font-weight:400;color:#7f938c">从女性历史人物中寻找最相似的你</small></div>
-    <div class="dir" data-d="m" onclick="pickDir(this)">👨 男性人物优先<br><small style="font-weight:400;color:#7f938c">从男性历史人物中寻找最相似的你</small></div>
-    <div class="dir" data-d="all" onclick="pickDir(this)">🎲 不限于性别<br><small style="font-weight:400;color:#7f938c">根据性格匹配</small></div>
+    <div class="dir" data-d="f" onclick="pickDir(this)">👩 女性人物优先<br><small style="font-weight:400;color:#8b8474">从女性历史人物中寻找最相似的你</small></div>
+    <div class="dir" data-d="m" onclick="pickDir(this)">👨 男性人物优先<br><small style="font-weight:400;color:#8b8474">从男性历史人物中寻找最相似的你</small></div>
+    <div class="dir" data-d="all" onclick="pickDir(this)">🎲 不限于性别<br><small style="font-weight:400;color:#8b8474">根据性格匹配</small></div>
   </div>
   <button class="btn" id="dirBtn" onclick="go(2)" style="opacity:.4;pointer-events:none">进入情境测试</button>
 </div>
@@ -178,7 +181,7 @@ canvas{width:100%;max-width:420px;display:block;margin:6px auto}
   <div id="qopts"></div>
   <div class="backbar">
     <button id="backBtn" onclick="goBack()">← 返回上一题</button>
-    <span style="font-size:12px;color:#9ab0a7">答完 24 题出结果</span>
+    <span style="font-size:12px;color:#c0b8a2">答完 24 题出结果</span>
   </div>
 </div>
 
@@ -197,17 +200,15 @@ canvas{width:100%;max-width:420px;display:block;margin:6px auto}
     <div class="reName" id="rName">--</div>
     <div class="reDivider"><i></i><span></span><i></i></div>
     <div class="reSub" id="rSub">--</div>
-    <div class="reCross" id="rCross">跨越时代与性别 · 相似的是性格与选择方式</div>
-    <div class="reQuote" id="rQuote">"</div>
+    <div class="reCross" id="rCross"></div>
+    <div class="reQuote" id="rQuote"></div>
     <div class="reTrio">
-      <div class="t3 side"><b id="t3Hi">--</b><span id="t3HiLab">最高维度</span><small>最高维度</small></div>
+      <div class="t3 side"><b id="t3Hi">--</b><span id="t3HiLab">--</span><small>最高维度</small></div>
       <div class="t3 mid"><b id="rSim2">--%</b><span>原型契合度</span></div>
-      <div class="t3 side"><b id="t3Lo">--</b><span id="t3LoLab">待提升</span><small>待提升维度</small></div>
+      <div class="t3 side"><b id="t3Lo">--</b><span id="t3LoLab">--</span><small>待提升</small></div>
     </div>
-
-    <div class="sechead">六维特征图谱 RADAR PROFILE</div>
     <canvas id="radar" width="750" height="700"></canvas>
-    <p class="foot" id="radarNote" style="margin-top:2px">六维能力图谱 · 绿色实线为你 · 虚线为原型</p>
+    <p class="foot" id="radarNote" style="margin-top:2px">六维能力图谱 · 金色实线为你 · 虚线为原型</p>
 
     <div class="sechead">第一部分 · 你是谁</div>
     <div class="card"><h3>① 人物自画像</h3><p id="rBio"></p><p id="rPortrait" style="margin-top:8px"></p></div>
@@ -265,7 +266,7 @@ if(rp&&rp.length===25){
   window.addEventListener("load",()=>{document.querySelectorAll(".page").forEach(p=>p.classList.remove("active"));document.getElementById("p4").classList.add("active");showResult(true)});
 }
 
-/* ===== 题库 ===== */
+/* ===== 题库（古代情境版）===== */
 const QS=[
  {d:0,t:"两军对垒，斥候回报敌情有变，众将都在帐中等你号令，你会：",o:[["即刻下令，将在外不必事事请示",3,0,0,0,0,0],["再派三拨斥候探明虚实再说",0,2,0,0,1,0],["召众将议事，共决进退",0,0,1,1,0,1],["先把粮道、退路部署妥当再定",0,1,0,0,2,0]]},
  {d:0,t:"敌军刚退，城门已开，但不知是陷阱还是败走，你手上只有一半兵力，你会：",o:[["亲率轻骑追击，机不可失",3,0,0,1,0,0],["守城不出，宁可错失战机",0,1,0,0,1,1],["先遣小队探路，主力随后接应",0,1,0,0,2,0],["召本地父老问明敌军动向再动",0,1,2,0,0,0]]},
@@ -293,7 +294,7 @@ const QS=[
  {d:5,t:"若他日位极人臣，你最想做的事是：",o:[["置义田义学，回馈桑梓",0,0,0,1,0,3],["再进一步，出将入相",2,0,0,2,1,0],["功成身退，泛舟五湖",0,1,1,0,1,0],["为民请命，减赋税开言路",0,0,1,1,0,3]]}
 ];
 
-/* ===== 人物库（24 位基础版）===== */
+/* ===== 人物库（24 位）===== */
 const FIGS=[
 {g:"f",e:"⚔️",name:"花木兰",dyn:"北魏 · 巾帼名将",v:[3,2,1,3,2,3],bio:"替父从军的女儿身——不是不知道怕，而是把责任看得比害怕更重。她能隐忍多年，也能策马冲锋。她的勇敢不是不怕，而是怕了依然向前。",common:"你们都有一颗「该我扛」的心。答应的事拼尽全力，看不得身边人受委屈，关键时刻从不掉链子。",real:"你是团队里最让人放心的人：不抢功、不甩锅，出了事第一个站出来。",blind:"太能扛，什么都自己扛着，很少开口求人。",risk:"警惕「责任感透支」——先照顾好自己，再照顾别人。",adv:"学会把担子分出去。求助不是软弱，是给别人信任你的机会。",letter:"你的勇敢从来不是不怕，而是怕了依然向前。你为在乎的人扛起过太多，却很少开口说累。但请记得——木兰卸甲归乡时，也有人在等她回家。累了就回头看看，你的身后，同样有人。愿你的担当有人分担，愿你的勇敢也被温柔接住。",q:["万里赴戎机，关山度若飞。","谁说女儿不如男。","将军百战死，壮士十年归。"]},
 {g:"f",e:"🔥",name:"武则天",dyn:"武周 · 一代女皇",v:[3,3,3,3,3,1],bio:"从才人到皇帝，每一步都走在无人敢想的路上。在男权世界的最高处，她证明了规则是给不敢打破的人定的。无字碑空着——功过留给后人评说。",common:"你们都有极强的目标感和翻盘能力：环境越不利，越能找到破局点。",real:"你是天生的掌局者：善于隐忍、精于判断，该出手时绝不犹豫。",blind:"太擅长赢，有时忘了问「赢了之后要什么」。",risk:"警惕「孤独的高位」——身边多的是附和，缺的是真话。",adv:"留几个不图你什么的旧友，信任要主动去攒。",letter:"你比大多数人更懂如何赢，却很少有人敢问你累不累。无字碑留白，是因为功过可以交给时间；而你不必事事满分。赢的路上，请留几个不图你什么的同行人——高处可以冷，但心不能空。愿你赢到的东西里，有一样叫心安。",q:["花须连夜发，莫待晓风吹。","身为女子，何须让须眉。","无字碑上千秋事，留与后人论短长。"]},
@@ -321,7 +322,7 @@ const FIGS=[
 {g:"m",e:"⛵",name:"郑和",dyn:"明 · 七下西洋",v:[2,2,1,3,2,2],bio:"率两百余艘宝船、两万七千人七下西洋，比哥伦布早八十七年。他没有征服一块土地，却让万国来朝。",common:"你们都有「把大目标拆成一次次远航」的执行力：重准备、守纪律、能扛长期任务。",real:"你是可靠的组织者：复杂的事到你手里就变得井井有条。",blind:"太守规矩，创造性冒险偏少。",risk:"警惕「流程依赖」——计划之外的变化，也需要胆量去接。",adv:"定期做一件没有攻略的事，练一练随机应变。",letter:"你是可靠的组织者，复杂的事到你手里就井井有条。但计划之外的变化，也需要胆量去接——定期做一件没有攻略的事吧，练一练随机应变。宝船再大，也是为未知的海洋造的。愿你的稳，成为你敢闯的底气。",q:["宝船七下西洋，威德遐被。","海纳百川，有容乃大。","远航之志，不在风浪，在人心。"]}
 ];
 
-/* ===== 答题 ===== */
+/* ===== 答题（支持返回上一题）===== */
 function renderQ(){
   const q=QS[cur];
   document.getElementById("qnum").textContent=(cur+1)+" / "+QS.length;
@@ -340,12 +341,30 @@ const DIMN=["决断","洞察","表达","担当","谋略","仁心"];
 const DIME=["⚖️","👁️","💬","🛡️","♟️","💗"];
 const SUBS={"决断":"破局者 · 一锤定音","洞察":"洞察者 · 见微知著","表达":"表达者 · 直抵人心","担当":"担当者 · 扛事之人","谋略":"谋略者 · 落子三步","仁心":"仁心者 · 温柔有力"};
 const SKL=[
- {n:"决断",s:"在无人敢拍板的时刻，你能给出一锤定音的答案。这种确定感，是团队混乱时的定盘星，也是你比多数人更快抓住机会的原因。",o:"但决断用过劲，会变成「武断」——太快关闭讨论，可能漏掉关键信息，也会让身边的人觉得不被倾听。",w:"遇事容易反复权衡、错过窗口期。不是你看不清，而是你太怕选错。",f:"给决定加一个止损线：先选 A，设定「两周后若出现 X 情况就切换 B」。有了退路，出手就不再那么难。"},
- {n:"洞察",s:"你能看见别人没说出口的动机与局势暗流。这份眼力让你少踩坑、识人准，也常在第一时间察觉关系里的异样。",o:"但看得太透，容易「以洞察代替沟通」——你在心里给对方判了卷，对方却毫无察觉。",w:"容易按表面信息理解人与事，偶尔会看错人、信错话，事后才恍然。",f:"养成「先观察三周再下结论」的习惯，重要判断至少找一位当事人核实一次。"},
- {n:"表达",s:"你能把复杂的事讲明白，把心里的意讲动人。这是被严重低估的才华——世上不缺聪明人，缺能让别人听懂并愿意跟随的人。",o:"但表达力过强，可能变成「说服惯性」——什么都想赢辩论，赢了道理，输了关系。",w:"心里有十分，出口剩三分。好的想法常因说不出来而埋没，别人也容易低估你。",f:"表达是技能不是天赋：每周找一次机会，把一个观点写成三句话发出去。量到质变，你会惊讶自己的进步。"},
- {n:"担当",s:"答应的事，你会用行动兑现。这种「靠得住」在今天比聪明稀有一万倍——它是你无声的信用资产。",o:"但担当没有边界，会变成「全扛」——别人学会依赖，你学会硬撑，直到某天突然垮掉。",w:"在「该我上吗」的时刻，你常先退半步。不是不负责任，是不确定自己够不够格。",f:"从最小的事开始承诺、完成、被看见——担当感是练出来的肌肉，不是天生的胆量。"},
- {n:"谋略",s:"你习惯多想三步再落子。别人眼里的从容不迫，其实是你脑内推演过十遍的降维打击。你赢的从来不是运气，是提前量。",o:"但算得太深，容易「谋而不决」——所有方案都有风险，于是一直备选、一直不开工。",w:"更相信直来直往，遇到绕弯的局面容易被动，被「会下棋的人」占先手。",f:"不必学算计，只需学复盘：每件事结束后问一句「哪一步其实有信号」，三次之后你的棋感就上来了。"},
- {n:"仁心",s:"你见不得别人受委屈，愿意为此多做一点、让一点。心软是你的铠甲——它换来的信任与人缘，是任何能力都买不到的。",o:"但共情过了界，就是「替别人活」——把别人的情绪当自己的责任，最后所有人都舒服，只有你累。",w:"你的善意藏在效率与规则里，先讲对错再讲人情。理性没错，但身边的人偶尔需要的是拥抱，不是分析。",f:"每周留一次「不讲道理的时刻」：不评判、不解决，只陪伴。你会发现，被需要和被喜欢，是两回事。"}
+ {n:"决断",s:"在无人敢拍板的时刻，你能给出一锤定音的答案。这种确定感，是团队混乱时的定盘星，也是你比多数人更快抓住机会的原因。",
+  o:"但决断用过劲，会变成「武断」——太快关闭讨论，可能漏掉关键信息，也会让身边的人觉得不被倾听，慢慢只执行、不再进言。",
+  w:"遇事容易反复权衡、错过窗口期。不是你看不清，而是你太怕选错。",
+  f:"给决定加一个止损线：先选 A，设定「两周后若出现 X 情况就切换 B」。有了退路，出手就不再那么难。"},
+ {n:"洞察",s:"你能看见别人没说出口的动机与局势暗流。这份眼力让你少踩坑、识人准，也常在第一时间察觉关系里的异样。",
+  o:"但看得太透，容易「以洞察代替沟通」——你在心里给对方判了卷，对方却毫无察觉。看破不说破是修养，看破就疏远是内耗。",
+  w:"容易按表面信息理解人与事，偶尔会看错人、信错话，事后才恍然。",
+  f:"养成「先观察三周再下结论」的习惯，重要判断至少找一位当事人核实一次。你的真诚会吸引愿意对你说真话的人。"},
+ {n:"表达",s:"你能把复杂的事讲明白，把心里的意讲动人。这是被严重低估的才华——世上不缺聪明人，缺能让别人听懂并愿意跟随的人。",
+  o:"但表达力过强，可能变成「说服惯性」——什么都想赢辩论、讲赢对方，赢了道理，输了关系。",
+  w:"心里有十分，出口剩三分。好的想法常因说不出来而埋没，别人也容易低估你。",
+  f:"表达是技能不是天赋：每周找一次机会，把一个观点写成三句话发出去。量到质变，你会惊讶自己的进步。"},
+ {n:"担当",s:"答应的事，你会用行动兑现。这种「靠得住」在今天比聪明稀有一万倍——它是你无声的信用资产，身边的人因此敢把后背交给你。",
+  o:"但担当没有边界，会变成「全扛」——别人学会依赖，你学会硬撑，直到某天突然垮掉，才发现没人接得住。",
+  w:"在「该我上吗」的时刻，你常先退半步。不是不负责任，是不确定自己够不够格。",
+  f:"从最小的事开始承诺、完成、被看见——担当感是练出来的肌肉，不是天生的胆量。"},
+ {n:"谋略",s:"你习惯多想三步再落子。别人眼里的从容不迫，其实是你脑内推演过十遍的降维打击。你赢的从来不是运气，是提前量。",
+  o:"但算得太深，容易「谋而不决」——所有方案都有风险，于是一直备选、一直不开工。完美推演是没有终点的。",
+  w:"更相信直来直往，遇到绕弯的局面容易被动，被「会下棋的人」占先手。",
+  f:"不必学算计，只需学复盘：每件事结束后问一句「哪一步其实有信号」，三次之后你的棋感就上来了。"},
+ {n:"仁心",s:"你见不得别人受委屈，愿意为此多做一点、让一点。心软是你的铠甲——它换来的信任与人缘，是任何能力都买不到的。",
+  o:"但共情过了界，就是「替别人活」——把别人的情绪当自己的责任，最后所有人都舒服，只有你累。",
+  w:"你的善意藏在效率与规则里，先讲对错再讲人情。理性没错，但身边的人偶尔需要的是拥抱，不是分析。",
+  f:"每周留一次「不讲道理的时刻」：不评判、不解决，只陪伴。你会发现，被需要和被喜欢，是两回事。"}
 ];
 function simOf(f,norm){let s=0;f.v.forEach((x,i)=>{s+=Math.max(0,3-Math.abs(x-norm[i]/34))});return s}
 function showResult(isShare){
@@ -360,15 +379,13 @@ function showResult(isShare){
   const f=pool[0];
   const simP=Math.round(f._s/18*100);
   lastFig=f;lastSim=simP;
-  const fv=f.v.map(x=>Math.round(x/3*100));
   const uord=norm.map((u,i)=>({u,i})).sort((a,b)=>b.u-a.u);
-  /* 头部截图版式 */
   document.getElementById("rSim").textContent=simP+"%";
   document.getElementById("rSim2").textContent=simP+"%";
   document.getElementById("rName").textContent=f.name;
   document.getElementById("rSub").textContent=SUBS[DIMN[uord[0].i]];
   document.getElementById("rCross").textContent=f.dyn+" · 相似的是性格与选择方式";
-  document.getElementById("rQuote").textContent=""+f.q[0]+"";
+  document.getElementById("rQuote").textContent="「"+f.q[0]+"」";
   document.getElementById("t3Hi").textContent=norm[uord[0].i];
   document.getElementById("t3HiLab").textContent=DIMN[uord[0].i];
   const lo=uord[uord.length-1];
@@ -381,9 +398,10 @@ function showResult(isShare){
   document.getElementById("rRisk").textContent="风险提醒："+f.risk;
   document.getElementById("rAdv").textContent=f.adv;
   document.getElementById("rQuotes").innerHTML=f.q.map(q=>"<p>「"+q+"」</p>").join("");
-  document.getElementById("radarNote").textContent="六维能力图谱 · 绿色实线为你 · 虚线为"+f.name+"原型";
+  document.getElementById("radarNote").textContent="六维能力图谱 · 金色实线为你 · 虚线为"+f.name+"原型";
+  const fv=f.v.map(x=>Math.round(x/3*100));
   const ford=fv.map((u,i)=>({u,i})).sort((a,b)=>b.u-a.u);
-  document.getElementById("rPortrait").innerHTML="从六维看，"+f.name+"最锋利的两把刀是「<b>"+DIMN[ford[0].i]+"</b>」和「<b>"+DIMN[ford[1].i]+"</b>」——这是 TA 留名青史的看家本事；而「<b>"+DIMN[ford[5].i]+"</b>」是 TA 的软肋。你们在"+DIMN[ford[0].i]+"上的得分是 "+norm[ford[0].i]+" vs "+fv[ford[0].i]+"——你"+(norm[ford[0].i]>=fv[ford[0].i]?"完全不输原型，甚至更胜一筹":"略逊半筹，但同属此道中人")+"。";
+  document.getElementById("rPortrait").innerHTML="从六维看，"+f.name+"最锋利的两把刀是「<b>"+DIMN[ford[0].i]+"</b>」和「<b>"+DIMN[ford[1].i]+"</b>」——这是 TA 留名青史的看家本事；而「<b>"+DIMN[ford[5].i]+"</b>」是 TA 的软肋，也是史册里 TA 跌过的坑。你们在"+DIMN[ford[0].i]+"上的得分是 "+norm[ford[0].i]+" vs "+fv[ford[0].i]+"——你"+(norm[ford[0].i]>=fv[ford[0].i]?"完全不输原型，甚至更胜一筹":"略逊半筹，但同属此道中人")+"。";
   let dh="";
   norm.forEach((u,i)=>{
     const p=fv[i],diff=Math.abs(u-p);
@@ -398,20 +416,20 @@ function showResult(isShare){
   diffs.sort((a,b)=>a.d-b.d);
   const like=diffs.slice(0,2).map(x=>DIMN[x.i]),diff1=diffs[5];
   const dd=norm[diff1.i]>fv[diff1.i];
-  document.getElementById("rDiff").innerHTML="你们最像的地方是「<b>"+like[0]+"</b>」和「<b>"+like[1]+"</b>」——这两条底色几乎重合，是你读到这份档案时"被说中"的来源。<br>最大的不同在「<b>"+DIMN[diff1.i]+"</b>」："+(dd?"你在这条路上比 "+f.name+" 走得更远，这是你比原型更立体之处。":f.name+" 在这条路上比你更极致——那不是差距，是你尚未启用的余量。");
+  document.getElementById("rDiff").innerHTML="你们最像的地方是「<b>"+like[0]+"</b>」和「<b>"+like[1]+"</b>」——这两条底色几乎重合，是你读到这份档案时“被说中”的来源。<br>最大的不同在「<b>"+DIMN[diff1.i]+"</b>」："+(dd?"你在这条路上比 "+f.name+" 走得更远，这是你比原型更立体之处。":f.name+" 在这条路上比你更极致——那不是差距，是你尚未启用的余量。");
   let sh="";
   uord.filter(x=>x.u>=55).slice(0,2).forEach(x=>{
     const k=SKL[x.i];
     sh+='<div class="sk"><h4>'+DIME[x.i]+' '+k.n+" · "+x.u+'分</h4><div class="row"><span class="lab">优势</span>'+k.s+'</div><div class="row over"><span class="lab">过当风险</span>'+k.o+"</div></div>";
   });
-  if(!sh)sh='<p style="font-size:14px;color:#7f938c">你的六维分布较为均衡，没有单项突出的锋芒——这本身就是一种优势：适应力强、不易被单一场景定义。</p>';
+  if(!sh)sh='<p style="font-size:14px;color:#8b8474">你的六维分布较为均衡，没有单项突出的锋芒——这本身就是一种优势：适应力强、不易被单一场景定义。历史上这类人往往是大隐隐于市的「全能型副手」。</p>';
   document.getElementById("rStrengths").innerHTML=sh;
   let wh="";
   uord.slice().reverse().filter(x=>x.u<45).slice(0,2).forEach(x=>{
     const k=SKL[x.i];
     wh+='<div class="sk weak"><h4>'+DIME[x.i]+' '+k.n+" · "+x.u+'分</h4><div class="row"><span class="lab">短板</span>'+k.w+'</div><div class="row fix"><span class="lab">化解</span>'+k.f+"</div></div>";
   });
-  if(!wh)wh='<p style="font-size:14px;color:#7f938c">恭喜——你的六维没有明显短板，属于难得的「六边形」结构。不妨挑一个维度，刻意把它练成标签。</p>';
+  if(!wh)wh='<p style="font-size:14px;color:#8b8474">恭喜——你的六维没有明显短板，属于难得的「六边形」结构。要警惕的反而是平均带来的平庸感：不妨挑一个维度，刻意把它练成标签。</p>';
   document.getElementById("rWeaks").innerHTML=wh;
   document.getElementById("rLetter").innerHTML=f.letter+'<div class="sig">—— '+f.name+" · 谨上</div>";
   let ah="";
@@ -426,13 +444,13 @@ function retry(){cur=0;answersIdx=[];dir="";document.querySelectorAll(".dir").fo
 /* ===== 长图保存 ===== */
 function saveImg(){
   showModal('<h3>🖼️ 正在生成结果长图…</h3><p>请稍候 1~3 秒</p>');
-  html2canvas(document.getElementById("resultCap"),{scale:2,useCORS:true,backgroundColor:"#edf4f0"}).then(cv=>{
+  html2canvas(document.getElementById("resultCap"),{scale:2,useCORS:true,backgroundColor:"#f7f4ec"}).then(cv=>{
     const data=cv.toDataURL("image/png");
-    showModal('<h3>✅ 长图已生成</h3><p style="font-size:13px;color:#b0654e"><b>手机：</b>长按下方图片 → 保存到相册<br><b>电脑：</b>右键图片 → 图片另存为</p><img src="'+data+'"><a class="btn" style="display:block;text-decoration:none" download="我的历史人物档案.png" href="'+data+'">⬇️ 直接下载</a><button class="btn ghost" onclick="hideModal()">关闭</button>');
+    showModal('<h3>✅ 长图已生成</h3><p style="font-size:13px;color:#a05a4a"><b>手机：</b>长按下方图片 → 保存到相册<br><b>电脑：</b>右键图片 → 图片另存为</p><img src="'+data+'"><a class="btn" style="display:block;text-decoration:none" download="我的历史人物档案.png" href="'+data+'">⬇️ 直接下载</a><button class="btn ghost" onclick="hideModal()">关闭</button>');
   }).catch(()=>showModal('<h3>⚠️ 生成失败</h3><p>请截图保存结果页，或更换浏览器重试。</p><button class="btn ghost" onclick="hideModal()">知道了</button>'));
 }
 
-/* ===== 古风画像 ===== */
+/* ===== 古风画像生成 ===== */
 function makePortrait(inp){
   const file=inp.files&&inp.files[0];
   inp.value="";
@@ -458,15 +476,20 @@ function drawPortraitCard(img){
   const W=750,H=1080;
   const cv=document.createElement("canvas");cv.width=W;cv.height=H;
   const x=cv.getContext("2d");
+  /* 宣纸底色 */
   const bg=x.createLinearGradient(0,0,0,H);
   bg.addColorStop(0,"#f6efdb");bg.addColorStop(1,"#ecdfc2");
   x.fillStyle=bg;x.fillRect(0,0,W,H);
+  /* 做旧斑点 */
   for(let i=0;i<420;i++){
-    x.fillStyle="rgba("+(150+Math.random()*60|0)+","+(120+Math.random()*50|0)+","+(60+Math.random()*40|0)+","+(Math.random()*.09)+")";
-    x.beginPath();x.arc(Math.random()*W,Math.random()*H,Math.random()*2.4+.4,0,7);x.fill();
+    x.fillStyle="rgba("+ (150+Math.random()*60|0) +","+ (120+Math.random()*50|0) +","+ (60+Math.random()*40|0) +","+(Math.random()*.09)+")";
+    const r=Math.random()*2.4+.4;
+    x.beginPath();x.arc(Math.random()*W,Math.random()*H,r,0,7);x.fill();
   }
+  /* 边框 */
   x.strokeStyle="#b08c4a";x.lineWidth=8;x.strokeRect(26,26,W-52,H-52);
   x.strokeStyle="#c9a44c";x.lineWidth=2.5;x.strokeRect(42,42,W-84,H-84);
+  /* 人物名 + 朝代 */
   x.textAlign="center";x.textBaseline="middle";
   x.fillStyle="#3a3630";
   x.font="800 62px -apple-system,'PingFang SC',sans-serif";
@@ -474,6 +497,7 @@ function drawPortraitCard(img){
   x.fillStyle="#a08c5a";
   x.font="400 28px -apple-system,'PingFang SC',sans-serif";
   x.fillText(f.dyn,W/2,190);
+  /* 圆形照片（古风滤镜） */
   const cy=478,R=225;
   x.save();
   x.beginPath();x.arc(W/2,cy,R,0,7);x.clip();
@@ -486,16 +510,20 @@ function drawPortraitCard(img){
   vg.addColorStop(0,"rgba(120,95,50,0)");vg.addColorStop(1,"rgba(120,95,50,.38)");
   x.fillStyle=vg;x.fillRect(W/2-R,cy-R,R*2,R*2);
   x.restore();
+  /* 双环装饰 */
   x.beginPath();x.arc(W/2,cy,R,0,7);x.strokeStyle="#b08c4a";x.lineWidth=10;x.stroke();
   x.beginPath();x.arc(W/2,cy,R+15,0,7);x.strokeStyle="#c9a44c";x.lineWidth=3;x.stroke();
+  /* 台词 */
   x.fillStyle="#5a5346";
   x.font="600 34px -apple-system,'PingFang SC',sans-serif";
   const qLines=wrapText(x,"「"+f.q[0]+"」",W-200);
   let qy=812;
   qLines.forEach(ln=>{x.fillText(ln,W/2,qy);qy+=52});
+  /* 相似度 */
   x.fillStyle="#c9a44c";
   x.font="700 30px -apple-system,'PingFang SC',sans-serif";
   x.fillText("与你相似度 "+lastSim+"%",W/2,qy+18);
+  /* 朱红印章 */
   x.save();
   x.translate(W-165,H-175);x.rotate(-6*Math.PI/180);
   x.fillStyle="#b03a2e";x.fillRect(-62,-62,124,124);
@@ -504,17 +532,18 @@ function drawPortraitCard(img){
   x.fillText("古",-30,-30);x.fillText("人",30,-30);
   x.fillText("档",-30,30);x.fillText("案",30,30);
   x.restore();
+  /* 底部小字 */
   x.fillStyle="#b3ab98";
   x.font="400 22px -apple-system,'PingFang SC',sans-serif";
   x.fillText("FIGURE ATLAS · 古人档案局",W/2,H-78);
   const data=cv.toDataURL("image/png");
-  showModal('<h3>🖌️ 你的古风画像已生成</h3><p style="font-size:13px;color:#b0654e"><b>手机：</b>长按下方图片 → 保存到相册<br><b>电脑：</b>右键图片 → 图片另存为</p><p style="font-size:12px;color:#9ab0a7">🔒 照片仅在本机处理，未上传任何服务器</p><img src="'+data+'"><a class="btn gold" style="display:block;text-decoration:none" download="我的古风画像.png" href="'+data+'">⬇️ 直接下载</a><button class="btn ghost" onclick="hideModal()">关闭</button>');
+  showModal('<h3>🖌️ 你的古风画像已生成</h3><p style="font-size:13px;color:#a05a4a"><b>手机：</b>长按下方图片 → 保存到相册<br><b>电脑：</b>右键图片 → 图片另存为</p><p style="font-size:12px;color:#b3ab98">🔒 照片仅在本机处理，未上传任何服务器</p><img src="'+data+'"><a class="btn gold" style="display:block;text-decoration:none" download="我的古风画像.png" href="'+data+'">⬇️ 直接下载</a><button class="btn ghost" onclick="hideModal()">关闭</button>');
 }
 
 /* ===== 分享链接 ===== */
 function copyLink(){
   const url=location.origin+location.pathname+"?r="+["f","m","all"].indexOf(dir)+answersIdx.join("");
-  const done=()=>showModal('<h3>🔗 链接已复制</h3><p>把链接发给好友，打开即可看到你的测评结果。</p><p style="font-size:12px;color:#9ab0a7;word-break:break-all">'+url+'</p><button class="btn ghost" onclick="hideModal()">好的</button>');
+  const done=()=>showModal('<h3>🔗 链接已复制</h3><p>把链接发给好友，打开即可看到你的测评结果。</p><p style="font-size:12px;color:#b3ab98;word-break:break-all">'+url+'</p><button class="btn ghost" onclick="hideModal()">好的</button>');
   if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(url).then(done).catch(()=>fb())}else fb();
   function fb(){const t=document.createElement("textarea");t.value=url;document.body.appendChild(t);t.select();document.execCommand("copy");document.body.removeChild(t);done()}
 }
@@ -522,13 +551,13 @@ function copyLink(){
 /* ===== 弹窗 ===== */
 function showModal(type){
   const box=document.getElementById("modalBox");
-  if(type==="gift"){box.innerHTML='<h3>🎁 好评有礼</h3><p>🎉 感谢你的喜欢！</p><p>前往店铺给本测评一个<b style="color:#3ba38b">好评</b>，然后<b>联系客服发送好评截图</b>，即可免费领取其他趣味测评工具一份！</p><button class="btn" onclick="hideModal()">知道了，去好评</button>'}
+  if(type==="gift"){box.innerHTML='<h3>🎁 好评有礼</h3><p>🎉 感谢你的喜欢！</p><p>前往店铺给本测评一个<b style="color:#c9a44c">好评</b>，然后<b>联系客服发送好评截图</b>，即可免费领取其他趣味测评工具一份！</p><p style="font-size:12px;color:#b3ab98">活动最终解释权归店铺所有</p><button class="btn" onclick="hideModal()">知道了，去好评</button>'}
   else box.innerHTML=type;
   document.getElementById("mask").classList.add("show");
 }
 function hideModal(){document.getElementById("mask").classList.remove("show")}
 
-/* ===== 雷达图（薄荷绿版）===== */
+/* ===== 雷达图 ===== */
 function drawRadarOn(c,vu,vt){
   const dpr=window.devicePixelRatio||1;
   const W=750,H=700;
@@ -540,19 +569,19 @@ function drawRadarOn(c,vu,vt){
   const labels=["决断","洞察","表达","担当","谋略","仁心"];
   const pt=(i,r)=>{const a=-Math.PI/2+i*2*Math.PI/n;return[cx+r*Math.cos(a),cy+r*Math.sin(a)]};
   x.clearRect(0,0,W,H);
-  for(let k=1;k<=4;k++){x.beginPath();for(let i=0;i<=n;i++){const p=pt(i%n,R*k/4);i?x.lineTo(...p):x.moveTo(...p)}x.strokeStyle="#d8ebe2";x.lineWidth=1.5;x.stroke()}
-  x.beginPath();for(let i=0;i<n;i++){const p=pt(i,R);x.moveTo(cx,cy);x.lineTo(...p)}x.strokeStyle="#d8ebe2";x.lineWidth=1.5;x.stroke();
+  for(let k=1;k<=4;k++){x.beginPath();for(let i=0;i<=n;i++){const p=pt(i%n,R*k/4);i?x.lineTo(...p):x.moveTo(...p)}x.strokeStyle="#e3d9c2";x.lineWidth=1.5;x.stroke()}
+  x.beginPath();for(let i=0;i<n;i++){const p=pt(i,R);x.moveTo(cx,cy);x.lineTo(...p)}x.strokeStyle="#e3d9c2";x.lineWidth=1.5;x.stroke();
   if(vt){x.beginPath();for(let i=0;i<=n;i++){const p=pt(i%n,R*vt[i%n]/100);i?x.lineTo(...p):x.moveTo(...p)}
-    x.closePath();x.fillStyle="rgba(154,176,167,.16)";x.fill();x.strokeStyle="#9ab0a7";x.lineWidth=2.5;x.setLineDash([9,7]);x.stroke();x.setLineDash([]);}
+    x.closePath();x.fillStyle="rgba(176,166,140,.16)";x.fill();x.strokeStyle="#b0a68c";x.lineWidth=2.5;x.setLineDash([9,7]);x.stroke();x.setLineDash([]);}
   x.beginPath();for(let i=0;i<=n;i++){const p=pt(i%n,R*vu[i%n]/100);i?x.lineTo(...p):x.moveTo(...p)}
-  x.closePath();x.fillStyle="rgba(59,163,139,.28)";x.fill();x.strokeStyle="#3ba38b";x.lineWidth=3.5;x.stroke();
-  x.fillStyle="#3ba38b";for(let i=0;i<n;i++){const p=pt(i,R*vu[i]/100);x.beginPath();x.arc(p[0],p[1],8,0,7);x.fill()}
+  x.closePath();x.fillStyle="rgba(201,164,76,.30)";x.fill();x.strokeStyle="#c9a44c";x.lineWidth=3.5;x.stroke();
+  x.fillStyle="#c9a44c";for(let i=0;i<n;i++){const p=pt(i,R*vu[i]/100);x.beginPath();x.arc(p[0],p[1],8,0,7);x.fill()}
   x.font="600 30px -apple-system,'PingFang SC',sans-serif";x.textAlign="center";x.textBaseline="middle";
   for(let i=0;i<n;i++){
     const p=pt(i,R+62);
-    x.fillStyle="#3ba38b";x.font="500 24px sans-serif";
+    x.fillStyle="#a08c5a";x.font="500 24px sans-serif";
     x.fillText(vu[i]+"分",p[0],p[1]-34);
-    x.fillStyle="#41544c";x.font="600 30px -apple-system,'PingFang SC',sans-serif";
+    x.fillStyle="#5a5346";x.font="600 30px -apple-system,'PingFang SC',sans-serif";
     x.fillText(labels[i],p[0],p[1]);
   }
 }
