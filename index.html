@@ -13,7 +13,7 @@ body[data-theme="violet"]{--pri:#6c5ce7;--prid:#5546c8;--bg:#f1effa;--soft:#f9f8
 body[data-theme="gold"]{--pri:#c9a227;--prid:#a5821c;--bg:#f5efe0;--soft:#fbf8ef;--lgt:#f6efdc;--brd:#e6d9b8;--txt:#3a3427;--mut:#9a9078;--warn:#a5821c}
 *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
 body{font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;background:var(--bg);color:var(--txt);min-height:100vh}
-.page{display:none;max-width:520px;margin:0 auto;padding:24px 20px 60px;min-height:100vh}
+.page{display:none;max-width:520px;margin:0 auto;padding:20px 14px 60px;min-height:100vh}
 .page.active{display:block}
 .page.center-page{display:none;text-align:center;flex-direction:column;justify-content:center}
 .page.active.center-page{display:flex}
@@ -90,22 +90,22 @@ h1 .hl{color:var(--pri);background:linear-gradient(transparent 78%,var(--lgt) 78
 .t3.mid span{color:#fff;font-weight:400;margin-top:6px;opacity:.92}
 .t3 small{display:block;font-size:11px;color:var(--mut);margin-top:4px}
 .thbtn{position:fixed;left:16px;bottom:20px;width:46px;height:46px;border-radius:50%;background:#fff;border:1.5px solid var(--brd);box-shadow:0 4px 14px rgba(0,0,0,.12);font-size:20px;cursor:pointer;z-index:50;display:flex;align-items:center;justify-content:center}
-/* ===== 编号板块 ===== */
-.rsec{background:#fff;border:1px solid var(--brd);border-radius:24px;padding:30px 24px;margin-bottom:22px}
-.rsec h2{font-size:24px;font-weight:800;color:var(--txt);margin-bottom:20px;letter-spacing:1px}
+/* ===== 编号板块（收紧版） ===== */
+.rsec{background:#fff;border:1px solid var(--brd);border-radius:14px;padding:18px 16px;margin-bottom:12px}
+.rsec h2{font-size:20px;font-weight:800;color:var(--txt);margin-bottom:12px;letter-spacing:1px}
 .rsec h2 .no{color:var(--pri);margin-right:10px}
-.subcard{background:var(--soft);border:1px solid var(--brd);border-radius:18px;padding:22px 20px;margin-bottom:14px}
+.subcard{background:var(--soft);border:1px solid var(--brd);border-radius:12px;padding:14px 13px;margin-bottom:10px}
 .subcard:last-child{margin-bottom:0}
-.subcard h4{font-size:19px;font-weight:800;color:var(--txt);margin-bottom:12px}
+.subcard h4{font-size:16px;font-weight:800;color:var(--txt);margin-bottom:8px}
 .subcard h4 .tag8{color:var(--pri)}
-.subcard p{font-size:16px;line-height:2;color:var(--txt)}
+.subcard p{font-size:15px;line-height:1.75;color:var(--txt)}
 .brow{display:flex;align-items:center;gap:12px;margin-bottom:18px}
 .brow:last-child{margin-bottom:0}
 .brow .bl{width:48px;font-size:16px;font-weight:700;color:var(--txt);flex:none}
 .brow .btrack{flex:1;height:12px;background:var(--lgt);border-radius:6px;overflow:hidden}
 .brow .btrack i{display:block;height:100%;background:var(--pri);border-radius:6px}
 .brow .bval{width:44px;text-align:right;font-size:17px;font-weight:800;color:var(--txt);flex:none}
-.qcard{background:var(--soft);border:1px solid var(--brd);border-radius:18px;padding:24px 22px;font-size:17px;line-height:2;color:var(--txt);margin-bottom:14px;font-weight:600}
+.qcard{background:var(--soft);border:1px solid var(--brd);border-radius:12px;padding:14px 13px;font-size:15px;line-height:1.75;color:var(--txt);margin-bottom:10px;font-weight:600}
 .qcard:last-child{margin-bottom:0}
 .legend{display:flex;justify-content:center;gap:28px;font-size:16px;color:var(--txt);margin:8px 0 2px}
 .legend .lg{display:flex;align-items:center;gap:9px}
@@ -113,12 +113,26 @@ h1 .hl{color:var(--pri);background:linear-gradient(transparent 78%,var(--lgt) 78
 .legend .dot.you{background:var(--pri)}
 .legend .dot.base{background:transparent;border:3px solid var(--mut);box-sizing:border-box}
 .foot{font-size:12px;color:var(--mut);text-align:center;margin-top:28px;line-height:1.9}
-.letter{background:var(--soft);border:1px solid var(--brd);border-radius:18px;padding:24px 22px;font-size:16px;line-height:2.2;color:var(--txt);margin-bottom:0}
-.letter .sig{text-align:right;color:var(--pri);font-size:14px;margin-top:12px}
-/* 六维图谱：上留白归零，顶部与底部图例间距一致 */
+.letter{background:var(--soft);border:1px solid var(--brd);border-radius:12px;padding:16px 14px;font-size:15px;line-height:1.8;color:var(--txt);margin-bottom:0}
+.letter .sig{text-align:right;color:var(--pri);font-size:13px;margin-top:10px}
+/* 六维图谱 */
 .radarwrap{text-align:center;padding:0 0 16px}
 #radar{width:100%;max-width:520px;margin:0 auto}
-@media(max-width:380px){.cover-title{font-size:30px}.qtext{font-size:19px}.f4 b{font-size:13px}.reName{font-size:50px;letter-spacing:3px}.reSub{font-size:17px;letter-spacing:3px}.rsec h2{font-size:21px}.subcard h4{font-size:17px}.subcard p{font-size:15px}#radar{max-width:440px}}
+/* 手机端适配 */
+@media(max-width:420px){
+.page{padding:16px 12px 60px}
+.cover-title{font-size:30px}.qtext{font-size:19px}
+.reName{font-size:46px;letter-spacing:3px}.reSub{font-size:17px;letter-spacing:3px}
+.reQuote{font-size:14px;padding:0 10px}
+.rsec{padding:15px 13px;border-radius:12px}
+.rsec h2{font-size:18px;margin-bottom:10px}
+.subcard{padding:12px 11px;border-radius:10px}
+.subcard p{font-size:14px;line-height:1.7}
+.qcard{font-size:14px;padding:12px 11px}
+.letter{font-size:14px;padding:14px 12px}
+.f4 b{font-size:13px}
+#radar{max-width:440px}
+}
 </style>
 </head>
 <body data-theme="mint">
@@ -220,7 +234,6 @@ h1 .hl{color:var(--pri);background:linear-gradient(transparent 78%,var(--lgt) 78
       <div class="t3 side"><b id="t3Lo">--</b><span id="t3LoLab">--</span><small>待提升</small></div>
     </div>
 
-    <!-- 六维特征图谱（顶部间距收紧：padding-top:12px） -->
     <div class="rsec radarwrap" style="margin-top:24px;margin-bottom:36px;padding-top:12px">
       <canvas id="radar" width="850" height="720"></canvas>
       <div class="legend"><span class="lg"><i class="dot you"></i>你的特征</span><span class="lg"><i class="dot base"></i><span id="lgBase">原型</span></span></div>
@@ -386,6 +399,28 @@ const DIM_PSY={
 const DIM_REAL={
 "决断":"行动取向的应对风格","洞察":"高情境敏感与模式识别","表达":"高言语自我效能","担当":"责任内化与承诺一致性","谋略":"计划型认知与心理模拟","仁心":"高共情与亲社会倾向"};
 
+/* ===== 精简版维度文案（一句话讲透 + 一句实用提醒） ===== */
+const DIM_TIP={
+"决断":"行动快于犹豫，先出手再校准是你的本能。提醒：重大决定前留 24 小时冷静期，能避开大部分冲动决策。",
+"洞察":"擅长从细节读出真实意图，识人很准。提醒：把敏感用在关键关系上，别为小事过度解读、白白内耗。",
+"表达":"能把想法说到人心里，是天生的沟通者。提醒：主动争取汇报发言的机会，这是最容易被看见的价值。",
+"担当":"答应的事一定办到，出了事不甩锅。提醒：量力承诺，答应得少、完成得好，比什么都答应更靠谱。",
+"谋略":"习惯先想几步再动手，赢在提前量。提醒：别等完美方案，先干起来再调整，机会不等人。",
+"仁心":"共情力强，见不得别人受苦。提醒：帮人要有边界，先照顾好自己，再说照顾别人。"};
+
+/* ===== 按句累积截取：句子完整优先，字数只做软约束 ===== */
+function trimText(s,max){
+  var parts=[],buf="";
+  for(var i=0;i<s.length;i++){buf+=s[i];if("。！？；".indexOf(s[i])>-1){parts.push(buf);buf="";}}
+  if(buf)parts.push(buf);
+  var out="";
+  for(var j=0;j<parts.length;j++){
+    if(out&&(out+parts[j]).length>max)break;
+    out+=parts[j];
+  }
+  return out||parts[0];
+}
+
 /* ===== 台词清洗：去末尾句号等标点 ===== */
 function cleanQ(s){return s.replace(/[。．.!！?？；;，,、~～…]+$/,"")}
 
@@ -414,11 +449,9 @@ function showResult(isShare){
   QS.forEach(q=>{for(let i=0;i<6;i++){let m=0;q.o.forEach(o=>{if((o[i+1]||0)>m)m=o[i+1]});maxD[i]+=m}});
   const norm=w.map((x,i)=>Math.min(100,Math.round(x/maxD[i]*100)));
   let pool=FIGS.filter(f=>dir==="all"||f.g===dir);if(!pool.length)pool=FIGS;
-  /* 知名度权重：相似分 × fame，知名人物概率上调 */
   pool.forEach(f=>f._s=simOf(f,norm)*(f.fame||1));
   pool.sort((a,b)=>b._s-a._s);
   const f=pool[0];
-  /* 契合度按未加权的相似分换算，展示更真实 */
   const simP=Math.round(simOf(f,norm)/18*100);
   lastFig=f;lastSim=simP;
   const uord=norm.map((u,i)=>({u,i})).sort((a,b)=>b.u-a.u);
@@ -435,28 +468,28 @@ function showResult(isShare){
 
   document.getElementById("lgBase").textContent=f.name+"原型";
 
-  /* 01 人物自画像 */
-  document.getElementById("rBio2").innerHTML="你与 <b style='color:var(--txt)'>"+f.name+"</b> 相似的，并不是具体经历，而是处理世界的方式。"+f.bio+"从心理类型学看，你们共有的底层特征是：以「<b>"+DIMN[uord[0].i]+"</b>」作为应对世界的第一反应——"+DIM_PSY[DIMN[uord[0].i]];
+  /* 01 人物自画像（精简 · 按句收尾） */
+  document.getElementById("rBio2").innerHTML="你与 <b style='color:var(--txt)'>"+f.name+"</b> 相似的，不是经历，而是处理世界的方式："+trimText(f.bio,66);
 
   /* 02 六维能力结构 */
   document.getElementById("rBars").innerHTML=DIMN.map((n,i)=>'<div class="brow"><span class="bl">'+n+'</span><div class="btrack"><i style="width:'+norm[i]+'%"></i></div><span class="bval">'+norm[i]+"</span></div>").join("");
   const fv=f.v.map(x=>Math.round(x/3*100));
   const pair=norm.map((u,i)=>({i,u,p:fv[i],both:Math.min(u,fv[i])})).sort((a,b)=>b.both-a.both);
 
-  /* 03 共同底色 */
+  /* 03 共同底色（精简版） */
   const roles=["第一底色","隐藏天赋","长期优势"];
-  document.getElementById("rColors").innerHTML=pair.slice(0,3).map((x,k)=>'<div class="subcard"><h4>'+roles[k]+' · <span class="tag8">'+DIMN[x.i]+"</span></h4><p>"+DIM_PSY[DIMN[x.i]]+"这也是你与 "+f.name+" 最接近的一层性格底色——TA 在史书中留下的关键抉择，正是这种特质在现实中的展开。</p></div>").join("");
+  document.getElementById("rColors").innerHTML=pair.slice(0,3).map((x,k)=>'<div class="subcard"><h4>'+roles[k]+' · <span class="tag8">'+DIMN[x.i]+"</span></h4><p>"+DIM_TIP[DIMN[x.i]]+"</p></div>").join("");
 
-  /* 04 现实中的你 */
-  document.getElementById("rReal").textContent="在心理类型学中，你的现实功能属于「"+DIM_REAL[DIMN[uord[0].i]]+"」。"+f.real+" "+f.name+" 正是以这种底层的应对策略立身处世——相似的从来不是身份与时代，而是与世界打交道的根本方式。";
+  /* 04 现实中的你（精简版） */
+  document.getElementById("rReal").textContent=f.real;
 
-  /* 05 盲点与风险 */
-  document.getElementById("rBlind").textContent="荣格心理学认为，被过度使用的优势会投下「阴影」。具体到你："+f.blind;
+  /* 05 盲点与建议（精简版） */
+  document.getElementById("rBlind").textContent=f.blind;
   document.getElementById("rRisk").textContent=f.risk;
-  document.getElementById("rAdv").textContent="行为科学证实，具体的小步行动远比空泛的决心有效："+f.adv;
+  document.getElementById("rAdv").textContent=f.adv;
 
-  /* 06 写给你 */
-  document.getElementById("rLetter").innerHTML=f.letter+'<div class="sig">—— '+f.name+" · 谨上</div>";
+  /* 06 写给你（按句收尾，保留落款与台词卡） */
+  document.getElementById("rLetter").innerHTML=trimText(f.letter,80)+'<div class="sig">—— '+f.name+" · 谨上</div>";
   document.getElementById("rQuotes").innerHTML=f.q.map(q=>'<div class="qcard">「 '+cleanQ(q)+" 」</div>").join("");
 
   drawRadarOn(document.getElementById("radar"),norm,fv);
