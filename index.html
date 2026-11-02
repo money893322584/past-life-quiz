@@ -45,7 +45,7 @@ h1 .hl{color:var(--pri);background:linear-gradient(transparent 78%,var(--lgt) 78
 .big{font-size:56px;margin:30px 0 10px}
 .card{background:#fff;border:1px solid var(--brd);border-radius:18px;padding:20px;margin-bottom:16px}
 .card h3{font-size:15px;color:var(--pri);letter-spacing:2px;margin-bottom:10px}
-.card p{font-size:14.5px;line-height:1.9;color:var(--txt)}
+.card p{font-size:15px;line-height:1.8;color:var(--mut)}
 .tiny-note{font-size:11px;color:var(--mut);line-height:1.7;margin-top:16px}
 .pwbox{background:#fff;border:2px solid var(--brd);border-radius:16px;padding:26px 20px;text-align:center;margin-top:30px}
 .pwbox input{width:100%;font-size:26px;letter-spacing:10px;text-align:center;border:2px solid var(--brd);border-radius:12px;padding:12px;outline:none;background:var(--soft);color:var(--txt)}
@@ -65,7 +65,7 @@ h1 .hl{color:var(--pri);background:linear-gradient(transparent 78%,var(--lgt) 78
 .cbadge{display:flex;align-items:center;justify-content:center;gap:14px;margin:6px 0 20px}
 .cbadge i{width:52px;height:2px;background:var(--pri);opacity:.4}
 .cbadge span{width:72px;height:72px;border:2px solid var(--pri);border-radius:50%;display:flex;flex-direction:column;align-items:center;justify-content:center;color:var(--pri);font-weight:800;font-size:24px;box-shadow:0 0 0 6px var(--lgt)}
-/* ===== 结果页头部（保持原样） ===== */
+/* ===== 结果页头部 ===== */
 .reTitle{font-size:15px;letter-spacing:6px;color:var(--pri);text-align:center;font-weight:600;margin:16px 0 20px}
 .reCapsule{display:flex;align-items:center;justify-content:center;gap:9px;background:rgba(255,255,255,.8);border:1.5px solid var(--brd);border-radius:30px;padding:11px 18px;margin:0 auto 30px;max-width:380px;font-size:15px;color:var(--prid);font-weight:700}
 .reCapsule b{color:var(--pri);font-size:16px}
@@ -90,57 +90,82 @@ h1 .hl{color:var(--pri);background:linear-gradient(transparent 78%,var(--lgt) 78
 .t3.mid span{color:#fff;font-weight:400;margin-top:6px;opacity:.92}
 .t3 small{display:block;font-size:11px;color:var(--mut);margin-top:4px}
 .thbtn{position:fixed;left:16px;bottom:20px;width:46px;height:46px;border-radius:50%;background:#fff;border:1.5px solid var(--brd);box-shadow:0 4px 14px rgba(0,0,0,.12);font-size:20px;cursor:pointer;z-index:50;display:flex;align-items:center;justify-content:center}
-/* ===== 编号板块（淡彩卡片 · 主题跟随 · 小字清晰版） ===== */
+/* ===== 结果页新板块 ===== */
 .rsec{background:#fff;border:none;border-radius:26px;padding:30px 24px;margin-bottom:22px;box-shadow:0 2px 14px rgba(0,0,0,.06)}
-.rsec h2{font-size:25px;font-weight:800;color:var(--panel);margin-bottom:22px;letter-spacing:.5px}
-.rsec h2 .no{color:var(--panel);margin-right:10px}
 .subcard{background:var(--cardbg);border:1px solid var(--cardbrd);border-radius:20px;padding:24px 22px;margin-bottom:16px}
 .subcard:last-child{margin-bottom:0}
-.subcard h4{font-size:20px;font-weight:800;color:var(--panel);margin-bottom:12px}
-.subcard h4 .tag8{color:var(--acc)}
-.subcard p{font-size:15px;line-height:1.75;color:var(--txt)}
+.slabel{font-size:13px;letter-spacing:4px;color:var(--pri);font-weight:700;margin:30px 4px 10px}
+.sline{display:flex;align-items:center;gap:14px;margin:0 4px 16px}
+.sline b{font-size:25px;font-weight:800;color:var(--txt);flex:none}
+.sline i{flex:1;height:1.5px;background:var(--brd)}
+.klabel{font-size:15px;color:var(--prid);font-weight:700;letter-spacing:2px;margin-bottom:12px}
+.badge{width:44px;height:44px;flex:none;border-radius:12px;background:var(--lgt);color:var(--prid);font-weight:800;font-size:18px;display:flex;align-items:center;justify-content:center}
+.rel{display:flex;gap:14px;align-items:flex-start}
+.mh{font-size:17px;font-weight:800;color:var(--txt);margin-bottom:6px}
+.msub{font-size:13px;color:var(--mut);margin-bottom:10px}
+.srow{display:flex;gap:18px;align-items:flex-start;padding:16px 2px;border-bottom:1px solid var(--brd)}
+.srow:last-child{border-bottom:none;padding-bottom:2px}
+.srow:first-child{padding-top:2px}
+.srow .no2{font-size:20px;font-weight:800;font-style:italic;color:var(--acc);min-width:36px}
+.srow b{display:block;font-size:17px;color:var(--txt);margin-bottom:4px}
+.srow p{font-size:15px;line-height:1.75;color:var(--mut)}
+.tcard{background:#fff;border:1px solid var(--brd);border-left:4px solid var(--pri);border-radius:16px;padding:18px;margin-bottom:14px}
+.tcard h5{font-size:13px;letter-spacing:3px;color:var(--pri);margin-bottom:8px;font-weight:700}
+.tcard b{display:block;font-size:18px;font-weight:800;color:var(--txt);margin-bottom:8px}
+.tcard p{font-size:15px;line-height:1.8;color:var(--mut)}
+.drow{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:14px}
+.dtags{font-size:13px;color:var(--mut);white-space:nowrap}
+.dhead{font-size:18px;font-weight:800;color:var(--txt);line-height:1.65;margin-bottom:12px}
+.dhr{border:none;border-top:1px solid var(--brd);margin:16px 0}
+.dlist{list-style:none}
+.dlist li{position:relative;padding-left:16px;font-size:15px;line-height:1.8;color:var(--mut);margin-bottom:10px}
+.dlist li:last-child{margin-bottom:0}
+.dlist li::before{content:"";position:absolute;left:0;top:11px;width:6px;height:6px;border-radius:50%;background:var(--pri)}
+.chips{display:flex;flex-wrap:wrap;gap:10px;margin:14px 0 4px}
+.chips span{border:1.5px solid var(--brd);background:#fff;color:var(--prid);border-radius:20px;padding:6px 14px;font-size:13px;font-weight:600}
+.endcard{background:var(--cardbg);border:1px solid var(--cardbrd);border-radius:24px;padding:34px 22px;text-align:center;margin-top:8px}
+.endbadge{width:64px;height:64px;border:2px solid var(--prid);border-radius:50%;margin:0 auto 16px;display:flex;align-items:center;justify-content:center;color:var(--prid);font-weight:800;font-size:20px;line-height:1.2}
+.endsub{font-size:14px;letter-spacing:4px;color:var(--pri);font-weight:700;margin-bottom:12px}
+.endtxt{font-size:19px;font-weight:800;color:var(--txt);line-height:1.8;margin-bottom:12px}
+.endnote{font-size:13px;color:var(--mut);line-height:1.8}
+/* ===== 图表与条形 ===== */
 .brow{display:flex;align-items:center;gap:12px;margin-bottom:20px}
 .brow:last-child{margin-bottom:0}
 .brow .bl{width:48px;font-size:17px;font-weight:700;color:var(--panel);flex:none}
 .brow .btrack{flex:1;height:12px;background:var(--lgt);border-radius:6px;overflow:hidden}
 .brow .btrack i{display:block;height:100%;background:var(--acc);border-radius:6px}
 .brow .bval{width:44px;text-align:right;font-size:17px;font-weight:800;color:var(--panel);flex:none}
-.qcard{background:var(--cardbg);border:1px solid var(--cardbrd);border-radius:20px;padding:16px 14px;font-size:15px;line-height:1.75;color:var(--txt);margin-bottom:10px;font-weight:600}
-.qcard:last-child{margin-bottom:0}
 .legend{display:flex;justify-content:center;gap:28px;font-size:15px;color:var(--panel);margin:8px 0 2px}
 .legend .lg{display:flex;align-items:center;gap:9px}
 .legend .dot{width:16px;height:16px;border-radius:50%;display:inline-block;flex:none}
 .legend .dot.you{background:var(--acc)}
 .legend .dot.base{background:transparent;border:3px solid var(--mut);box-sizing:border-box}
-.foot{font-size:12px;color:var(--mut);text-align:center;margin-top:28px;line-height:1.9}
-.letter{background:var(--cardbg);border:1px solid var(--cardbrd);border-radius:20px;padding:16px 14px;font-size:15px;line-height:1.8;color:var(--txt);margin-bottom:0}
-.letter .sig{text-align:right;color:var(--acc);font-size:13px;margin-top:10px}
-/* ===== 商家合作入口 ===== */
-.bizbar{text-align:center;font-size:13px;color:var(--mut);margin-top:22px;line-height:1.8}
-.bizbar span{color:var(--pri);text-decoration:underline;text-underline-offset:3px;font-weight:700;cursor:pointer;padding:2px 4px;display:inline-block}
-/* 商家合作弹窗图片 */
-.bizqr{width:78%;max-width:300px;border-radius:14px;border:1px solid var(--brd);margin:12px auto 4px;display:block}
-/* 六维图谱 */
 .radarwrap{text-align:center;padding:0 0 16px}
 #radar{width:100%;max-width:520px;margin:0 auto}
-/* 手机端适配 */
+.foot{font-size:12px;color:var(--mut);text-align:center;margin-top:28px;line-height:1.9}
+/* ===== 商家合作 ===== */
+.bizbar{text-align:center;font-size:13px;color:var(--mut);margin-top:22px;line-height:1.8}
+.bizbar span{color:var(--pri);text-decoration:underline;text-underline-offset:3px;font-weight:700;cursor:pointer;padding:2px 4px;display:inline-block}
+.bizqr{width:78%;max-width:300px;border-radius:14px;border:1px solid var(--brd);margin:12px auto 4px;display:block}
+/* ===== 手机端适配 ===== */
 @media(max-width:420px){
 .page{padding:16px 12px 60px}
 .cover-title{font-size:30px}.qtext{font-size:19px}
 .reName{font-size:46px;letter-spacing:3px}.reSub{font-size:17px;letter-spacing:3px}
 .reQuote{font-size:14px;padding:0 10px}
 .rsec{padding:22px 16px;border-radius:22px;margin-bottom:16px}
-.rsec h2{font-size:21px;margin-bottom:16px}
 .subcard{padding:18px 15px;border-radius:16px;margin-bottom:12px}
-.subcard h4{font-size:17px;margin-bottom:10px}
-.subcard p{font-size:14px;line-height:1.7}
+.sline b{font-size:21px}
+.slabel{margin:24px 2px 8px;font-size:12px}
+.srow{gap:14px;padding:14px 2px}
+.srow b{font-size:16px}
+.srow .no2{font-size:18px;min-width:30px}
 .brow .bl{width:42px;font-size:15px}
 .brow .bval{font-size:15px}
-.qcard{font-size:14px;padding:12px 11px}
-.letter{font-size:14px;padding:14px 12px}
 .legend{font-size:13px;gap:18px}
 .f4 b{font-size:13px}
 #radar{max-width:440px}
+.endtxt{font-size:17px}
 }
 </style>
 </head>
@@ -165,7 +190,7 @@ h1 .hl{color:var(--pri);background:linear-gradient(transparent 78%,var(--lgt) 78
   <h1 class="cover-title">你会在<span class="hl">历史长河</span>中，遇见哪一个自己？</h1>
   <p class="sub">通过一组情境选择，读取你的决断、洞察、表达与担当。<br>系统将为你找出最相似的那一位。</p>
   <div class="feats4">
-    <div class="f4"><b>🏛️ 古代群像</b><span>四十八位风云人物</span></div>
+    <div class="f4"><b>🏛️ 古代群像</b><span>二十四位风云人物</span></div>
     <div class="f4"><b>⚖️ 男女皆有</b><span>多元角色</span></div>
     <div class="f4"><b>📊 多维分析</b><span>性格建模</span></div>
     <div class="f4"><b>⚡ 快速完成</b><span>即时出档案</span></div>
@@ -183,7 +208,7 @@ h1 .hl{color:var(--pri);background:linear-gradient(transparent 78%,var(--lgt) 78
   <p class="sub">全程可追溯，无随机、无玄学，四步算出最像你的那位古人。</p>
   <div class="card"><h3>STEP 1 · 六维能力向量</h3><p>系统从六个维度为你建模：<b>决断、洞察、表达、担当、谋略、仁心</b>。这六项组合起来，就是你的能力指纹。</p></div>
   <div class="card"><h3>STEP 2 · 每道题都在计分</h3><p>24 道情境题中，每个选项背后都预设了 0~3 分的维度权重。你感觉在选答案，实际是在为六个维度投票——没有对错，只有倾向。</p></div>
-  <div class="card"><h3>STEP 3 · 与人物原型比对</h3><p>档案库中的四十八位历史人物原型，都依据史书记载的关键抉择与行事风格，预先标注了六维向量。系统计算你的向量与每位人物的剖面距离，取<b>最相近的一位</b>作为你的原型。</p></div>
+  <div class="card"><h3>STEP 3 · 与人物原型比对</h3><p>档案库中的二十四位历史人物原型，都依据史书记载的关键抉择与行事风格预先标注向量，并经系统自动校准至答题可达范围内。系统计算你的向量与每位人物的距离，取<b>最相近的一位</b>作为你的原型。</p></div>
   <div class="card"><h3>STEP 4 · 方向影响候选池</h3><p>开头选择的人物方向只决定在哪个池子里找，不改变你的六维得分，放心按真实感受作答。</p></div>
   <button class="btn" onclick="go(0)">明白了，返回封面</button>
 </div>
@@ -243,36 +268,81 @@ h1 .hl{color:var(--pri);background:linear-gradient(transparent 78%,var(--lgt) 78
       <div class="t3 side"><b id="t3Lo">--</b><span id="t3LoLab">--</span><small>待提升</small></div>
     </div>
 
-    <div class="rsec radarwrap" style="margin-top:24px;margin-bottom:36px;padding-top:12px">
+    <p class="slabel">CORE 01</p>
+    <div class="sline"><b>六维图谱</b><i></i></div>
+    <div class="rsec radarwrap" style="padding-top:12px">
       <canvas id="radar" width="850" height="720"></canvas>
       <div class="legend"><span class="lg"><i class="dot you"></i>你的特征</span><span class="lg"><i class="dot base"></i><span id="lgBase">原型</span></span></div>
     </div>
+    <div class="sline" style="margin-top:8px"><b>六维能力得分</b><i></i></div>
+    <div class="card"><div id="rBars"></div></div>
 
-    <div class="rsec"><h2><span class="no">01</span>· 人物自画像</h2>
-      <div class="subcard"><p id="rBio2"></p></div>
+    <p class="slabel">CORE 02</p>
+    <div class="sline"><b>你的人格内核</b><i></i></div>
+    <div class="subcard" style="margin-bottom:14px">
+      <h5 class="klabel">核心驱动力</h5>
+      <p id="cCore1" style="margin-bottom:12px"></p>
+      <p id="cCore2"></p>
+    </div>
+    <div class="card" style="margin-bottom:14px"><div class="rel"><span class="badge">真</span><div><h4 class="mh">你真正重视</h4><p id="cTruth"></p></div></div></div>
+    <div class="card" style="margin-bottom:14px"><div class="rel"><span class="badge">行</span><div><h4 class="mh">你的典型反应</h4><p id="cAction"></p></div></div></div>
+    <div class="card"><div class="rel"><span class="badge">见</span><div><h4 class="mh">别人眼中的你</h4><p id="cSeen"></p></div></div></div>
+
+    <p class="slabel">STRENGTH 03</p>
+    <div class="sline"><b>你的三项优势</b><i></i></div>
+    <div class="card" id="cStrengths"></div>
+
+    <p class="slabel">TENSION 04</p>
+    <div class="sline"><b>隐藏张力</b><i></i></div>
+    <div class="subcard" style="margin-bottom:14px">
+      <h5 class="klabel">优势的另一面</h5>
+      <div style="font-size:18px;font-weight:800;color:var(--txt);margin-bottom:8px">你的力量，也有需要被温柔校准的时刻</div>
+      <p>不是要削弱优势，而是让它在更长的时间里继续为你所用。</p>
+    </div>
+    <div class="tcard" style="margin-bottom:14px"><h5>— 人物侧写</h5><b id="cSideTitle"></b><p id="cSideBody"></p></div>
+    <div class="tcard"><h5>— 原型提醒</h5><b id="cRemindTitle"></b><p id="cRemindBody"></p></div>
+
+    <p class="slabel">DECISION 05</p>
+    <div class="sline"><b>你的决策方式</b><i></i></div>
+    <div class="card">
+      <div class="drow"><span class="klabel" style="margin-bottom:0">面对重要选择</span><span class="dtags" id="cDTags"></span></div>
+      <div class="dhead" id="cDHead"></div>
+      <p id="cDEnv"></p>
+      <hr class="dhr">
+      <ul class="dlist"><li id="cRole"></li><li id="cSens"></li><li id="cLife"></li></ul>
     </div>
 
-    <div class="rsec"><h2><span class="no">02</span>· 六维能力结构</h2>
-      <div id="rBars"></div>
+    <p class="slabel">RELATION 06</p>
+    <div class="sline"><b>你的关系模式</b><i></i></div>
+    <div class="card" style="margin-bottom:14px"><div class="rel"><span class="badge">知</span><div><h4 class="mh">亲密关系</h4><div class="msub">被理解，也允许自己被靠近</div><p id="cRel1"></p></div></div></div>
+    <div class="card"><div class="rel"><span class="badge">信</span><div><h4 class="mh">合作关系</h4><div class="msub">你的原型在关系中的惯常位置</div><p id="cRel2"></p></div></div></div>
+
+    <p class="slabel">DIRECTION 07</p>
+    <div class="sline"><b>适合深耕的方向</b><i></i></div>
+    <div class="card">
+      <h4 class="mh" style="font-size:20px" id="cDirName"></h4>
+      <p id="cDirDesc"></p>
+      <div class="chips" id="cChips"></div>
+      <hr class="dhr">
+      <div class="klabel">理想环境</div>
+      <p id="cIdeal" style="margin-bottom:14px"></p>
+      <div class="klabel">生活方式</div>
+      <p id="cLife2"></p>
     </div>
 
-    <div class="rsec"><h2><span class="no">03</span>· 你与 TA 的共同底色</h2>
-      <div id="rColors"></div>
+    <p class="slabel">GROWTH 08</p>
+    <div class="sline"><b>给你的成长建议</b><i></i></div>
+    <div class="card" style="padding:0">
+      <div class="srow" style="background:var(--lgt);border-radius:16px 16px 0 0;padding:18px"><span class="no2">1</span><div><b>你的专属提醒</b><p id="gTip"></p></div></div>
+      <div class="srow" style="padding:18px"><span class="no2">2</span><div><b>成长练习 1</b><p id="gEx1"></p></div></div>
+      <div class="srow" style="padding:18px"><span class="no2">3</span><div><b>成长练习 2</b><p id="gEx2"></p></div></div>
     </div>
 
-    <div class="rsec"><h2><span class="no">04</span>· 现实中的你</h2>
-      <div class="subcard"><p id="rReal"></p></div>
-    </div>
-
-    <div class="rsec"><h2><span class="no">05</span>· 性格盲点与风险提醒</h2>
-      <div class="subcard"><h4>可能的盲点</h4><p id="rBlind"></p></div>
-      <div class="subcard"><h4>风险提醒</h4><p id="rRisk"></p></div>
-      <div class="subcard"><h4>给你的建议</h4><p id="rAdv"></p></div>
-    </div>
-
-    <div class="rsec"><h2><span class="no">06</span>· 写给你</h2>
-      <div class="letter" id="rLetter"></div>
-      <div id="rQuotes" style="margin-top:18px"></div>
+    <div class="endcard">
+      <div class="endbadge">结<br>语</div>
+      <div class="endsub">YOUR ARCHIVE NOTE</div>
+      <div class="endtxt" id="cEndNote"></div>
+      <div class="endnote">本报告依据你的 24 道选择生成，用于帮助你观察稳定倾向，而不是定义你的全部可能。</div>
     </div>
 
     <p class="foot">本测试用于趣味性自我探索，不构成心理测评或历史评价。</p>
@@ -346,92 +416,80 @@ const QS=[
  {d:5,t:"若他日位极人臣，你最想做的事是：",o:[["置义田义学，回馈桑梓",0,0,0,1,0,3],["再进一步，出将入相",2,0,0,2,1,0],["功成身退，泛舟五湖",0,1,1,0,1,0],["为民请命，减赋税开言路",0,0,1,1,0,3]]}
 ];
 
-/* ===== 人物库（48 位 · fame 仅作完全同分时的次序参考）===== */
+/* ===== 人物库（24 位 · 12 女 + 12 男 · fame 仅作完全同分时的次序参考）===== */
 const FIGS=[
-{g:"f",fame:1.15,e:"⚔️",name:"花木兰",dyn:"北魏 · 巾帼名将",v:[3,2,1,3,2,3],bio:"替父从军的女儿身——不是不知道怕，而是把责任看得比害怕更重。她能隐忍多年，也能策马冲锋。她的勇敢不是不怕，而是怕了依然向前。",common:"你们都有一颗「该我扛」的心。答应的事拼尽全力，看不得身边人受委屈，关键时刻从不掉链子。",real:"你是团队里最让人放心的人：不抢功、不甩锅，出了事第一个站出来。",blind:"太能扛，什么都自己扛着，很少开口求人。",risk:"警惕「责任感透支」——先照顾好自己，再照顾别人。",adv:"学会把担子分出去。求助不是软弱，是给别人信任你的机会。",letter:"你的勇敢从来不是不怕，而是怕了依然向前。你为在乎的人扛起过太多，却很少开口说累。但请记得——木兰卸甲归乡时，也有人在等她回家。累了就回头看看，你的身后，同样有人。愿你的担当有人分担，愿你的勇敢也被温柔接住。",q:["万里赴戎机，关山度若飞。","谁说女儿不如男。","将军百战死，壮士十年归。"]},
-{g:"f",fame:1.15,e:"🔥",name:"武则天",dyn:"武周 · 一代女皇",v:[3,3,3,3,3,1],bio:"从才人到皇帝，每一步都走在无人敢想的路上。在男权世界的最高处，她证明了规则是给不敢打破的人定的。无字碑空着——功过留给后人评说。",common:"你们都有极强的目标感和翻盘能力：环境越不利，越能找到破局点。",real:"你是天生的掌局者：善于隐忍、精于判断，该出手时绝不犹豫。",blind:"太擅长赢，有时忘了问「赢了之后要什么」。",risk:"警惕「孤独的高位」——身边多的是附和，缺的是真话。",adv:"留几个不图你什么的旧友，信任要主动去攒。",letter:"你比大多数人更懂如何赢，却很少有人敢问你累不累。无字碑留白，是因为功过可以交给时间；而你不必事事满分。赢的路上，请留几个不图你什么的同行人——高处可以冷，但心不能空。愿你赢到的东西里，有一样叫心安。",q:["花须连夜发，莫待晓风吹。","身为女子，何须让须眉。","无字碑上千秋事，留与后人论短长。"]},
-{g:"f",fame:1.15,e:"📜",name:"李清照",dyn:"两宋 · 千古第一才女",v:[1,3,3,2,1,2],bio:"前半生写「知否知否」，后半生国破家亡、颠沛流离，依然把词写成一代宗师。她证明了细腻与刚烈可以并存于一人。",common:"你们都敏感细腻、审美出众，外表柔和，骨子里有不将就的倔强。",real:"你品位出众、情感丰沛，直觉极准。你在意的不是对不对，而是真不真、美不美。",blind:"情感浓度太高，容易被情绪和回忆困住。",risk:"警惕「沉溺过去」——回忆可以停留，人要向前走。",adv:"把感受写下来、做出来。你的敏感不是弱点，是天赋的入口。",letter:"你的敏感是天赋，也是铠甲下的软肋。易安居士把颠沛流离写成了千古绝唱——你也可以把情绪写成文字、做成作品。被理解的最好方式，是先把它表达出来；走出去的最好方式，是让回忆停在后头。愿你的细腻被世界温柔以待。",q:["知否，知否？应是绿肥红瘦。","生当作人杰，死亦为鬼雄。","此情无计可消除，才下眉头，却上心头。"]},
-{g:"f",fame:1.15,e:"🕊️",name:"王昭君",dyn:"西汉 · 和亲使者",v:[2,2,2,3,1,3],bio:"本是无名宫女，却远嫁塞外，用一个人的离开换来数十年边关安宁。落雁之名流传千古，她的选择比美貌更动人。",common:"你们都有「以柔克刚」的担当：不爱争抢，但关键时刻敢做别人不敢做的决定。",real:"你温和隐忍、顾全大局，是化解矛盾的人。你的力量不在锋芒，而在承受。",blind:"太会成全别人，容易委屈了自己。",risk:"警惕「沉默的牺牲」——成全要有边界，别让隐忍变成理所当然。",adv:"大方表达自己的需要。你的付出值得被看见、被回报。",letter:"你总在成全别人，却很少为自己开口。昭君的出塞是选择，不是牺牲——你的付出也应该是选择，而不是习惯。大方说出你的需要吧，你的温柔值得被同等地温柔以待。愿你在成全世界之前，先成全自己。",q:["一去紫台连朔漠，独留青冢向黄昏。","群山万壑赴荆门，生长明妃尚有村。","汉恩自浅胡自深，人生乐在相知心。"]},
-{g:"f",e:"🎶",name:"蔡文姬",dyn:"东汉末 · 一代才女",v:[1,3,3,1,1,3],bio:"博学能文、精通音律，却被掳匈奴十二年。归来后凭记忆默写古籍四百余篇，《胡笳十八拍》是才情也是血泪。",common:"你们都才华内敛、共情极深，能在苦难里守住内心的秩序与热爱。",real:"你安静而有力量，善于倾听和记录，是朋友心中「最懂」的那个人。",blind:"逆来顺受的忍耐，有时会错过自救的时机。",risk:"警惕「认命感」——困境里也要为自己争取一次。",adv:"你的经历本身就是价值。把它表达出来，伤口也会变成光。",letter:"你在苦难里依然守着内心的秩序与热爱，这非常了不起。但别把「忍」当成唯一的答案——文姬最终归汉，靠的是让世界听见了她的声音。困境里，也请为自己争取一次。你的经历本身就是价值，把它表达出来，伤口也会变成光。",q:["文姬归汉，胡笳十八拍。","感时念父母，哀叹无穷已。","茕茕对孤景，怛咤糜肝肺。"]},
-{g:"f",fame:1.08,e:"🖋️",name:"上官婉儿",dyn:"唐 · 巾帼宰相",v:[2,3,3,2,3,2],bio:"从罪臣之女做到权力中枢，「称量天下士」多年，是武则天身边最有权势的女官。一支笔，就是她的刀与剑。",common:"你们都头脑清醒，擅长在复杂关系里找到自己的位置，靠专业和情商立足。",real:"你是职场多面手：会协调、能落地、懂分寸，领导离不开你。",blind:"太懂得权衡，有时会模糊自己的立场。",risk:"警惕「迷失于依附」——平台的光环不等于你自己的底气。",adv:"培养一份离开谁都能立足的核心能力，那才是真正的安全感。",letter:"你擅长在复杂的关系里站稳位置，靠专业赢得尊重。但平台的光环终究是借来的光——培养一份离开谁都能立足的本事，那才是谁也拿不走的底气。婉儿的笔是自己的，你的本事也该是自己的。",q:["称量天下士。","势如连璧友，心似臭兰人。","叶下洞庭初，思君万里余。"]},
-{g:"f",fame:1.08,e:"💃",name:"卓文君",dyn:"西汉 · 敢爱奇女子",v:[3,2,3,2,1,2],bio:"家境殷实却为爱私奔，当垆卖酒也不觉得丢人；司马相如变心，她一首《白头吟》把局面扳了回来。爱得起，也放得下。",common:"你们都敢作敢当、爱憎分明，为了想要的生活敢打破规则。",real:"你有主见、有行动力，感情和事业都自己做主。别人眼中的冒险是你的日常。",blind:"冲动上头时容易不计后果。",risk:"警惕「感性压过理性」——重要决定先冷静一晚再拍板。",adv:"保留你的勇敢，给勇敢装上方向盘。",letter:"你敢爱敢做，这是很多人求不来的生命力。只是重要决定，先冷静一晚再拍板——文君写《白头吟》时是清醒的，不是上头的。给勇敢装上方向盘，你会走得更远、更稳。愿你永远有说走就走的底气，也有及时刹车的清醒。",q:["愿得一心人，白头不相离。","闻君有两意，故来相决绝。","凄凄复凄凄，嫁娶不须啼。"]},
-{g:"f",e:"📚",name:"班昭",dyn:"东汉 · 曹大家",v:[1,3,2,2,2,3],bio:"续写《汉书》补齐兄长遗稿，是史上第一位女史学家，用学问在那个时代赢得了「大家」之尊。",common:"你们都勤勉自律、以才学立身，相信长期积累的力量。",real:"你是靠谱的知识型选手：学得进、坐得住、写得出来。",blind:"规矩意识太强，容易自我设限。",risk:"警惕「完美主义内耗」——完成比完美更重要。",adv:"你的严谨是稀缺品质，但记得给生活留一点不守规矩的乐趣。",letter:"你自律、严谨、坐得住，这是稀缺品质。但完成比完美更重要，人生不是每件事都要交满分答卷——班昭续《汉书》，也是站在兄长的未竟之上。给自己留一点不守规矩的乐趣，那也是生活的一部分。",q:["执笔续史，巾帼不让。","专注学问，方得始终。","博学高才，宜有善名。"]},
-{g:"f",e:"🚩",name:"平阳昭公主",dyn:"唐 · 娘子军统帅",v:[3,2,1,3,3,2],bio:"父亲起兵时，她独自在关中拉起数万人的「娘子军」，为大唐立下战功，娘子关因她得名。",common:"你们都有组织力和号召力，能一呼百应，是天生的主心骨。",real:"你资源整合能力极强：能拉队伍、能扛大事，是大家眼里「能成事」的人。",blind:"习惯做主，有时听不进不同声音。",risk:"警惕「强势压人」——领袖力在于凝聚，而不在于压制。",adv:"多问一句「你们怎么看」，团队会给你惊喜。",letter:"你能一呼百应，是天生能成事的人。但真正的领袖力在于凝聚，而非压制——多问一句「你们怎么看」，队伍会因为被听见，而更愿意跟你走远路。平阳的娘子军不是她一个人的功，愿你的队伍也成为你的助力。",q:["娘子军威名今犹在。","雄关名曰娘子关。","巾帼亦能定乾坤。"]},
-{g:"f",e:"🥁",name:"梁红玉",dyn:"南宋 · 击鼓抗金",v:[3,1,2,3,2,2],bio:"出身低微却成为名将韩世忠的并肩战友，黄天荡之战亲执桴鼓、助夫阻敌四十八日。出身不能选择，人可以选择成为谁。",common:"你们都不认命、能翻身，越是低谷越有往上爬的狠劲。",real:"你行动力爆表，说到就做到，是执行力惊人的人。",blind:"好胜心太强，容易硬扛不必要的战场。",risk:"警惕「以命相搏式努力」——身体是本钱，别透支。",adv:"选对战场再发力。你的狠劲用在刀刃上，回报翻倍。",letter:"你身上有股不认命的狠劲，越是低谷越能往上爬。但请选对战场再发力——红玉击鼓是战术，不是硬扛。身体不是取之不尽的本钱，你的能量要用在刀刃上。愿你的狠劲换来应得的回报，而不是透支。",q:["红玉桴鼓，助战黄天荡。","巾帼击鼓，声震江淮。","出身不由己，道路自己选。"]},
-{g:"f",fame:1.08,e:"🏔️",name:"文成公主",dyn:"唐 · 雪域使者",v:[2,2,2,3,2,3],bio:"远离长安远嫁吐蕃，带去典籍、工匠与谷物种子，把一生献给汉藏交融。她用温柔的方式，完成了一件无比坚韧的事。",common:"你们都有「把陌生变成熟悉」的能力：入乡随俗却不失本色，默默把事情做好。",real:"你适应力强、有大局观，善于在新环境里扎根生长。",blind:"太顾全大局，容易忽略自己的感受。",risk:"警惕「过度适应」——融入别人之前，先别弄丢自己。",adv:"你的柔软是最深的韧性，但也请为自己留一片自留地。",letter:"你适应力强、顾全大局，总能把陌生的处境过出根来。但融入别人之前，先别弄丢自己——柔软是你的韧性，不是义务。请为自己留一片自留地，那里不必顾全谁，只安放你自己。",q:["一去西域万里遥。","和亲之路，亦是桥梁。","柔可克刚，静可致远。"]},
-{g:"f",e:"🛡️",name:"冼夫人",dyn:"南朝 · 岭南圣母",v:[3,2,2,3,3,2],bio:"她历经三朝仍保岭南安定，被赞为「中国巾帼英雄第一人」。不逞一时之气，只为百姓谋百年之安。",common:"你们都沉稳有远见，做事看长线，护短处也护大局。",real:"你是家族和团队里的定盘星：遇事不慌、说话有分量、办事有着落。",blind:"责任范围太大，容易把所有人的事都当成自己的事。",risk:"警惕「大包大揽」——学会让下一代接棒，才算真正的成功。",adv:"把经验变成制度传承下去，比亲力亲为更有价值。",letter:"你是身边人的定盘星，遇事不慌、办事有着落。但别把所有人的事都当成自己的事——被需要很珍贵，而学会放手和传承，才是你真正做成的证明。冼夫人护的是百年之安，你也该给自己的疲惫留个座位。",q:["我事三代主，唯用一好心。","岭南安定，皆赖夫人。","忠义传家，久安之道。"]},
-{g:"f",e:"❄️",name:"谢道韫",dyn:"东晋 · 咏絮之才",v:[1,3,2,2,1,2],bio:"「未若柳絮因风起」——一句咏雪名句让她成为千古才女的代名词。但她不止有才华：孙恩之乱丈夫被杀，她横刀出门、杀敌数人，被俘后仍慷慨陈词，连乱军首领都为之折服。",common:"你们都是「静水深流」的人：表面温婉，骨子里有惊人的韧性和胆识。",real:"你是被低估的那类人：平时不显山露水，关键时刻的心理素质远超所有人。",blind:"锋芒内敛过头，容易被当成「好说话」的人。",risk:"警惕「被动等待被发现」——机会不会主动认识你。",adv:"把才华主动示人一次。道韫的咏絮是当众对出来的，不是憋在心里的。",letter:"你是那种「平时看不出、关键时刻靠得住」的人——谢道韫咏絮靠才华，横刀靠胆识，两样你都有。但别一直等着被看见：你的矜持在懂你的人眼里是气质，在不懂的人眼里就是隐形。该出手时就出手，该发声时就发声。柳絮因风起——风来的时候，记得飞。",q:["未若柳絮因风起。","事在王门，何关他族！","林下风气，神情散朗。"]},
-{g:"f",e:"🌸",name:"薛涛",dyn:"唐 · 女校书",v:[2,3,3,1,1,2],bio:"八九岁能诗，父亡家贫堕入乐籍，却凭才华让元稹、白居易都折节论交。她自制桃红小笺题诗，风靡一时——「女校书」这个称呼，就是从她开始的。",common:"你们都有一股「把一手烂牌打出彩」的韧劲：环境再不利，也能活出自己的格调。",real:"你是逆境中的优雅派：不抱怨、不自弃，把有限的条件经营出高级感。",blind:"太在意姿态的体面，有时会错过真实的连接。",risk:"警惕「精致的不将就」变成「精致的孤独」。",adv:"允许自己偶尔狼狈。薛涛笺再美，也需要粗粝的纸浆做底。",letter:"你把日子过出了一种「再难也有格调」的倔强——这很薛涛。但请允许自己偶尔不体面：崩溃一次、依赖一个人、承认一件事做不到。精致是你的勋章，不该是你的枷锁。愿你既有薛涛笺的风雅，也有弄脏手的勇气。",q:["水国蒹葭夜有霜，月寒山色共苍苍。","枝迎南北鸟，叶送往来风。","谁言千里自今夕，离梦杳如关塞长。"]},
-{g:"f",e:"🍁",name:"朱淑真",dyn:"南宋 · 断肠词人",v:[1,2,3,1,1,2],bio:"嫁非所爱、婚姻不幸，一腔深情只能写进词里。「月上柳梢头，人约黄昏后」写的是她求而不得的爱情。去世后父母焚其遗稿——劫后残存的《断肠集》，字字是深情。",common:"你们都爱得深、感受得真：情感浓度高，宁缺毋滥。",real:"你是感情里的理想主义者：不将就、不敷衍，哪怕孤独也要等到对的人。",blind:"对情感的期待过高，容易受伤和自我怀疑。",risk:"警惕「把全部自我押在一段关系上」——爱情是生活的一部分，不是全部。",adv:"把深情分散一些给热爱的事。断肠词之所以流传，是因为朱淑真不止是恋人，更是词人。",letter:"你爱得很真、很深，宁缺毋滥——这份纯粹很珍贵，也容易让你疼。请记得：朱淑真一生困在错的感情里，但她的词活了千年。把深情也分一些给热爱的事吧，事业、爱好、朋友。你不是等待谁来完整的人，你本身就是完整的。愿你的深情，有配得上的人接住。",q:["月上柳梢头，人约黄昏后。","宁可抱香枝头老，不随黄叶舞秋风。","娇痴不怕人猜，和衣睡倒人怀。"]},
-{g:"f",e:"🎴",name:"鱼玄机",dyn:"晚唐 · 咏絮女冠",v:[2,2,3,1,1,1],bio:"幼有才思，却在感情里屡屡受挫，最终入道观修行。「易求无价宝，难得有心郎」——一句诗写尽了那个时代才女的所有不甘。",common:"你们都是「敢爱也敢怨」的人：感情浓烈，受了伤也从不假装没事。",real:"你是情绪表达力极强的人：敢说敢爱敢恨，讨厌虚假的和平。",blind:"爱憎太分明，容易把关系推向非黑即白。",risk:"警惕「情绪化的决裂」——一时之快，可能失去本可以修复的关系。",adv:"给激烈的情绪装一个缓冲带。玄机的悲剧，一半是时代，一半是冲动。",letter:"你敢爱敢恨，情绪表达直接——这比压抑自己健康多了。但激烈是双刃剑：冲动的决裂、上头的决定，往往在冷静后追悔。学会「48小时冷静期」：重大情绪决定，先放两天再执行。你的真性情是天赋，配上一点节奏感，就是无敌。",q:["易求无价宝，难得有心郎。","自能窥宋玉，何必恨王昌。","一生愁恨自难禁。"]},
-{g:"f",fame:1.08,e:"🎭",name:"柳如是",dyn:"明末 · 秦淮八艳之首",v:[3,2,3,3,2,2],bio:"出身寒微坠入风尘，却以才貌让江南文坛领袖钱谦益以正妻之礼迎娶。清兵南下时她劝夫殉国，自己「奋身欲沉池水中」——气节胜过多少须眉。",common:"你们都有一股「不受出身定义」的傲气：起点再低，也要把命运抓在自己手里。",real:"你是极强的破局者：敢想敢做，关键时刻比多数男性更有决断力。",blind:"控制欲偏强，感情里容易用力过猛。",risk:"警惕「用决断力解决感情问题」——感情需要的常常是等待，不是行动。",adv:"在亲密关系里练习「不掌控」。如是的气节让人敬，但她婚姻里的执念也让她辛苦。",letter:"你不信命，敢想敢做，是能把一手烂牌打出王炸的人——这很柳如是。但请区分战场和情场：职场用决断力，感情要用耐心。不是所有问题都需要立刻解决，有些人有些事，交给时间。愿你既有如是的胆识，也有被温柔以待的松弛。",q:["我见青山多妩媚，料青山见我应如是。","桃花得气美人中。","海内如今传战斗，田横墓下益堪愁。"]},
-{g:"f",e:"🧵",name:"黄道婆",dyn:"元 · 纺织革新家",v:[2,2,1,3,1,3],bio:"童养媳出身，流落崖州三十余年，向黎族妇女学得纺织绝技。晚年返乡，革新轧花、弹棉、纺纱、织布全套工艺，让松江布「衣被天下」。",common:"你们都是「动手改变世界」的人：不爱空谈，用具体的技能解决具体的问题。",real:"你是实干的匠人型人格：专注、耐心，相信把一件事做到极致就是最大的贡献。",blind:"埋头做事，不善表达和邀功。",risk:"警惕「手艺人的沉默」——你不说，别人真的看不见。",adv:"定期展示你的成果。道婆的技术传下来了，是因为有史官记了一笔。",letter:"你话不多，事很实——黄道婆式的存在。这个世界离不开你这样的人：把一件事做到极致，让千万人受益。但请学会说出来的那一半：做了什么、付出了多少、值多少，要让别人知道。你的手艺配得上被看见，你的沉默不该变成被忽视的理由。",q:["错纱配色，综线挈花。","衣被天下，泽惠苍生。","匠心织就千家暖。"]},
-{g:"f",fame:1.08,e:"📿",name:"长孙皇后",dyn:"唐 · 千古贤后",v:[1,3,1,2,2,3],bio:"13岁嫁李世民，陪他打天下、守江山。她不干政却敢谏言——「愿陛下亲君子远小人」；抑制外戚、临终薄葬，被后世称为「千古贤后」的标杆。",common:"你们都是「润物细无声」的影响力：从不硬碰硬，却总能让事情朝好的方向走。",real:"你是高情商的协调者：说话有分寸、做事有边界，是化解矛盾的高手。",blind:"太克己，习惯把自己的需求排在最后。",risk:"警惕「贤内滤镜」——所有人都夸你懂事，却没人问你想不想。",adv:"练习一次「不体面地表达需求」。贤后临终也交代了身后事——你也可以。",letter:"你总是那个照顾所有人感受的人，懂分寸、知进退、不添麻烦——这很了不起，也很辛苦。但请记得：懂事不该是无限透支的信用卡。偶尔任性一次、提一次要求、让别人的计划为你让路。长孙皇后贵为皇后尚且敢直谏，你也该敢说一句「这次换你们听我的」。",q:["愿陛下亲君子，远小人。","居安思危，戒奢以俭。","主明则臣直。"]},
-{g:"f",e:"🦢",name:"独孤伽罗",dyn:"隋 · 二圣之一",v:[3,2,1,2,2,2],bio:"14岁嫁杨坚，相约「誓无异生之子」。杨坚建隋后她深度参与朝政，与帝并称「二圣」。她倡节俭、反奢靡，也善妒护权——是个极其复杂的女人。",common:"你们都是「爱要专一、事要有掌控」的人：边界感极强，认定的人事不许含糊。",real:"你是关系里的主导者：忠诚度要求高，同时自己也是极可靠的伴侣和伙伴。",blind:"占有欲和掌控欲，容易让亲密关系缺氧。",risk:"警惕「以爱为名的监控」——盯得越紧，人跑得越快。",adv:"练习「松弛的信任」。二圣的权力可以共享，感情里的安全感却只能自己给。",letter:"你忠诚、投入，同时要求对等的回应——独孤伽罗式的爱恨分明。但请注意，掌控感是会上瘾的：盯得越紧，对方越窒息，你也越焦虑。安全感的第一来源永远是自己——事业、朋友、爱好、自我价值。把这些攒够了，感情才敢真正松手。愿你被爱得笃定，也爱得自由。",q:["誓无异生之子。","二圣同朝，政有所出。","以俭率下，不事奢华。"]},
-{g:"f",e:"🎨",name:"管道升",dyn:"元 · 书画大家",v:[1,2,3,2,1,3],bio:"赵孟頫之妻，诗书画三绝。丈夫中年想纳妾，她一首《我侬词》——「你侬我侬，忒煞情多」把婚姻挽回，还成了爱情名篇。",common:"你们都是「以柔克刚」的高手：不用争吵，一句话就能四两拨千斤。",real:"你是感性的沟通艺术家：共情力强、表达动人，关键时刻能化解最僵的局面。",blind:"习惯用成全换取和平，容易委屈自己。",risk:"警惕「艺术化妥协」——诗意可以化解冲突，但不能替代真实谈判。",adv:"重要的关系议题，偶尔也要直接谈利益。道升救回了婚姻，靠的是词更是底气。",letter:"你会说话——不是嘴甜，是能说到人心坎里。这天赋让你总能化解僵局。但请注意，《我侬词》救回婚姻的背后，是管道升本身的书画实力——那是她的底气。你的温柔是软实力，也要配一份硬底气：经济独立、核心技能、随时转身的自由。愿你既有诗意，也有底牌。",q:["你侬我侬，忒煞情多。","把一块泥，捻一个你，塑一个我。","将咱两个一齐打破，再捻一个你，再塑一个我。"]},
-{g:"f",e:"🧶",name:"苏蕙",dyn:"前秦 · 璇玑图主",v:[1,3,3,2,2,2],bio:"丈夫窦滔被流放，她织五彩锦缎成《璇玑图》——840字纵横回环皆可成诗，可衍读数千首。中国回文诗的巅峰，是思念也是才华。",common:"你们都是「把深情做到极致」的人：爱得专、想得深，愿意为在乎的人做很费心的事。",real:"你是极致的细节控：用心到让人惊叹，擅长用行动而非语言表达感情。",blind:"容易陷入过度思考，把简单的事复杂化。",risk:"警惕「用心变成用力」——你的付出感太强，对方反而有压力。",adv:"偶尔也要允许粗糙和直接。璇玑图很美，但一封直白的信有时更动人。",letter:"你对在乎的人，用心到极致——苏蕙能用一幅织锦说尽千言万语，你也能用细节感动人心。但请注意：过度用心会变成用力，对方感受到的不是爱，是债。留一些粗糙和直接——「我想你」三个字，有时比千言万语更治愈。",q:["璇玑图成，八百字纵横皆诗。","织锦回文，寄情千里。","深情不负，巧思如许。"]},
-{g:"f",e:"🔭",name:"王贞仪",dyn:"清 · 女科学家",v:[3,3,2,2,2,1],bio:"29岁短暂一生，精通天文数学。她用灯、镜、桌做实验解释月食原理，写《地圆说》驳天圆地方，还敢批判「女子不宜读书」。国际天文学联合会以她的名字命名了一颗小行星。",common:"你们都有「不认命也不认标准答案」的求知欲：好奇、理性、敢于挑战权威。",real:"你是独立的思考者：逻辑清晰、视野开阔，不愿活在别人给的框架里。",blind:"过于较真，容易在人际关系上吃亏。",risk:"警惕「聪明人式孤独」——你的清醒会让一部分人不适，要有心理准备。",adv:"找到能接住你想法的同类。贞仪若生在今天，一定不缺学术圈的朋友。",letter:"你不轻信、爱较真、敢质疑——王贞仪式的头脑。这样的清醒在人群里注定孤独一点，但请相信同类存在：那些让你觉得「终于有人懂」的时刻，值得你主动去找。你的理性和好奇是文明进步需要的东西，别因为周围人的不理解就熄火。星星已经以她命名了，你也有自己的轨道。",q:["同是人也，则同是心性也。","始信须眉等巾帼，谁言儿女不英雄。","岂知人事无定居。"]},
-{g:"f",e:"🏇",name:"秦良玉",dyn:"明末 · 忠贞侯",v:[3,1,2,3,2,2],bio:"中国正史将相列传里唯一单独列传的女将军。丈夫被害后她接掌白杆兵，兄弟三人战死沙场，自己70岁仍在练兵抗清。崇祯赐诗：学就西川八阵图，鸳鸯袖里握兵符。",common:"你们都有「扛到底」的韧劲：再难的局面，咬着牙也要撑到最后。",real:"你是极可靠的定海神针：压力大不崩、变故来不乱，是团队和家人最后的防线。",blind:"习惯硬扛，很少示弱和求助。",risk:"警惕「女将军式逞强」——你越不说累，别人越以为你不累。",adv:"定期给自己放假。秦良玉70岁还在练兵，但那是她的使命，不是你的义务。",letter:"你扛得住事，再乱的局你也能稳住阵脚——这是极稀缺的品质。但请记得，连秦良玉都有兄弟分忧，你也需要自己的白杆兵：几个能说真心话的人，一段能彻底放松的时间。逞强不是坚强，会求助的人才是真正的强者。愿你的坚守有支援，愿你的疲惫有人看见。",q:["学就西川八阵图，鸳鸯袖里握兵符。","由来巾帼甘心受，何必将军是丈夫。","执干戈以卫社稷。"]},
-{g:"m",fame:1.15,e:"👑",name:"曹操",dyn:"东汉末 · 魏武帝",v:[3,3,3,2,3,1],bio:"治世之能臣，乱世之奸雄。他敢挟天子以令诸侯，也敢横槊赋诗叹人生苦短。他的字典里没有「等」，只有「干」。",common:"你们都厌恶拖泥带水，认定的事九头牛拉不回。你看人看势很准，做事讲效率。",real:"你是天生的行动派和领导者：别人还在开会，你已经干完了。",blind:"太信自己的判断，容易听不进反对意见。",risk:"警惕「刚愎」——聪明人最大的坑，是觉得只有自己聪明。",adv:"留一两个敢说真话的人在身边。疑人不用，但也别把话说死。",letter:"你天生是行动派，别人还在开会你已经干完了。但聪明人最大的坑，是觉得只有自己聪明——留一两个敢说真话的人在身边。东临碣石时，也要听得进不同的浪声。愿你的果断有真话护航，走得又快又稳。",q:["对酒当歌，人生几何？","宁教我负天下人，休教天下人负我。","老骥伏枥，志在千里。"]},
-{g:"m",fame:1.15,e:"🖌️",name:"苏轼",dyn:"北宋 · 东坡居士",v:[1,3,3,2,2,3],bio:"被贬黄州就发明东坡肉，被贬惠州就日啖荔枝三百颗。命运一再把他摔进泥里，他偏偏能在泥里种出花来。豁达才是他最大的才华。",common:"你们都有一种「打不死的乐观」：再难的日子也能过出滋味，还能把趣事讲给别人听。",real:"你是朋友圈的氛围担当：有趣、共情力强，总能把糟糕的事讲成段子。",blind:"用幽默化解一切，有时也把该处理的情绪压了下去。",risk:"警惕「微笑抑郁」——允许自己不豁达地难过一场。",adv:"不必事事有趣。真正的强大，是能笑着说也能哭着说。",letter:"你是朋友圈的氛围担当，总能把糟糕的事讲成段子。但请允许自己不豁达地难过一场——东坡也有「寂寞沙洲冷」的时刻。真正的强大，是能笑着说，也能哭着说。愿你温暖别人的同时，也被这个世界稳稳接住。",q:["竹杖芒鞋轻胜马，谁怕？一蓑烟雨任平生。","人间有味是清欢。","但愿人长久，千里共婵娟。"]},
-{g:"m",fame:1.15,e:"🌙",name:"李白",dyn:"盛唐 · 诗仙",v:[2,2,3,1,1,2],bio:"天子呼来不上船，自称臣是酒中仙。他一生求仕不得志，却把失意都写成了千古名篇。天生我材必有用，是他对世界的宣言。",common:"你们骨子里都住着一个自由的灵魂：讨厌被安排、被定义，渴望活得淋漓尽致。",real:"你灵感充沛、表达惊人，常被人夸有才华。但你也容易三分钟热度。",blind:"理想主义，容易低估现实的摩擦力。",risk:"警惕「才华内耗」——得给自己建一套节奏系统。",adv:"把大梦想拆成小台阶。自由是不想做什么就有能力不做什么。",letter:"你骨子里住着自由的灵魂，讨厌被安排、被定义。但请把大梦想拆成小台阶——「仰天大笑出门去」之前，太白也写过千百首练习作。自由不是想做什么就做什么，是不想做什么就有能力不做什么。愿你的才华长出节奏，落地生根。",q:["天生我材必有用，千金散尽还复来。","仰天大笑出门去，我辈岂是蓬蒿人。","长风破浪会有时，直挂云帆济沧海。"]},
-{g:"m",fame:1.15,e:"🏮",name:"诸葛亮",dyn:"三国 · 蜀汉丞相",v:[2,3,2,3,3,2],bio:"未出茅庐已知三分天下。他一生谨慎周密，算无遗策。白帝城托孤后，明知不可为而为之，鞠躬尽瘁死而后已。",common:"你们都是「谋定后动」型选手：做事有计划、有底线，讨厌失控的感觉。",real:"你是团队的大脑：预判问题、备好方案、兜住风险。",blind:"追求完美，事必躬亲，很难真正放手。",risk:"警惕「累死自己还养出巨婴团队」——你的价值在方向而非细节。",adv:"留三分余地给自己。可持续才是一切的根。",letter:"你谋定后动、讨厌失控，是团队的大脑。但事必躬亲会累死自己、养出巨婴团队——你的价值在方向，而非细节。留三分余地给自己，可持续才是一切的根。愿你运筹帷幄，也被人照顾。",q:["非淡泊无以明志，非宁静无以致远。","鞠躬尽瘁，死而后已。","凡事预则立，不预则废。"]},
-{g:"m",fame:1.08,e:"🧭",name:"张骞",dyn:"西汉 · 凿空西域",v:[2,2,1,3,2,2],bio:"奉命出使西域，被扣留十三年而不改其志，逃出后做的第一件事是——继续完成使命。一根使节杖走出了丝绸之路。",common:"你们都有一股「认准了就走到底」的韧劲：不被理解也好，你认定的事会默默走完。",real:"你是不动声色的长期主义者：不喧哗、不放弃，用时间打败聪明人。",blind:"太能忍，容易让委屈在心里堆积成疾。",risk:"警惕「沉默的消耗」——别把自己熬成孤岛。",adv:"把目标告诉更多人。同行者会让长路短一半。",letter:"你是认准了就走到底的长期主义者，不喧哗、不放弃。但别把委屈都咽进肚子里——博望侯走完那十三年，靠的不只是忍耐，还有把目标告诉更多人。同行者会让长路短一半。愿你走得远，也走得暖。",q:["使者相望于道，商旅不绝于途。","持节不失，虽远必达。","路虽远，行则将至。"]},
-{g:"m",fame:1.15,e:"🖋️",name:"王阳明",dyn:"明 · 心学宗师",v:[2,3,2,3,3,3],bio:"龙场悟道开创心学，平定宁王之乱只用了四十三天。他一生被贬、被疑，却越挫越通透——此心光明，亦复何言。",common:"你们都习惯向内求答案：外界再乱，你心里自有一套坐标。",real:"你是朋友圈的「定海神针」：通透、稳定、一针见血。",blind:"想得太透，有时对世俗的热情就淡了。",risk:"警惕「过度清醒」——有些答案得活出来，不是想出来的。",adv:"知行合一的关键在「行」。想清楚了，就去做，去犯错，去修正。",letter:"你习惯向内求答案，外界再乱，心里自有一套坐标。但知行合一的关键在「行」——有些答案不是想出来的，是做出来的。想清楚了，就去做、去犯错、去修正。愿你此心光明，脚下有路。",q:["此心光明，亦复何言。","知行合一。","人须在事上磨，方立得住。"]},
-{g:"m",fame:1.15,e:"🗡️",name:"项羽",dyn:"秦末 · 西楚霸王",v:[3,1,2,3,1,2],bio:"力拔山兮气盖世。巨鹿之战破釜沉舟，以少胜多威震天下。他一生光明磊落地战斗，最终乌江自刎，宁折不弯。",common:"你们都有赤子般的血性：认定的事全力以赴，不耍心机，靠实力说话。",real:"你爆发力惊人，关键时刻敢押上全部，是让人热血沸腾的队友。",blind:"太刚易折，不善迂回，情绪上头时容易做错决定。",risk:"警惕「孤注一掷」——留退路不是懦弱，是智慧。",adv:"赢了要能守，错了要能退。学会低头，才能站得更久。",letter:"你有赤子般的血性，认定的事全力以赴，是让人热血沸腾的人。但留退路不是懦弱，是智慧——赢了要能守，错了要能退。江东子弟多才俊，学会低头的人，才能站得更久。愿你的血性永远配得上清醒。",q:["力拔山兮气盖世，时不利兮骓不逝。","破釜沉舟，百二秦关终属楚。","生当作人杰，死亦为鬼雄。"]},
-{g:"m",fame:1.15,e:"🏹",name:"岳飞",dyn:"南宋 · 精忠报国",v:[2,1,2,3,2,3],bio:"背刺「精忠报国」四字，岳家军令金人叹「撼山易，撼岳家军难」。他把忠诚刻进了骨头，也把遗憾留给了风波亭。",common:"你们都有强烈的使命感：答应的事拼死也要做到，最见不得背叛与不公。",real:"你是可托付的人：原则性强、说到做到，朋友有事第一个想到你。",blind:"太讲原则，有时不懂得保护自己。",risk:"警惕「愚忠式硬扛」——坚持之前，先看清值不值。",adv:"你的忠诚很贵，请留给值得的人和事。",letter:"你有强烈的使命感，答应的事拼死也要做到。但请先看清值不值——你的忠诚很贵，要留给值得的人和事。坚持之前先保护自己，因为只有你自己好好的，那份使命才有人继续扛。愿你的赤诚，都被珍重对待。",q:["精忠报国，还我河山。","莫等闲，白了少年头，空悲切。","壮志饥餐胡虏肉，笑谒渴饮匈奴血。"]},
-{g:"m",fame:1.15,e:"📖",name:"司马迁",dyn:"西汉 · 太史公",v:[1,3,3,3,2,2],bio:"受奇耻大辱而不死，只为完成《史记》——究天人之际，通古今之变，成一家之言。他把苦难写成了不朽。",common:"你们都有「为了重要的事可以忍受一切」的定力：目标清晰，就不惧屈辱与低谷。",real:"你抗压能力极强，认定的长期目标能坚守多年不动摇。",blind:"对自己太狠，容易忽略身心的警报。",risk:"警惕「殉道者心态」——活着完成使命，比牺牲更难也更值。",adv:"把大使命切成小里程碑，每完成一步，就奖励自己一次。",letter:"你有「为了重要的事可以忍受一切」的定力。但别对自己太狠——活着完成使命，比牺牲更难也更值。把大目标切成小里程碑，每完成一步就奖励自己一次。太史公用一生写成《史记》，你也值得用节奏跑完自己的长路。",q:["人固有一死，或重于泰山，或轻于鸿毛。","究天人之际，通古今之变，成一家之言。","燕雀安知鸿鹄之志。"]},
-{g:"m",fame:1.08,e:"💰",name:"范蠡",dyn:"春秋 · 商圣陶朱公",v:[2,3,2,2,3,2],bio:"助勾践复国后急流勇退，三成巨富三散家财。他懂进退、知兴衰，是史上把「见好就收」做成艺术的第一人。",common:"你们都懂人性、知分寸：知道什么时候全力进取，什么时候转身离场。",real:"你商业嗅觉和风险意识兼具，总能比别人早半步布局、早一步撤退。",blind:"算得太清，有时显得不够投入真情。",risk:"警惕「过度理性」——人生有些最好的回报，来自不计回报。",adv:"留一段不谈利弊的热爱，那是你灵感的来源。",letter:"你懂人性、知分寸，进退之间从不含糊。但人生有些最好的回报，来自不计回报——留一段不谈利弊的热爱吧，那是你灵感的来源，也是你理性大厦里最柔软的一间房。愿你算得清世事，也算得清自己的心。",q:["飞鸟尽，良弓藏；狡兔死，走狗烹。","旱则资舟，水则资车。","财散人聚，财聚人散。"]},
-{g:"m",e:"🍃",name:"陶渊明",dyn:"东晋 · 五柳先生",v:[1,2,2,2,1,3],bio:"不为五斗米折腰，辞官归田，「采菊东篱下，悠然见南山」。他用一生证明：另一种活法是存在的。",common:"你们都内心澄澈、不喜逢迎：宁可少得到一点，也不愿活得拧巴。",real:"你淡泊随性、真诚待人，在人人内卷的时代守着自己的节奏。",blind:"回避冲突，有时会错过本该争取的东西。",risk:"警惕「消极避世」——真正的从容，是选过之后的不悔。",adv:"守住你的节奏没错，但重要的人和机会，值得你主动一次。",letter:"你内心澄澈、不喜逢迎，在人人内卷的时代守着自己的节奏——这很难得。但真正的从容，是选过之后的不悔：重要的人和机会，值得你主动争取一次。采菊可以，但偶尔也要为在乎的走出东篱。愿你的淡泊是选择，不是退让。",q:["采菊东篱下，悠然见南山。","不为五斗米折腰。","久在樊笼里，复得返自然。"]},
-{g:"m",fame:1.08,e:"⛵",name:"郑和",dyn:"明 · 七下西洋",v:[2,2,1,3,2,2],bio:"率两百余艘宝船、两万七千人七下西洋，比哥伦布早八十七年。他没有征服一块土地，却让万国来朝。",common:"你们都有「把大目标拆成一次次远航」的执行力：重准备、守纪律、能扛长期任务。",real:"你是可靠的组织者：复杂的事到你手里就变得井井有条。",blind:"太守规矩，创造性冒险偏少。",risk:"警惕「流程依赖」——计划之外的变化，也需要胆量去接。",adv:"定期做一件没有攻略的事，练一练随机应变。",letter:"你是可靠的组织者，复杂的事到你手里就井井有条。但计划之外的变化，也需要胆量去接——定期做一件没有攻略的事吧，练一练随机应变。宝船再大，也是为未知的海洋造的。愿你的稳，成为你敢闯的底气。",q:["宝船七下西洋，威德遐被。","海纳百川，有容乃大。","远航之志，不在风浪，在人心。"]},
-{g:"m",fame:1.08,e:"🐎",name:"辛弃疾",dyn:"南宋 · 词中之龙",v:[3,2,3,3,3,2],bio:"文能提笔安天下，武能上马定乾坤。21岁聚众起义，曾率50骑闯5万敌营生擒叛徒。南归后壮志难酬，把一腔金戈铁马都写进词里——600余首，字字带血。",common:"你们都是「上马能战、下马能文」的人：心里有股不平则鸣的侠气，表面沉得住气，骨子里燃着一团火。",real:"你是团队里少见的多面手：执行力强、有大局观，越是被低估，越憋着劲要做出成绩。",blind:"锋芒太露，容易树敌。理想过于炽热，常被现实泼冷水。",risk:"警惕「英雄无用武之地的愤懑」——长期怀才不遇会内耗掉你的锐气。",adv:"把宏大目标拆解为当下能落地的一件件小事。稼轩的词之所以伟大，是他在闲居时也没停止写作。",letter:"你心里住着一位少年将军，二十岁那年就想横刀立马改变世界。可现实常常给人漫长的等待——稼轩等了四十年，等到白发丛生。但他从未停止书写，也从未停止准备。请把你的锋芒保存好，等待属于你的那个「了却君王天下事」的时刻。哪怕暂时无用武之地，也别熄了心里那团火。",q:["醉里挑灯看剑，梦回吹角连营。","了却君王天下事，赢得生前身后名。","青山遮不住，毕竟东流去。"]},
-{g:"m",e:"🎼",name:"李煜",dyn:"南唐 · 千古词帝",v:[1,2,3,2,1,2],bio:"生在帝王家却全无帝王心。他精书法、通音律、善丹青，唯独不善治国。国破被俘后，把亡国之痛写成千古绝唱——词至李后主，眼界始大，感慨遂深。",common:"你们都是「被推到不擅长位置上」的敏感灵魂：感受力远超行动力，艺术天赋藏在骨子里。",real:"你审美出众、情感细腻，是典型的「体验型人格」。世界对你而言不是任务清单，而是一幅待品味的画。",blind:"回避现实的粗糙，容易沉溺于情绪和审美。",risk:"警惕「逃避式浪漫」——用美感包裹问题，问题本身并没有解决。",adv:"把感性变成产出。后主若不是亡国，也写不出《虞美人》——你的痛苦可以是作品的燃料。",letter:"你被生活推着去过一种自己并不擅长的人生——就像李煜被推上王位。但请记得，他最大的成就是在最深的痛苦里完成的。你的敏感、你的审美、你的不擅算计，在别的赛道上恰恰是稀缺的天赋。别急着否定自己「不像个大人」，长不大的部分里，藏着你最珍贵的东西。",q:["问君能有几多愁？恰似一江春水向东流。","剪不断，理还乱，是离愁。","流水落花春去也，天上人间。"]},
-{g:"m",e:"🪕",name:"柳永",dyn:"北宋 · 白衣卿相",v:[1,2,3,1,1,2],bio:"科场失意，索性自称「奉旨填词」，把下半生都交给了市井与词。凡有井水处，皆能歌柳词——他是第一个真正为普通人写词的大家。",common:"你们都对体制化的成功兴致寥寥，更在意把日子过成自己喜欢的样子。",real:"你是活得通透的自由主义者：不争不抢，把自己的小世界经营得有滋有味。",blind:"对现实的妥协度太高，容易在舒适圈里温水煮青蛙。",risk:"警惕「用洒脱掩饰懒散」——真正自由的人，往往先有过人的本事。",adv:"在热爱领域深耕一项硬本领。柳永能名满天下，靠的不是态度，是把慢词写到极致的专业。",letter:"你不喜欢争抢，觉得人生不该只有一条赛道——这很珍贵。但请注意，柳永的潇洒背后是「凡有井水处皆能歌柳词」的顶级专业。自由不是逃离，是有资格选择。在你不喜欢的赛道上及格，在你热爱的事情上做到极致——那才是真白衣卿相。",q:["今宵酒醒何处？杨柳岸，晓风残月。","衣带渐宽终不悔，为伊消得人憔悴。","忍把浮名，换了浅斟低唱。"]},
-{g:"m",e:"🎋",name:"秦观",dyn:"北宋 · 婉约之宗",v:[1,2,3,1,2,2],bio:"苏门四学士之一，词风清丽婉约，被誉为「婉约之祖」。他一生仕途坎坷，屡遭贬谪，却把失意都酿成了温柔的句子。",common:"你们都有一颗柔软的心：共情力强，善于察觉别人忽略的细节之美。",real:"你是天生的「氛围感选手」：审美细腻、说话有分寸，朋友圈的合照总是你负责调滤镜。",blind:"心太软，容易被人拿捏。抗压能力偏弱。",risk:"警惕「情绪海绵效应」——吸收太多别人的情绪，自己却没处倒。",adv:"给善良装上边界。少游词美，是因为他守住了自己的美学阵地，而不是讨好所有人。",letter:"你柔软、细腻、善于共情——这在这个粗粝的世界里是稀缺品。但情绪像海绵，吸多了要拧干：定期独处、定期运动、定期把感受写下来。秦观被贬了一辈子，词却越写越通透——温柔不是软弱，是历尽千帆后依然选择善良。",q:["两情若是久长时，又岂在朝朝暮暮。","山抹微云，天连衰草。","自在飞花轻似梦，无边丝雨细如愁。"]},
-{g:"m",fame:1.15,e:"🍂",name:"杜甫",dyn:"唐 · 诗圣",v:[1,3,3,3,1,3],bio:"自己住着漏雨的茅屋，想的却是「安得广厦千万间，大庇天下寒士俱欢颜」。他一生颠沛流离，却用一支笔写尽了大唐由盛转衰的全部苦难。",common:"你们都有一颗「装着别人」的心：自己再难，也见不得别人更难。",real:"你是典型的理想主义者：责任感重、共情力极强，看到不公会真的难受。",blind:"忧思过度，容易为无法改变的事情内耗。",risk:"警惕「替时代焦虑」——把世界的重量都扛在肩上，人会先被压垮。",adv:"把关怀落到具体的人和事。子美伟大的前提是他先写完了诗——先照顾好自己的「茅屋」。",letter:"你见不得别人受苦，哪怕自己也过得不算宽裕——这是杜甫式的胸怀。但请记得，诗圣写出「大庇天下寒士」之前，先安顿了自己的漏雨茅屋。关怀世界的前提是照顾好自己。你的仁心很贵，别让它变成消耗你的债。",q:["安得广厦千万间，大庇天下寒士俱欢颜。","会当凌绝顶，一览众山小。","国破山河在，城春草木深。"]},
-{g:"m",fame:1.08,e:"🍶",name:"白居易",dyn:"唐 · 诗魔",v:[2,2,3,2,1,3],bio:"写诗力求老妪能解——好懂到他每写完都要念给不识字的老婆婆听。他用最通俗的语言写最深的人间：《长恨歌》《琵琶行》传唱千年。",common:"你们都有「化繁为简」的沟通天赋：能把专业的东西讲得人人都懂。",real:"你是天生的翻译官：善于把复杂的事讲明白，人缘好，谁都聊得来。",blind:"为了通俗有时牺牲深度，容易满足于「差不多」。",risk:"警惕「讨好式表达」——太在意别人能不能懂，反而不敢说真话。",adv:"好懂是天赋，敢说是勇气。乐天的伟大在于他既写「同是天涯沦落人」，也写讽喻诗骂权贵。",letter:"你有一种被低估的才华——把复杂讲简单。世上聪明人很多，会说话的人很少。但白居易的厉害不止于好懂，他还敢写《卖炭翁》直指宫市之弊。通俗是你的剑，真话才是你的锋。愿你既有让人听懂的能力，也有让人不舒服的勇气。",q:["同是天涯沦落人，相逢何必曾相识。","野火烧不尽，春风吹又生。","在天愿作比翼鸟，在地愿为连理枝。"]},
-{g:"m",fame:1.08,e:"🏞",name:"王维",dyn:"唐 · 诗佛",v:[1,3,2,2,2,3],bio:"半官半隐，白天在朝堂办公，晚上在辋川别业写「明月松间照」。诗中有画、画中有诗，晚年精研佛理，把日子过成了禅。",common:"你们都有一份「身在红尘心在山」的定力：不冲突、不较劲，心里自有一片自留地。",real:"你是职场里的隐士：情绪稳定、审美在线、不争不抢，把生活过成了美学。",blind:"太佛系，容易错过本该争取的东西。",risk:"警惕「用淡泊美化逃避」——王维也曾被安史之乱逼着表态。",adv:"行动上可以入世，心态上可以出世。摩诘的诗画是退出来的，但他的官位是拼出来的。",letter:"你身上有一种「静」的力量——不争不抢、情绪稳定，把日子过成了自己喜欢的样子。但请区分「选择后的淡泊」和「不敢争的退让」：王维的辋川，是他先拼完了仕途才有的退路。行动上积极一点，心态上照样可以出世。愿你既有竹林，也有入场券。",q:["行到水穷处，坐看云起时。","明月松间照，清泉石上流。","大漠孤烟直，长河落日圆。"]},
-{g:"m",fame:1.15,e:"🏯",name:"范仲淹",dyn:"北宋 · 先忧后乐",v:[2,2,2,3,2,3],bio:"两岁丧父，寒窗苦读，从穷书生做到宰相。戍边西北让西夏不敢来犯，推行庆历新政敢动权贵。「先天下之忧而忧」不是口号，是他的一生。",common:"你们都是「先别人后自己」的人：责任感刻在骨子里，团队有事你睡不着。",real:"你是靠谱的代名词：说到做到、忧患意识强，是组织和家人最信任的那个人。",blind:"忧思过重，休息也是待机状态。",risk:"警惕「操心型疲惫」——什么都想扛，身体和情绪先报警。",adv:"学会划分责任边界。分清楚哪些是你的事、哪些是老天的事，先忧后乐也要有「后乐」。",letter:"你是那种「别人的事睡不着」的人——这很范仲淹，也很消耗。请把责任分分类：自己的事尽心，别人的事尊重，老天的事交托。你已经把自己活成了别人的依靠，现在轮到你被依靠一次。愿你在先忧之后，真的有后乐。",q:["先天下之忧而忧，后天下之乐而乐。","不以物喜，不以己悲。","宁鸣而死，不默而生。"]},
-{g:"m",fame:1.08,e:"🕯️",name:"文天祥",dyn:"南宋 · 正气歌",v:[2,1,2,3,1,2],bio:"状元出身，散尽家财募兵勤王。兵败被俘三年，忽必烈亲自劝降都不为所动。「人生自古谁无死」——他用生命写完了这首诗。",common:"你们都有一种「认死理」的忠诚：认定的人和事，不因利益或威胁改变。",real:"你是极有原则的人：底线清晰、一诺千金，是朋友圈里「说话算数」的代名词。",blind:"过于刚硬，不懂变通，容易把自己逼进死角。",risk:"警惕「殉道式坚持」——不是所有事都值得押上一切，先分清值不值。",adv:"保留你的赤诚，但加上一层理性防火墙。判断「为何而战」比「战不战」更重要。",letter:"你的忠诚和原则感，在这个凡事讲变通的时代几乎稀有。但请记住文天祥的从容来自信念清晰，不是硬扛——他知道自己为何而死。坚守之前，先想清楚你为何而守。值得的，押上一切；不值得的，及时止损。愿你的一腔赤诚，都有配得上的战场。",q:["人生自古谁无死，留取丹心照汗青。","孔曰成仁，孟曰取义。","天地有正气，杂然赋流形。"]},
-{g:"m",fame:1.08,e:"🎖️",name:"卫青",dyn:"西汉 · 大将军",v:[3,2,1,3,3,2],bio:"出身骑奴，靠着姐姐入宫才得到机会。但七击匈奴七捷、收复河套、官至大将军，靠的全是自己的本事——最难得的是位极人臣而不立私威，谦逊自守。",common:"你们都是「逆袭但不膨胀」的人：吃过苦、翻过身，却依然温和低调。",real:"你是厚积薄发型的选手：起点不高、不声不响，但每一步都踩得扎实。",blind:"太低调，功劳容易被会哭的人抢走。",risk:"警惕「能者多劳陷阱」——你越靠谱，别人越把麻烦推给你。",adv:"学会适度展示成果。卫青不争，是因为皇帝看得见；你的老板未必看得见。",letter:"你吃过苦，所以格外珍惜现在的位置；你翻过身，所以格外体谅还在低谷的人。这很难得。但低调要有底线——卫青能善终，是因为汉武帝是明主。你的成绩需要被看见，该汇报就汇报，该争就争。善良是你的铠甲，不是别人占你便宜的理由。",q:["七击匈奴，漠南无王庭。","位极人臣而不立私威。","以战养战，兵不顿而利可全。"]},
-{g:"m",fame:1.08,e:"⚡",name:"霍去病",dyn:"西汉 · 冠军侯",v:[3,1,1,2,2,1],bio:"18岁第一次上战场就率800骑深入大漠，两战封侯。21岁封狼居胥，24岁英年早逝。他打仗不读古兵法——「顾方略何如耳，不至学古兵法」。",common:"你们都是「少年气」很足的人：敢想敢干，不迷信经验，相信直觉。",real:"你是天生的破局者：别人还在论证可行性，你已经冲出去把事干完了。",blind:"过于锐进，容易忽略风险和团队感受。",risk:"警惕「透支式冲刺」——霍去病24岁就燃尽了，可持续比速度重要。",adv:"给你的锐气配上刹车和导航。定期复盘，把冲劲变成可以复制的打法。",letter:"你是那种「想到就干」的人，18岁就敢率800骑闯大漠——这很霍去病，也很让人羡慕。但请记住两件事：一是冠军侯24岁就陨落了，可持续比速度重要；二是他虽不学古兵法，却每战都复盘。把你的锐气配上复盘和休息，你能跑得更远。愿你的少年气，烧得久一点。",q:["匈奴未灭，何以家为？","顾方略何如耳，不至学古兵法。","封狼居胥，禅于姑衍，饮马瀚海。"]},
-{g:"m",fame:1.08,e:"🌾",name:"管仲",dyn:"春秋 · 华夏第一相",v:[2,3,1,2,3,2],bio:"曾辅佐公子纠，还射过齐桓公一箭，却被齐桓公拜为相。他搞经济改革、兴盐铁之利，九合诸侯、一匡天下——孔子说：没有管仲，我们都披发左衽了。",common:"你们都是「实务型智者」：不谈虚的，用制度和经济思维解决问题。",real:"你是天生的操盘手：善于整合资源、算清利害，总能找到多方共赢的解。",blind:"过于务实，有时显得不够热血和理想主义。",risk:"警惕「利益计算惯性」——人脉若只剩利益，就不再是人脉。",adv:"留一两段不谈利弊的关系。管仲临终推荐鲍叔牙，用的不是算计，是知遇。",letter:"你擅长算账、整合、找共赢点——这是稀缺的战略思维。但请注意，管仲之所以千古流芳，不只因为九合诸侯，还因为他有鲍叔牙那段「不计生死」的知遇。留一两段不谈利益的关系吧，那不是低效，是你灵魂的锚点。愿你算得赢天下，也留得住真心。",q:["仓廪实而知礼节，衣食足而知荣辱。","不作无补之功，不为无益之事。","尊王攘夷，一匡天下。"]}
+{g:"f",fame:1.15,e:"⚔️",name:"花木兰",dyn:"北魏 · 巾帼名将",v:[3,2,1,3,2,3],q:["万里赴戎机，关山度若飞。","谁说女儿不如男。","将军百战死，壮士十年归。"]},
+{g:"f",fame:1.15,e:"🔥",name:"武则天",dyn:"武周 · 一代女皇",v:[3,3,3,3,3,1],q:["花须连夜发，莫待晓风吹。","身为女子，何须让须眉。","无字碑上千秋事，留与后人论短长。"]},
+{g:"f",fame:1.15,e:"📜",name:"李清照",dyn:"两宋 · 千古第一才女",v:[1,3,3,2,1,2],q:["知否，知否？应是绿肥红瘦。","生当作人杰，死亦为鬼雄。","此情无计可消除，才下眉头，却上心头。"]},
+{g:"f",fame:1.15,e:"🕊️",name:"王昭君",dyn:"西汉 · 和亲使者",v:[2,2,2,3,1,3],q:["一去紫台连朔漠，独留青冢向黄昏。","群山万壑赴荆门，生长明妃尚有村。","汉恩自浅胡自深，人生乐在相知心。"]},
+{g:"f",fame:1.08,e:"🖋️",name:"上官婉儿",dyn:"唐 · 巾帼宰相",v:[2,3,3,2,3,2],q:["称量天下士。","势如连璧友，心似臭兰人。","叶下洞庭初，思君万里余。"]},
+{g:"f",fame:1.08,e:"💃",name:"卓文君",dyn:"西汉 · 敢爱奇女子",v:[3,2,3,2,1,2],q:["愿得一心人，白头不相离。","闻君有两意，故来相决绝。","凄凄复凄凄，嫁娶不须啼。"]},
+{g:"f",e:"🚩",name:"平阳昭公主",dyn:"唐 · 娘子军统帅",v:[3,2,1,3,3,2],q:["娘子军威名今犹在。","雄关名曰娘子关。","巾帼亦能定乾坤。"]},
+{g:"f",e:"📚",name:"班昭",dyn:"东汉 · 曹大家",v:[1,3,2,2,2,3],q:["执笔续史，巾帼不让。","专注学问，方得始终。","博学高才，宜有善名。"]},
+{g:"f",e:"❄️",name:"谢道韫",dyn:"东晋 · 咏絮之才",v:[1,3,2,2,1,2],q:["未若柳絮因风起。","事在王门，何关他族！","林下风气，神情散朗。"]},
+{g:"f",fame:1.08,e:"📿",name:"长孙皇后",dyn:"唐 · 千古贤后",v:[1,3,1,2,2,3],q:["愿陛下亲君子，远小人。","居安思危，戒奢以俭。","主明则臣直。"]},
+{g:"f",e:"🧵",name:"黄道婆",dyn:"元 · 纺织革新家",v:[2,2,1,3,1,3],q:["错纱配色，综线挈花。","衣被天下，泽惠苍生。","匠心织就千家暖。"]},
+{g:"f",e:"🏇",name:"秦良玉",dyn:"明末 · 忠贞侯",v:[3,1,2,3,2,2],q:["学就西川八阵图，鸳鸯袖里握兵符。","由来巾帼甘心受，何必将军是丈夫。","执干戈以卫社稷。"]},
+{g:"m",fame:1.15,e:"👑",name:"曹操",dyn:"东汉末 · 魏武帝",v:[3,3,3,2,3,1],q:["对酒当歌，人生几何？","老骥伏枥，志在千里。","山不厌高，海不厌深。"]},
+{g:"m",fame:1.15,e:"🖌️",name:"苏轼",dyn:"北宋 · 东坡居士",v:[1,3,3,2,2,3],q:["竹杖芒鞋轻胜马，谁怕？一蓑烟雨任平生。","人间有味是清欢。","但愿人长久，千里共婵娟。"]},
+{g:"m",fame:1.15,e:"🌙",name:"李白",dyn:"盛唐 · 诗仙",v:[2,2,3,1,1,2],q:["天生我材必有用，千金散尽还复来。","仰天大笑出门去，我辈岂是蓬蒿人。","长风破浪会有时，直挂云帆济沧海。"]},
+{g:"m",fame:1.15,e:"🏮",name:"诸葛亮",dyn:"三国 · 蜀汉丞相",v:[2,3,2,3,3,2],q:["非淡泊无以明志，非宁静无以致远。","鞠躬尽瘁，死而后已。","凡事预则立，不预则废。"]},
+{g:"m",fame:1.08,e:"🧭",name:"张骞",dyn:"西汉 · 凿空西域",v:[2,2,1,3,2,2],q:["使者相望于道，商旅不绝于途。","持节不失，虽远必达。","路虽远，行则将至。"]},
+{g:"m",fame:1.15,e:"🖋️",name:"王阳明",dyn:"明 · 心学宗师",v:[2,3,2,3,3,3],q:["此心光明，亦复何言。","知行合一。","人须在事上磨，方立得住。"]},
+{g:"m",fame:1.15,e:"🗡️",name:"项羽",dyn:"秦末 · 西楚霸王",v:[3,1,2,3,1,2],q:["力拔山兮气盖世，时不利兮骓不逝。","破釜沉舟，百二秦关终属楚。","生当作人杰，死亦为鬼雄。"]},
+{g:"m",fame:1.15,e:"🏹",name:"岳飞",dyn:"南宋 · 精忠报国",v:[2,1,2,3,2,3],q:["精忠报国，还我河山。","莫等闲，白了少年头，空悲切。","壮志饥餐胡虏肉，笑谈渴饮匈奴血。"]},
+{g:"m",fame:1.15,e:"📖",name:"司马迁",dyn:"西汉 · 太史公",v:[1,3,3,3,2,2],q:["人固有一死，或重于泰山，或轻于鸿毛。","究天人之际，通古今之变，成一家之言。","燕雀安知鸿鹄之志。"]},
+{g:"m",fame:1.08,e:"💰",name:"范蠡",dyn:"春秋 · 商圣陶朱公",v:[2,3,2,2,3,2],q:["飞鸟尽，良弓藏；狡兔死，走狗烹。","旱则资舟，水则资车。","财散人聚，财聚人散。"]},
+{g:"m",e:"🍃",name:"陶渊明",dyn:"东晋 · 五柳先生",v:[1,2,2,2,1,3],q:["采菊东篱下，悠然见南山。","不为五斗米折腰。","久在樊笼里，复得返自然。"]},
+{g:"m",fame:1.08,e:"⚡",name:"霍去病",dyn:"西汉 · 冠军侯",v:[3,1,1,2,2,1],q:["匈奴未灭，何以家为？","顾方略何如耳，不至学古兵法。","封狼居胥，禅于姑衍，饮马瀚海。"]}
 ];
 
-/* ===== 心理学文案库 ===== */
-const DIM_PSY={
-"决断":"从决策心理学看，这属于「高行动取向」：在不确定情境中，你更依赖直觉式加工，先出手、再校准。行为研究证实，这类风格在模糊多变的局面里天然拥有先手优势。",
-"洞察":"对应认知能力中的「模式识别」：你习惯从碎片信息里推断背后的规律与动机，也就是常说的「第三只眼」。高情境敏感度让你识人准、少踩坑，也更容易察觉关系中的异样。",
-"表达":"在心理学上体现为高「言语自我效能」：你擅长把内部感受转译成外部语言。研究表明，这种外化能力本身就是有效的情绪调节方式，也是领导力中最常被低估的成分。",
-"担当":"行为科学中称为「责任内化」：你把承诺视为自我形象的一部分，说到做到会带给你强烈的自我一致感。这是可靠型人格的核心特征，也是信任得以建立的心理基础。",
-"谋略":"典型的「计划型认知风格」：行动之前，你会在脑内进行心理模拟，预演多种可能性再落子。这与执行功能中的前瞻性规划高度相关——你赢的往往不是运气，是提前量。",
-"仁心":"高共情特质的体现：你对他人的情绪状态有更强的自动响应。亲社会行为研究证实，这类特质能显著提升关系质量与团队信任——它是软性的，却是复利最高的能力。"};
-const DIM_REAL={
-"决断":"行动取向的应对风格","洞察":"高情境敏感与模式识别","表达":"高言语自我效能","担当":"责任内化与承诺一致性","谋略":"计划型认知与心理模拟","仁心":"高共情与亲社会倾向"};
+/* ===== 人物向量自动校准：为每位人物生成理想答卷，保证 24 人全部可测到 ===== */
+var MAXD=[0,0,0,0,0,0];
+QS.forEach(function(q){for(var i=0;i<6;i++){var m=0;q.o.forEach(function(o){if((o[i+1]||0)>m)m=o[i+1]});MAXD[i]+=m}});
+var RV={};
+FIGS.forEach(function(f){
+  var w=[0,0,0,0,0,0];
+  QS.forEach(function(q){
+    var bi=0,bs=-1e9;
+    q.o.forEach(function(o,i){
+      var s=0;for(var k=0;k<6;k++)s-=Math.abs((o[k+1]||0)/3-f.v[k]/3);
+      if(s>bs){bs=s;bi=i}
+    });
+    for(var k=0;k<6;k++)w[k]+=(q.o[bi][k+1]||0);
+  });
+  RV[f.name]=w.map(function(x,i){return Math.min(100,Math.round(x/MAXD[i]*100))});
+});
 
-/* ===== 精简版维度文案（一句话讲透 + 一句实用提醒） ===== */
-const DIM_TIP={
-"决断":"行动快于犹豫，先出手再校准是你的本能。提醒：重大决定前留 24 小时冷静期，能避开大部分冲动决策。",
-"洞察":"擅长从细节读出真实意图，识人很准。提醒：把敏感用在关键关系上，别为小事过度解读、白白内耗。",
-"表达":"能把想法说到人心里，是天生的沟通者。提醒：主动争取汇报发言的机会，这是最容易被看见的价值。",
-"担当":"答应的事一定办到，出了事不甩锅。提醒：量力承诺，答应得少、完成得好，比什么都答应更靠谱。",
-"谋略":"习惯先想几步再动手，赢在提前量。提醒：别等完美方案，先干起来再调整，机会不等人。",
-"仁心":"共情力强，见不得别人受苦。提醒：帮人要有边界，先照顾好自己，再说照顾别人。"};
+/* ===== 人物专属内容库（按人物原型撰写 · 精简版 · 基于史实） ===== */
+const FIG_PACK={
+"花木兰":{core:["你与花木兰相似的，是把承诺看得比舒适更重。替父从军十二年不露破绽，靠的不是伪装，是每天都不松懈的自我管理。","压力下你先接住再想办法。你不是不怕累，而是清楚有些事总得有人扛，而你就是那个觉得「该我」的人。"],truth:"对失约、推诿和关键时刻掉链子最敏感。",action:"先把事接过来，再想怎么完成。",seen:"可靠顶得上，大家默认的「没问题的人」。",str:[["责任兑现力","答应的事执行到底，不因周期长走样。"],["逆境耐受力","在不舒服的环境里持续运转，把忍耐变成结果。"],["护短心肠","见不得身边人受委屈，愿意为别人兜底。"]],sideTitle:"承担边界的另一面",sideBody:"太能扛的最大风险是：所有人都习惯了你能扛，连你也忘了这不该一个人扛。求助不是欠债，是给在乎你的人参与的机会。",arch:"扛事者",remind:"当承担成为习惯，你会替所有人兜底，直到身体先报警。木兰动人，恰恰因为她最终卸甲还乡——你也需要自己的还乡时刻。",dTraits:["责任度","韧性"],dHead:"你先接住责任再谈条件；遇冲突更看重谁该负责；最终看重承诺是否兑现。",dEnv:"你适合职责清晰、承诺被认真对待的环境。别人敢把「不能出事」的任务交给你。需留意：接之前评估容量，接了允许中途求援。",roles:"项目管理、应急响应、团队骨干等「交给你就放心」的角色。",sens:"对甩锅、放鸽子尤其敏感。",relKnow:"对亲近的人用心但嘴硬，照顾走在表达前面。偶尔把累说出口，关系更平衡。",relCoop:"团队的压舱石。但长期只输出不补充，信任会变消耗——把一些事真的交出去。",dirName:"责任中坚者",dirDesc:"项目统筹、应急管理、团队核心岗。",dirTags:["责任度","韧性","扛事者","长期承诺"],archNote:"你能让「答应过」三个字有分量，让依赖你的人真正安稳。",gTip:"接新任务前先看负荷，把「我可以」换成「我手上有A和B，你要我优先哪个」。",gEx1:"本周主动求援一次，哪怕只请人分担小事。",gEx2:"每晚问一句：今天有没有哪件事，其实不该我扛？"},
+"武则天":{core:["你与武则天相似的，是把目标放在情绪前面的定力。从才人到皇帝四十余年，感业寺出家、二度入宫——每一步都在积累位置，而不是发泄情绪。","你对赢的路径判断清晰：不利时隐忍蓄力，窗口出现时出手极快。她酷吏与科举并行——你同样清楚，成事既要破也要立。"],truth:"对被动、失控和感情绑架决策最敏感。",action:"先看清局势再落子，出手不含糊。",seen:"有主心骨、能掌局，关键时刻敢拍板。",str:[["局势判断力","能识别复杂局面里的关键变量。"],["战略忍耐力","为目标承受长期等待，不因委屈偏航。"],["制度建设力","不只赢当下，还把规则改得对长期有利。"]],sideTitle:"掌控边界的另一面",sideBody:"武则天晚年的孤独在于无人敢说真话——高位者的信息永远经过过滤。掌控力越强，越要留几个不图你什么的旧友做外部校准。",arch:"掌局者",remind:"当赢成为惯性，你会忘了问「赢了之后要什么」；当身边只剩附和，判断力失去纠错来源。留真话在侧，是长期保险。",dTraits:["掌控力","格局"],dHead:"你先评估利害再行动；遇冲突更看重主动权；最终看重长期格局而非一时输赢。",dEnv:"你适合权责匹配、能自主决策的环境。别人愿把需要决断和压场的任务交给你。需留意：强势会过滤反对声音，要主动建异见渠道。",roles:"经营管理、创业主导、复杂谈判。",sens:"对被动挨打、失去主动权尤其敏感。",relKnow:"关系中习惯主导，保护欲强但少示弱。让对方看到你的难处，是给关系喘息。",relCoop:"重视忠诚与执行力。但别把职场逻辑带进所有关系——有人要的不是被安排，是被商量。",dirName:"掌局主导者",dirDesc:"经营决策、创业主导、复杂谈判。",dirTags:["掌控力","格局","掌局者","战略主导"],archNote:"你能在不利局面里攒筹码，等到属于自己的时机一次打穿。",gTip:"重大决策前指定一个「唱反调的人」，奖励他挑漏洞。",gEx1:"本月向一位不图你资源的朋友求助一次。",gEx2:"每季度问自己：我正在赢的，是当初想要的那个吗？"},
+"李清照":{core:["你与李清照相似的，是把感受力活成专业能力。「绿肥红瘦」四字背后是常人没有的观察颗粒度——她的词不是多愁善感，是极端精确。","国破家亡后她写出「生当作人杰」。敏感是你的输入系统而非弱点——关键在输出，不在沉浸。"],truth:"对粗制滥造、言不由衷和美感缺失最敏感。",action:"先把感受记下来、做出来，用作品安放情绪。",seen:"有品位、真性情，对「好不好」天生有分辨力。",str:[["审美分辨率","对细节、语言和美的感知精度远超常人。"],["情感转化力","能把痛苦加工成作品，情绪有出口。"],["原则倔强","外表柔和，底线问题上一步不让。"]],sideTitle:"感受边界的另一面",sideBody:"敏感的人容易被过去困住，因为过去确实比现在美。给自己一个规则：回忆可以停留，但要带着产出离开。",arch:"感受者",remind:"当情绪浓度过高，判断会被回忆染色。给感受加一个输出管道，它就是天赋；没有管道，它就是消耗。",dTraits:["感受力","审美"],dHead:"你先确认真实感受再行动；遇冲突更看重「对不对劲」的直觉；最终看重真诚与品质。",dEnv:"你适合审美被尊重、允许深度表达的环境。别人愿把需要品味和真诚的任务交给你。需留意：别用情绪替对方下结论，先验证再定性。",roles:"创作、设计、文案、策展。",sens:"对敷衍、套话和被误解尤其敏感。",relKnow:"重情念旧，爱得具体。直接说出需要，别等对方从细节里猜。",relCoop:"投入真诚，也容易受伤后撤。把「我不舒服」说成具体的事，对方才有得改。",dirName:"质感创造者",dirDesc:"创作、设计、品牌审美。",dirTags:["感受力","审美","感受者","深度创作"],archNote:"你能把别人只是「经历」的事，变成留下来的东西。",gTip:"情绪上头先写三行再说出口，写完往往就有答案。",gEx1:"本周把一次不愉快做成一个具体产出。",gEx2:"每天设一个「无回忆时段」，只处理今天的事。"},
+"王昭君":{core:["你与王昭君相似的，是用承受力完成别人靠锋芒才能完成的事。主动请行和亲，漠北三十年，按异俗再嫁两代单于——每次身份重建，她都活下来且有分量。","你不喜欢争抢，但真需要有人承受时你不躲。你的力量形态是「接住」：接住变化、落差和情绪，再把局面焐热。"],truth:"对争抢、内耗和以强凌弱最敏感。",action:"先适应先承受，用时间化解对抗。",seen:"温和好相处，真遇上事比谁都稳。",str:[["环境适应力","能在陌生环境里扎根生长。"],["关系修复力","让紧绷的局面软着陆。"],["沉默的坚定","不爱表态，但认定的事不因压力改变。"]],sideTitle:"成全边界的另一面",sideBody:"昭君的出塞是选择，但身边人「习惯你的让步」可能不是。每次退让前问一句：这是我的选择，还是我的惯性？",arch:"承受者",remind:"当退让成为默认设置，委屈会积成说不出口的账。练习把需要说出来，让温柔带着牙齿。",dTraits:["适应力","包容度"],dHead:"你先观察环境再调整自己；遇冲突更看重和平解法；最终看重关系能否长期维持。",dEnv:"你适合氛围稳定、不崇尚内卷的环境。别人愿把协调和维护关系的任务交给你。需留意：和谐不等于回避，该表态时要表态。",roles:"客户维护、跨部门协调、外派开拓。",sens:"对冲突升级、咄咄逼人尤其敏感。",relKnow:"体贴先让步，但心里有本账。偶尔让对方的计划为你改一次。",relCoop:"团队的润滑剂。要防止成为「默认让步」的那个人——边界清晰，温和才有分量。",dirName:"柔性扎根者",dirDesc:"协调维护、外派开拓等需长期扎根的位置。",dirTags:["适应力","包容度","承受者","关系维护"],archNote:"你能让对抗软化、让陌生变熟，用承受力换别人拿武力换不来的东西。",gTip:"每次想退让前停十秒，区分「我选择让」和「我习惯让」。",gEx1:"本周提一次真实需要，坚持到对方回应。",gEx2:"记录一个月的让步事件，月底看哪些不必让。"},
+"上官婉儿":{core:["你与上官婉儿相似的，是在限制最多的位置上把专业做到不可替代。罪臣之后没入掖庭，靠一手文书被武则天起用，掌管制诰二十余年——从不抱怨牌差，只把手上这张牌打到极致。","你擅长在复杂关系里找生态位：观察利益流向，用能力和分寸换位置。这不是圆滑，是弱者的顶级生存智慧。"],truth:"对不专业、不守规矩和凭身份压人最敏感。",action:"先看清格局，再用专业和分寸安放自己。",seen:"情商高、能落地，交给你的事被妥帖处理。",str:[["生态位嗅觉","快速识别组织里哪里最需要自己。"],["分寸感","知道什么话说到几分，复杂关系里极少踩线。"],["专业硬实力","有一门吃饭的本事，且精进到难以替代。"]],sideTitle:"依附边界的另一面",sideBody:"婉儿最终死于政变，因为她的一切系于权力中枢——平台的光环再亮也是借来的。你需要的不是更多靠山，而是一份离开谁都能立足的能力。",arch:"立足者",remind:"当借力成为习惯，你会忘了搭自己的支点；当权衡成为本能，立场会越来越模糊。专业是锚，立场是骨，两者都要留。",dTraits:["分寸感","专业性"],dHead:"你先权衡关系与利弊；遇冲突更看重各方处境与体面；最终看重办成的最优路径。",dEnv:"你适合层级复杂、凭本事说话的枢纽环境。别人愿把需要沟通落地的任务交给你。需留意：别让「周全」吞掉「立场」。",roles:"高管助理、政企协调、枢纽型管理。",sens:"对不专业、被越权尤其敏感。",relKnow:"你懂别人多，说自己少。亲近的人需要偶尔看到你没在权衡的那一面。",relCoop:"组织里最好用的枢纽。但别把自己用成万金油——给核心专长留深耕时间。",dirName:"枢纽立足者",dirDesc:"协调枢纽、高阶助理、多方平衡。",dirTags:["分寸感","专业性","立足者","组织枢纽"],archNote:"你能在最复杂的局里找到自己的位置，并经营成谁都需要的那一块。",gTip:"每季度做一次自我盘点：如果明天离开平台，我的底牌是什么？",gEx1:"本月拒绝一次模糊立场的请求，练习说清「我站在哪边」。",gEx2:"每周固定时间精进核心技能，把借来的光换成自己的。"},
+"卓文君":{core:["你与卓文君相似的，是为想要的生活敢直接下注。十七岁新寡，当夜私奔，家里不认就当垆卖酒——每一步都背着世俗眼光，但每一步都是自己选的。","她收得住：丈夫想纳妾，她一首《白头吟》以退为进把婚姻扳回来。你同样敢开始，也敢在失衡时用行动表态。"],truth:"对懦弱、算计和骑墙最敏感。",action:"先行动，用事实代替纠结。",seen:"鲜活、有主意，活得比多数人痛快。",str:[["行动勇气","想要就去争取，不等万事俱备。"],["关系谈判力","关系失衡时敢用行动重立规则。"],["自我负责","为每个选择买单，不抱怨不甩锅。"]],sideTitle:"冲动边界的另一面",sideBody:"私奔是豪赌，幸而相如是真才子；不是每次上头都有好结果。文君写《白头吟》时是清醒的——把冷静期留给心跳最快的那一刻。",arch:"敢爱者",remind:"当「敢」成为标签，你可能用冲动证明勇气。重大决定前留一晚，不是怯懦，是给勇敢装方向盘。",dTraits:["行动力","真性情"],dHead:"你先听从内心意愿；遇冲突更看重真情实感而非面子；最终看重活得真实。",dEnv:"你适合自主权大、允许个性表达的环境。别人愿把需要开创破局的任务交给你。需留意：情绪是燃料不是方向盘。",roles:"创意创业、内容表达、自由职业。",sens:"对虚伪、将就尤其敏感。",relKnow:"爱得直接热烈，也需要同等的回应浓度。冷淡对你的杀伤力远超争吵。",relCoop:"你带来活力和真话。但感情里的果断搬到工作里可能是莽撞，注意分场合。",dirName:"鲜活行动者",dirDesc:"创意、创业、自由职业等靠主观能动性开路的位置。",dirTags:["行动力","真性情","敢爱者","自主开拓"],archNote:"你敢为想要的下注，也敢为失衡的关系按重启键。",gTip:"心跳最快的时刻不做重大决定，写下来第二天再执行。",gEx1:"复盘最近一次上头决定，标注哪些是勇气、哪些是冲动。",gEx2:"本月小成本做一件想做的事，验证自己的判断力。"},
+"平阳昭公主":{core:["你与平阳昭公主相似的，是能把一盘散沙组织成队伍。李渊起兵时她不在军中，却靠自己在关中收编义军、拉起七万人接应——死后以军礼下葬，是历史对「主帅」的确认。","你不靠依附立足，你能独立成军：拉队伍、聚人心、扛结果。"],truth:"对一盘散沙、议而不决最敏感。",action:"直接组织资源、明确分工，把事推起来。",seen:"有号召力，天然的发起人。",str:[["组织号召力","能把人和资源从零聚起来并留住。"],["独立扛局力","没有支持也能独立成事。"],["赏罚分明","带队伍讲规则，恩威并施。"]],sideTitle:"主导边界的另一面",sideBody:"统帅的惯性是「我来定」——但队伍的成长靠被信任，不是被指挥。多问「你们怎么看」，真的留出被说服的空间。",arch:"聚众者",remind:"当做主成为默认，你可能听不进不同声音；当队伍依赖你，你反被架在无人分担的位置。培养接棒的人，才是真正做成事的证明。",dTraits:["组织力","决断力"],dHead:"你先搭框架分好工；遇冲突更看重规矩与效率；最终看重事有没有被组织起来做成。",dEnv:"你适合有实权、目标明确、允许自主搭建体系的环境。别人愿把从零到一的任务交给你。需留意：强势只能换来服从，凝聚靠被听见。",roles:"团队管理、创业带队、活动组织。",sens:"对散漫、推诿尤其敏感。",relKnow:"关系里也习惯安排照顾，但亲近的人有时要的是被倾听。",relCoop:"善于统筹，团队离不开你。但「能者多劳」是陷阱——教会别人比替别人做更重要。",dirName:"聚人成事者",dirDesc:"带队管理、创业组织、项目发起。",dirTags:["组织力","决断力","聚众者","从零到一"],archNote:"你能把散落的资源和人心组织成能打硬仗的队伍。",gTip:"想直接下指令前，先问一句「你们怎么看」。",gEx1:"本月把一件擅长的事完整交出去，只验收不干预。",gEx2:"为最可能接棒的人设计一次独立扛事的机会。"},
+"班昭":{core:["你与班昭相似的，是用长期积累换来不可替代。兄长死于狱中，《汉书》无人能补，她奉诏续完——不是灵光一现，是几十年学问恰好接住了历史缺口。","你同样相信「坐得住」：学得进、写得出来、交得出活。在崇尚速成的时代，你的严谨本身是稀缺资产。"],truth:"对糊弄、半途而废和不严谨最敏感。",action:"先打基础再求突破，用完成度说话。",seen:"扎实可靠，深度工作交给你不会砸。",str:[["积累厚度","长期深耕一个领域，知识结构完整。"],["补位完成力","能接手未竟之事并善始善终。"],["自律秩序","不需要监督也能保持稳定产出。"]],sideTitle:"严谨边界的另一面",sideBody:"严谨成就了班昭，也框住了她。完成比完美更重要：允许交出八十分的答案，把力气用于多走一步，而不是原地打磨。",arch:"治学者",remind:"当完美主义接管节奏，项目会停在「还差一点」。给自己留一块可以潦草的自留地。",dTraits:["自律性","专业度"],dHead:"你先搭好方法框架；遇冲突更看重规则与先例；最终看重完成度与准确度。",dEnv:"你适合标准清晰、尊重专业、允许长期深耕的环境。别人愿把不能出错的深度任务交给你。需留意：deadline 也是专业的一部分。",roles:"学术研究、编辑审校、专业顾问。",sens:"对敷衍交差、数据含糊尤其敏感。",relKnow:"慢热但长情。把关心表达得直接一点，别人会更早接收到。",relCoop:"团队的质量底线。但别揽下所有边角——教方法和标准，比默默返工更有价值。",dirName:"深耕笃学者",dirDesc:"研究、审校、专业深耕。",dirTags:["自律性","专业度","治学者","长期积累"],archNote:"你能把别人接不住的长期任务接住并完成，让积累变成壁垒。",gTip:"给每个「还差一点」的项目设强制交付日，先交八十分版本。",gEx1:"选一门新领域坚持学完并输出笔记。",gEx2:"本月做一件「不完美但完成」的事。"},
+"谢道韫":{core:["你与谢道韫相似的，是「平时看不出、关键时刻镇得住」。咏絮之才让她成名，真正定义她的是孙恩之乱：持刀出门杀敌被俘，当面质问乱军首领——对方竟礼送她回家。","你的心理素质是深水式的：日常不动声色，极端处境下比所有慌乱的人清醒。底气来自内在秩序——你有自己的评价体系，不靠外界确认。"],truth:"对虚张声势、轻浮肤浅最敏感。",action:"先稳住自己再处理事情，从不靠嗓门解决问题。",seen:"安静有气质，所有人都知道你靠得住。",str:[["危机镇定力","压力越大越清醒。"],["内在秩序","有自己的标准，不需要外界认可确认自我。"],["才华内秀","实力藏在日常，出手时让人意外。"]],sideTitle:"内敛边界的另一面",sideBody:"道韫的才与胆，知道的人不多——因为她不展示。被低估是内秀者的默认处境：机会不会主动认识你。风来的时候，记得飞。",arch:"静水者",remind:"当「不争」成为习惯，关键时刻你也会沉默；当实力长期隐形，别人会真的以为你没有。矜持是气质，隐形是损失。",dTraits:["沉稳度","内秀"],dHead:"你先观察消化再表态；遇冲突更看重事实与体面；最终看重解决质量而非声势。",dEnv:"你适合以实力说话、不崇尚表演的环境。别人愿把关键节点需要镇场的任务交给你。需留意：主动争取展示机会。",roles:"危机处理、深度咨询、幕后军师。",sens:"对浮夸、瞎折腾尤其敏感。",relKnow:"不易走近，走近了会发现极深。主动分享一点内心，会加速真正的亲密。",relCoop:"危机时是团队的定心丸。但平时多让自己被看见——功劳不会自动归属沉默的人。",dirName:"定心内秀者",dirDesc:"危机应对、深度参谋、关键支撑。",dirTags:["沉稳度","内秀","静水者","厚积薄发"],archNote:"你能在所有人慌乱时保持清醒，你的存在本身就是团队的安全垫。",gTip:"每周主动展示一次成果或观点，让实力可见而不是可猜。",gEx1:"下次会议第一个发言，把沉默的判断变成声音。",gEx2:"列一份「被低估清单」，为每项设计一次主动曝光。"},
+"长孙皇后":{core:["你与长孙皇后相似的，是用时机感施加影响。救魏征、救房玄龄，都不在李世民暴怒时硬顶，而是等情绪过去、私下开口、一开口就说到点上——影响力在时机，不在音量。","你善于化解矛盾而不制造矛盾：说话有边界，做事留余地，好相处但有原则线。"],truth:"对沟通失控、以势压人最敏感。",action:"先降温再沟通，选对时机说对的话。",seen:"情商高、有分寸，公认的调和者。",str:[["时机嗅觉","知道什么时候说、怎么说。"],["情绪稳态","自己不失控，还能接住别人的失控。"],["边界智慧","温和但有原则，好说话不等于没底线。"]],sideTitle:"克己边界的另一面",sideBody:"长孙皇后克制到最后一步——临终仍要求薄葬。但懂事不该是无限透支的信用卡：所有人都夸你体贴时，往往没人问过你想不想。",arch:"调衡者",remind:"当照顾所有人成为习惯，你的需要会排在永远的最后。偶尔任性一次，是关系的氧气。",dTraits:["分寸感","共情度"],dHead:"你先考虑各方感受与时机；遇冲突更看重关系能否保全；最终看重长久结果。",dEnv:"你适合人际复杂、需要缓冲带的环境。别人愿把需要斡旋和维护氛围的任务交给你。需留意：别让「顾全大局」吞掉自己的立场。",roles:"人力协调、客户关系、家庭事务统筹。",sens:"对粗暴沟通、情绪绑架尤其敏感。",relKnow:"你是所有人的照顾者，却很少说自己的需要。试着让亲近的人为你让一次路。",relCoop:"冲突经你手会软着陆。但要防止成为情绪垃圾桶——建立自己的排压出口。",dirName:"润物调衡者",dirDesc:"关系协调、团队运营、客户维护。",dirTags:["分寸感","共情度","调衡者","关系润滑"],archNote:"你能在不制造新矛盾的前提下解开旧结，让对立的人重新坐回一张桌子。",gTip:"本周提一次自己的真实需求，不管它多「不懂事」。",gEx1:"记录一周内替人调和的事件，看付出是否被看见。",gEx2:"每天留一段不被打扰的时间，练习「先照顾自己」。"},
+"黄道婆":{core:["你与黄道婆相似的，是用双手解决具体问题。从童养媳逃到崖州，跟黎族妇女学纺织三十年，回乡把两套技术体系打通改出三锭纺车——松江布从此「衣被天下」。","你不信空谈：发现问题就修，工具不顺手就自己改。你相信的从来不是概念，是「做出来」。"],truth:"对纸上谈兵、光说不练最敏感。",action:"直接上手试，边做边改，用成品说话。",seen:"实干靠谱，事经你手都能落地。",str:[["动手落地力","能把想法变成能用的东西。"],["跨界整合力","善于把不同来源的方法拼成更好的方案。"],["极致耐心","对重复性工作有超常的忍受力。"]],sideTitle:"沉默边界的另一面",sideBody:"黄道婆造福天下，名字却差点没被记下——手艺人最大的吃亏是沉默。你不说，别人真的看不见：定期展示成果、留下记录。",arch:"匠人",remind:"当「做了就行」成为习惯，功劳会流向会说的人。表达是你手艺的另一半，缺一不可。",dTraits:["实干度","专注力"],dHead:"你先做出原型再迭代；遇冲突更看重事实与效果；最终看重东西有没有真正被做出来。",dEnv:"你适合以成果论英雄、允许专注做事的环境。别人愿把「必须落地」的任务交给你。需留意：酒香也怕巷子深。",roles:"研发、工艺、生产、技术实操。",sens:"对空谈、把演示当成果尤其敏感。",relKnow:"不善言辞但行动到位——记得把「我在乎你」说出来，行动的语言不是人人读得懂。",relCoop:"真正的交付担当。汇报和露脸不是虚荣，是让成果获得资源的必经之路。",dirName:"实干匠造者",dirDesc:"技术研发、工艺改进、产品落地。",dirTags:["实干度","专注力","匠人","成果导向"],archNote:"你能把「不可能」拆成一道道工序，最后交出能用的东西。",gTip:"每完成一个成果，花十分钟做成可展示的形式。",gEx1:"本月主动做一次成果汇报。",gEx2:"把一个纯手工流程标准化，验证可复制性。"},
+"秦良玉":{core:["你与秦良玉相似的，是「扛到底」的持久力。丈夫被害后接掌白杆兵四十年，兄弟子侄七人战死，她七十岁仍在练兵——《明史》将相列传里唯一单独立传的女性。","她靠的不是天赋，是熬过了同时代所有人。你同样是那种局面越难、咬牙越久的人。"],truth:"对半途而废、临阵脱逃最敏感。",action:"认了就扛到底，再难也不先松手。",seen:"压力大不崩、变故来不乱，最后的防线。",str:[["持久韧劲","能承受超长周期的压力而不折断。"],["临危稳局力","变故面前先稳住阵脚，稳住别人。"],["使命忠诚","对认定的责任从一而终。"]],sideTitle:"硬扛边界的另一面",sideBody:"连秦良玉都有兄弟分忧，你也需要自己的白杆兵：几个能说真话的人、一段能彻底放松的时间。逞强不是坚强，会求助的人才是真正的强者。",arch:"坚守者",remind:"你越不说累，别人越以为你不累。定期给自己放假——她的四十年是使命，你的透支不该是义务。",dTraits:["韧性","担当度"],dHead:"你先评估能否扛住再承诺；遇冲突更看重职责所在；最终看重事情有没有被撑到最后。",dEnv:"你适合需要长期坚守、重视忠诚与稳定输出的环境。别人愿把「不能断」的任务交给你。需留意：可持续比硬扛重要。",roles:"长期项目负责、应急坚守、关键岗位值守。",sens:"对放弃、变卦尤其敏感。",relKnow:"报喜不报忧是本能。让家人知道你的难处，是信任不是示弱。",relCoop:"可靠的定海神针。但请把「我撑得住」偶尔换成「我需要支援」。",dirName:"长线坚守者",dirDesc:"长期项目、关键岗位、危机坚守。",dirTags:["韧性","担当度","坚守者","长期主义"],archNote:"你能在所有人都想放弃的时候，把事撑到终点。",gTip:"每月给自己放一次彻底的假，放假时不处理任何事务。",gEx1:"向一位信任的人完整倾诉一次近期压力。",gEx2:"列出你正在硬扛的事，划掉一件可移交的。"},
+"曹操":{core:["你与曹操相似的，是极强的行动力与判断力。起兵几千人，官渡两万破十万——他的字典里没有「等」，只有「干」。","屠徐州是真，写「白骨露于野」也是真——务实到冷血，却保留自省能力。你同样：出手快，但事后会复盘。"],truth:"对低效、拖泥带水和空谈最敏感。",action:"先干起来，边干边调整。",seen:"雷厉风行，别人还在开会你已干完。",str:[["决断速度","信息不全也能拍板，抢时间窗口。"],["用人眼光","看人看势准，能把对的人放在对的位置。"],["自省底色","锋利但不失复盘能力，败了知道为什么败。"]],sideTitle:"刚愎边界的另一面",sideBody:"聪明人最大的坑，是觉得只有自己聪明。曹操多疑误杀过不该杀的人——留一两个敢说真话的人在身边，别把话说死。",arch:"破局者",remind:"当效率成为唯一标准，人会变成耗材；当自信滑向刚愎，判断失去纠错。留真话在侧，快才有意义。",dTraits:["行动力","判断力"],dHead:"你倾向快速出手边做边校准；遇冲突更看重效率与结果；最终看重事情真正落地。",dEnv:"你适合目标清晰、反馈及时、允许快速试错的环境。别人愿把需要推动力的任务交给你。需留意：快不等于对，重大决定留冷静期。",roles:"运营、创业、危机处理。",sens:"对拖延、层层审批尤其敏感。",relKnow:"直接不绕弯。多留一句「你怎么看」，亲近的人少一点被推着走的感觉。",relCoop:"重视效率与结果。但别把「催」当成「帮」，把节奏留一点给同伴。",dirName:"破局冲锋者",dirDesc:"销售、创业、危机处理等快速破局的位置。",dirTags:["行动力","判断力","破局者","快速推进"],archNote:"你能在信息不全时先推进再修正，让犹豫不再消耗结果。",gTip:"重大决定前留 24 小时，再问一次「一周后回看会不会后悔」。",gEx1:"把一个想立刻拍板的决定写下来，第二天再决定一次。",gEx2:"每天留一件「故意慢下来」的事，体验等待不等于失控。"},
+"苏轼":{core:["你与苏轼相似的，是消化打击的速度。乌台诗案下狱一百三十天，贬黄州俸禄停发，他开荒种地、研究猪肉做法——三次大贬，每贬一次多出一项生存技能。","豁达才是他最大的才华：不是没有痛苦，而是把痛苦过出滋味，还讲成段子给别人听。"],truth:"对苦哈哈的氛围和钻牛角尖最敏感。",action:"先接纳现状，再在现状里找出路。",seen:"有趣、共情力强，朋友圈的氛围担当。",str:[["逆境复原力","被打倒后消化得比谁都快。"],["生活创造力","能在任何处境里把日子过出滋味。"],["共情幽默","把糟糕的事讲成段子，也接得住别人的低谷。"]],sideTitle:"豁达边界的另一面",sideBody:"东坡也有「寂寞沙洲冷」的时刻。用幽默化解一切的风险，是该处理的情绪被压了下去——允许自己不豁达地难过一场。",arch:"旷达者",remind:"真正的强大，是能笑着说也能哭着说。别让乐观成为不许悲伤的规矩。",dTraits:["复原力","亲和度"],dHead:"你先接纳再调整；遇冲突更看重体面与后续相处；最终看重日子能否继续过好。",dEnv:"你适合氛围宽松、允许真实表达的环境。别人愿把需要稳住士气、活跃氛围的任务交给你。需留意：幽默之后要跟上真正的解决。",roles:"团队氛围、对外关系、内容表达。",sens:"对沉重压抑的氛围尤其敏感。",relKnow:"温暖有趣，但难过时习惯自己扛。允许亲近的人接住你一次。",relCoop:"你是士气发动机。但别永远扮演开心果——真实的低谷也可以被看见。",dirName:"韧性旷达者",dirDesc:"团队建设、对外关系、内容创作。",dirTags:["复原力","亲和度","旷达者","氛围担当"],archNote:"你能在任何处境里把日子过出滋味，还顺便照亮别人。",gTip:"难过时允许自己难过一场，不急着幽默救场。",gEx1:"本周找一个人说一件真实的糟心事，不包装成段子。",gEx2:"记录三次低谷复盘，看看自己实际是怎么走出来的。"],
+"李白":{core:["你与李白相似的，是骨子里的自由灵魂。二十五岁仗剑去国，供奉翰林不到两年被赐金放还——一生在漫游与碰壁之间，却把失意全部写成了千古名篇。","你讨厌被安排、被定义，渴望活得淋漓尽致。才华是你的通行证，也是你与现实的摩擦源。"],truth:"对束缚、重复和被安排最敏感。",action:"先忠于内心冲动，再想办法落地。",seen:"有才气、有感染力，但不太好管。",str:[["创意爆发力","灵感充沛，输出让人眼前一亮。"],["感染力","能把热情传递给一整桌人。"],["赤子真气","不装不演，活得真实。"]],sideTitle:"自由边界的另一面",sideBody:"「仰天大笑出门去」之前，太白也写过千百首练习作。自由不是想做什么就做什么，是不想做什么就有能力不做什么——把大梦想拆成小台阶，才华才不会内耗。",arch:"逐梦者",remind:"当热情成为唯一的驱动，节奏会断断续续。给才华建一套节奏系统，它才能落地生根。",dTraits:["创造力","表达力"],dHead:"你先忠于内心再考虑现实；遇冲突更看重自我空间；最终看重活得像自己。",dEnv:"你适合自由度高、看重创意、不打卡不坐班的环境。别人愿把需要灵感与感染力的任务交给你。需留意：三分钟热度需要外部节奏来兜底。",roles:"创作、内容、品牌、自由职业。",sens:"对管束、重复性事务尤其敏感。",relKnow:"热情时全情投入，冷淡时需要独处。让亲近的人了解你的节奏，而不是猜。",relCoop:"你带来灵感和激情。但团队需要稳定性——把「来了灵感」变成「每周固定输出」。",dirName:"自由创造者",dirDesc:"创作、内容、品牌等靠灵感与表达吃饭的位置。",dirTags:["创造力","表达力","逐梦者","自由节奏"],archNote:"你能把别人看见却说不出的东西，活出来、写出来。",gTip:"把大梦想拆成每周一个可交付的小台阶。",gEx1:"为最想做的事设一个九十天计划，每周交付一次。",gEx2:"记录自己的精力节律，把创作安排在高峰期。"],
+"诸葛亮":{core:["你与诸葛亮相似的，是谋定后动、讨厌失控。未出茅庐已知三分天下；但北伐是他死后的事——二十年里他主要管后勤内政，稳到极致。","事必躬亲到「罚二十以上皆亲览」，五十四岁死在军中。你同样：计划周密，但容易把自己用尽。"],truth:"对混乱、无序和计划被打乱最敏感。",action:"先想清楚再动手，为每种可能备好方案。",seen:"团队的大脑，预判问题、兜住风险。",str:[["前瞻规划","动手前已把几步之后的路想好。"],["风险兜底","总能预备PlanB，意外到你这里不再是意外。"],["责任贯彻","答应的事鞠躬尽瘁，半路不掉链子。"]],sideTitle:"周密边界的另一面",sideBody:"「罚二十以上皆亲览」的代价是五十四岁陨落五丈原。你的价值在方向而非细节——事必躬亲会累死自己、养出巨婴团队。留三分余地，可持续才是一切的根。",arch:"帷幄者",remind:"当完美接管节奏，放手会越来越难。教会别人做，比自己做到更难、也更值。",dTraits:["规划力","责任心"],dHead:"你先推演再落子；遇冲突更看重全局与后续；最终看重长期胜率而非一时得失。",dEnv:"你适合节奏可控、允许深度规划的环境。别人愿把统筹布局的任务交给你。需留意：别等完美方案，先干起来再调整。",roles:"战略规划、项目统筹、产品架构。",sens:"对失控、无预案尤其敏感。",relKnow:"可靠周全，但习惯把自己排在最后。让亲近的人参与你的计划，而不是只收结论。",relCoop:"你是团队最稳的大脑。但要防止大包大揽——授权不是减分，是让体系活下来。",dirName:"运筹帷幄者",dirDesc:"战略、统筹、规划等以长期胜率论成败的位置。",dirTags:["规划力","责任心","帷幄者","长期布局"],archNote:"你能在落子前想好后面几步，让时间与意外都站在你这边。",gTip:"发现自己在「再等等」时，给等待加截止日期，到期必须出手。",gEx1:"把一件亲力亲为的事完整交给别人，只做验收。",gEx2:"为当前目标写下三种可能的失败，各备一条应对。"},
+"张骞":{core:["你与张骞相似的，是十几年不衰减的目标感。被匈奴扣留十三年，娶妻生子，但汉使节杖始终不离手——逃出后第一件事，是继续西行完成使命。","你是不动声色的长期主义者：不喧哗、不放弃，用时间打败聪明人。"],truth:"对半途而废和目标漂移最敏感。",action:"认准了就默默走完，不诉苦不张扬。",seen:"沉稳可靠，认定的事一定走到底。",str:[["目标定力","以十年为单位坚持一件事。"],["忍耐转化","把困境的时间变成积累而非内耗。"],["踏实输出","每一步都踩实，不赌运气。"]],sideTitle:"沉默边界的另一面",sideBody:"太能忍的代价是委屈在心里堆积成疾。把目标告诉更多人——同行者会让长路短一半，别把自己熬成孤岛。",arch:"远行者",remind:"当忍耐成为本能，求助会被你当成软弱。长路需要补给站：定期让人知道你在哪、需要什么。",dTraits:["定力","耐力"],dHead:"你先确认方向再投入；遇冲突更看重不偏离长期目标；最终看重有没有走完全程。",dEnv:"你适合以长期结果论成败、不折腾的环境。别人愿把周期长、见效慢的任务交给你。需留意：定期向外同步进度，别让沉默掩盖成果。",roles:"长期项目、深耕型业务、研究攻坚。",sens:"对频繁变向、短期主义尤其敏感。",relKnow:"慢热可靠，答应的事必有安排。让亲近的人知道你的节奏，比让他们等结论更重要。",relCoop:"团队最稳的一环。但别把关系也当成长跑——留一点不谈目标的空间。",dirName:"长线远行者",dirDesc:"长期项目、深耕业务、研究攻坚。",dirTags:["定力","耐力","远行者","长期主义"],archNote:"你能把长远目标拆成眼前的下一步，让时间站在你这边。",gTip:"给长期目标设季度检查点，公开同步一次进度。",gEx1:"把目标告诉三个人，让同行者约束你的坚持。",gEx2:"本月主动表达一次需求，练一练「开口」。"},
+"王阳明":{core:["你与王阳明相似的，是向内求答案的习惯。廷杖四十、贬到龙场驿——驿站里只有他和一名老仆，心学就在那里悟出；后来平定宁王之乱只用了几个月。","外界再乱，你心里自有一套坐标。你的稳，来自想得透。"],truth:"对外部喧哗、人云亦云最敏感。",action:"先回到内心确认原则，再决定怎么做。",seen:"通透、稳定，一开口就说在点上。",str:[["独立思考","不被舆论和权威带走，有自己的判断坐标系。"],["逆境转化","把低谷变成认知升级的原料。"],["知行合一","想清楚就去做，认知与行动不脱节。"]],sideTitle:"清醒边界的另一面",sideBody:"想得太透的人，容易对世俗的热情变淡——反正一切早有答案。但有些答案要靠「做」才能更新。去犯错、去修正，事上磨，方立得住。",arch:"觉悟者",remind:"当清醒成为惯性，行动会滞后于认知。你缺的不是答案，是把答案扔进现实里检验的那一下。",dTraits:["认知力","稳定度"],dHead:"你先向内确认原则再行动；遇冲突更看重本质而非表面；最终看重内心与行为的一致。",dEnv:"你适合价值清晰、允许独立思考的环境。别人愿把需要定夺方向的任务交给你。需留意：想七分就去做，剩下三分在路上补。",roles:"咨询、教育、思想型管理、深度顾问。",sens:"对表里不一、思维懒惰尤其敏感。",relKnow:"通透但不算计。多说一句你的犹豫和不确定，亲密感会翻倍。",relCoop:"团队的定海神针。但别只给结论——把思考过程讲出来，团队才能长出脑子。",dirName:"知行合一者",dirDesc:"咨询、教育、深度顾问等以认知输出为主的位置。",dirTags:["认知力","稳定度","觉悟者","深度思考"],archNote:"你能在外界混乱时提供坐标，让迷茫的人重新站稳。",gTip:"想到七分就执行，把「再想想」设为限时十分钟。",gEx1:"本月做一件「没完全想清楚」但方向对的事。",gEx2:"每周写一次复盘：认知和行动哪里不一致。"},
+"项羽":{core:["你与项羽相似的，是赤子般的血性与巅峰爆发力。巨鹿破釜沉舟，九战九捷；彭城三万骑击溃五十六万联军——关键时刻敢押上全部。","你靠实力说话、不耍心机，是让人热血沸腾的队友。但你的短板也写在史书里：太刚易折，不善迂回。"],truth:"对算计、懦弱和背信弃义最敏感。",action:"正面刚，凭实力和气势压倒对手。",seen:"爆发力惊人，关键时刻敢押全部。",str:[["巅峰爆发力","关键时刻能把状态提到极限。"],["赤子血性","认定就全力以赴，不玩虚的。"],["战场直觉","对时机的嗅觉极准，敢打别人不敢打的仗。"]],sideTitle:"刚烈边界的另一面",sideBody:"乌江边他本可渡江回江东，却选择自刎——战力顶级，战略与退路管理几乎不及格。留退路不是懦弱是智慧：赢了要能守，错了要能退，学会低头才能站得更久。",arch:"霸王",remind:"当血性压过计算，孤注一掷会变成默认选项。情绪上头时做的决定，多数要靠后来加倍偿还。",dTraits:["爆发力","血性"],dHead:"你倾向正面突破速战速决；遇冲突更看重胜负与尊严；最终看重打得够不够彻底。",dEnv:"你适合以结果论英雄、鼓励正面竞争的环境。别人愿把硬仗交给敢押上全部的你。需留意：重大行动前强制列一份退出方案。",roles:"销售冲刺、竞技型业务、攻坚突击。",sens:"对背信、耍心机和临阵退缩最敏感。",relKnow:"爱恨分明、来得猛烈。给亲近的人留一点缓冲，烈酒也需要醒。",relCoop:"你带来士气和冲劲。但团队需要有人唱反调——别让忠诚变成只说好话。",dirName:"正面突破者",dirDesc:"销售冲刺、竞技业务、攻坚突击。",dirTags:["爆发力","血性","霸王","正面突破"],archNote:"你能在所有人都犹豫时押上全部，一战定乾坤。",gTip:"每次想全力押上之前，先写下一句「如果输了怎么办」。",gEx1:"复盘最近一次情绪上头的决定，算算实际成本。",gEx2:"本月练一次「战略性退让」，体验认输不丢人。"},
+"岳飞":{core:["你与岳飞相似的，是把使命刻进行为的纪律性。从普通士兵到节度使只用七年；三十九岁被冤杀时手握重兵，却选择奉诏班师——原则性刻进了骨子里。","你答应的事拼死做到，最见不得背叛与不公。你是朋友眼里「可托付」的那个人。"],truth:"对背叛、不公和失职最敏感。",action:"按原则办事，说到做到，不打折扣。",seen:"原则性强、说到做到，可托大事。",str:[["使命纪律","对认定的责任从一而终。"],["持续精进","从士兵到统帅，全靠一场场硬仗打出来。"],["感召力","你的坚持本身就能让队伍凝聚。"]],sideTitle:"忠直边界的另一面",sideBody:"岳飞的悲剧一半来自愚忠——坚持之前，先看清值不值。你的忠诚很贵，请留给值得的人和制度；察觉被辜负时，及时止损也是担当。",arch:"尽忠者",remind:"当原则绝对化，你可能为不值得的体系耗尽自己；当付出成为习惯，委屈会变成慢性毒药。定期审视：我守的这份约，对方也在守吗？",dTraits:["原则性","可靠度"],dHead:"你先确认职责所在再行动；遇冲突更看重是非对错；最终看重问心无愧。",dEnv:"你适合规则公正、付出被承认的环境。别人愿把不能出事的任务交给你。需留意：识别组织是否配得上你的忠诚。",roles:"品质把关、合规审计、核心值守。",sens:"对背叛、不公尤其敏感。",relKnow:"重诺可靠但不会撒娇。偶尔卸下责任人的样子，让关系喘口气。",relCoop:"说到做到的定心丸。但别用同一把尺子量所有人——有人做不到时，先问原因。",dirName:"忠直守约者",dirDesc:"品质把关、合规审计、核心值守。",dirTags:["原则性","可靠度","尽忠者","使命必达"],archNote:"你让「承诺」这两个字有千钧的分量。",gTip:"每次付出前问一句：对方是否也在对等地付出？",gEx1:"本月复盘一次被辜负的付出，练习及时止损。",gEx2:"把「说不」练习一次——拒绝不该你担的责任。"],
+"司马迁":{core:["你与司马迁相似的，是为重要目标忍受一切的定力。替败将说话获罪当死，家里凑不出赎命钱，他接受宫刑换命——为的是把《史记》写完。","他把屈辱直接折算成工期：此后十三年，在宫中把书写完。你的抗压不是硬撑，是心里有一件比屈辱更大的事。"],truth:"对轻飘飘的放弃和无聊的消耗最敏感。",action:"认准长期目标，能屈能伸，用成果回应一切。",seen:"抗压极强，认定的目标多年不动摇。",str:[["终极定力","为了核心目标可以承受中途的一切。"],["屈辱转化力","把打击变成燃料，而非毒药。"],["历史耐心","相信时间会给出公正的评价。"]],sideTitle:"忍耐边界的另一面",sideBody:"司马迁对自己太狠——活着完成使命，比牺牲更难也更值。但别忽略身心的警报：使命是长跑，身体垮了，笔就停了。",arch:"著史者",remind:"当「忍」成为默认，你会忽略本该处理的伤害。使命值得忍，但不值得用健康去换。",dTraits:["定力","抗压性"],dHead:"你先确认值不值得再决定忍不忍；遇冲突更看重长期意义；最终看重最终成果。",dEnv:"你适合目标宏大、允许长期投入的环境。别人愿把「非成不可」的任务交给你。需留意：把大使命切成小里程碑，每完成一步就奖励自己。",roles:"长期著述、深度研究、重大工程。",sens:"对轻率否定、嘲讽坚持者最敏感。",relKnow:"外表平静内心汹涌。让亲近的人走进你的目标，他们才会懂你的沉默。",relCoop:"你能接住最难的任务。但别把职场当刑场——完成比殉道重要。",dirName:"使命践行者",dirDesc:"长期著述、深度研究、重大工程。",dirTags:["定力","抗压性","著史者","宏大目标"],archNote:"你能为真正重要的东西忍受中途的一切，并最终交出成品。",gTip:"把使命切成小里程碑，每完成一步就奖励一次。",gEx1:"写下你的终极目标，贴在看得见的地方。",gEx2:"本月关注一次身心警报，并做出实际调整。"],
+"范蠡":{core:["你与范蠡相似的，是永远比局面早半步的清醒。帮勾践复国二十二年，功成当夜乘船离开；三次经商成巨富，又三次散财重来。","他一生只做一件事：在同一种局面里，比别人早一步退出。你懂人性、知分寸，知道何时全力进取、何时转身离场。"],truth:"对贪恋、恋栈和看不清退场时机最敏感。",action:"进退都有预案，永远给自己留后手。",seen:"嗅觉灵、风险意识强，总能先人一步。",str:[["时机嗅觉","对进退时点的判断近乎本能。"],["风险分散","永远不把所有筹码放在一张桌上。"],["再起能力","能从零开始三次，说明核心能力长在自己身上。"]],sideTitle:"理性边界的另一面",sideBody:"算得太清的人，关系里会少一点不计较的部分。人生有些最好的回报，恰恰来自不计回报——留一段不谈利弊的热爱，那是你灵感的来源。",arch:"知机者",remind:"当理性成为唯一算法，你会提前退出很多本该投入的关系。有些局，值得你输一次。",dTraits:["风险嗅觉","理性度"],dHead:"你先评估进退空间再行动；遇冲突更看重后续影响；最终看重长期胜率。",dEnv:"你适合市场化、以判断力论价值的环境。别人愿把需要布局和风控的任务交给你。需留意：留一段不算账的人生，给热爱和关系。",roles:"投资、战略、咨询、创业二次曲线。",sens:"对盲目乐观、无退路方案尤其敏感。",relKnow:"可靠但不黏人。偶尔「不划算」地投入一段关系，对方会记住一辈子。",relCoop:"你是团队的风向标和保险栓。但别把同事都当棋子——留一点纯粹的交情。",dirName:"知机善退者",dirDesc:"投资、战略、咨询等以判断力立身的位置。",dirTags:["风险嗅觉","理性度","知机者","进退有度"],archNote:"你总能在潮水转向前找到自己的位置，进退之间从容不迫。",gTip:"每段重要投入都预设退出条件，写下来。",gEx1:"本月做一件「不划算但想做」的事，不算回报。",gEx2:"给一位朋友无目的地帮一次忙，不记人情账。"],
+"陶渊明":{core:["你与陶渊明相似的，是内心澄澈、不喜逢迎。任彭泽县令八十一天，督邮来视察要他束带迎接，他当场挂印离职——此后二十二年躬耕田园，穷到讨饭也没再出来。","你宁可少得到一点，也不愿活得拧巴。在人人内卷的时代，你守着自己的节奏。"],truth:"对虚伪应酬、形式主义最敏感。",action:"先问自己舒不舒服，再决定要不要。",seen:"淡泊随性、真诚，跟你相处很松弛。",str:[["内在标准","有自己的一套活法，不随大流。"],["真诚底色","待人无算计，相处无负担。"],["取舍果断","不符合内心秩序的，说放就放。"]],sideTitle:"避世边界的另一面",sideBody:"「不为五斗米折腰」的代价是穷。真正的从容，是选过之后的不悔；但回避冲突有时也会让你错过本该争取的东西。守住节奏没错，重要的人和机会，值得你主动一次。",arch:"守拙者",remind:"当退让成为习惯，你可能错过本属于自己的东西。淡泊是选择，不是逃避——分清这两者，从容才有底气。",dTraits:["淡泊度","真实性"],dHead:"你先问内心是否认同再行动；遇冲突更看重是否违背本心；最终看重活得舒展。",dEnv:"你适合关系简单、不搞形式主义的环境。别人愿把需要真诚和判断力的任务交给你。需留意：该争取时争取，退让是选择不是惯性。",roles:"创作、研究、自由职业、小而美的事业。",sens:"对虚伪应酬、强行内卷尤其敏感。",relKnow:"真诚但不主动。重要的人，值得你先迈一步。",relCoop:"你带来真诚和松弛。但别用「佛系」回避本该表达的立场。",dirName:"澄澈守拙者",dirDesc:"创作、研究、小而美事业。",dirTags:["淡泊度","真实性","守拙者","自主节奏"],archNote:"你守住了自己的节奏，让「活得像自己」成为可能。",gTip:"每月争取一次本可以「让」的机会，练一练主动。",gEx1:"向一位重要的人主动表达一次重视。",gEx2:"区分三件「真心不想要」和「不敢要」的事。"],
+"霍去病":{core:["你与霍去病相似的，是少年气的极端锐度。十七岁率八百骑脱离大军奔袭数百里，斩获两千余级；十九岁独立指挥河西之战。汉武帝要教他兵法，他回「顾方略何如耳」。","你不迷信经验、相信直觉与速度。别人还在论证可行性，你已经冲出去把事干完了。"],truth:"对墨守成规、论证拖延最敏感。",action:"凭直觉闪电出击，用结果证明路线。",seen:"敢想敢干，是天生的破局者。",str:[["直觉锐度","在信息不全时对正确方向的惊人嗅觉。"],["速度优势","出手比所有对手的预案都快。"],["不设限","不信「不可能」，只信试过没有。"]],sideTitle:"锐利边界的另一面",sideBody:"霍去病二十四岁就燃尽了。透支式冲刺的代价，是可持续性归零——给你的锐气配上刹车和导航：定期复盘，把冲劲变成可复制的打法，把身体当成本金而不是耗材。",arch:"闪电者",remind:"当快成为唯一节奏，团队和身体都会先于你报警。留出复盘与休息，锐气才能保持十年，而不是一季。",dTraits:["速度","直觉"],dHead:"你倾向闪电出手后快速迭代；遇冲突更看重战机与结果；最终看重速度带来的先手优势。",dEnv:"你适合鼓励快速试错、不以资历论英雄的环境。别人愿把需要抢时间窗口的任务交给你。需留意：定期复盘，把个人直觉沉淀成团队打法。",roles:"新品突击、市场抢滩、短周期攻坚。",sens:"对流程冗长、论资排辈尤其敏感。",relKnow:"热烈直接但没耐心。慢下来的陪伴，是你要练的功课。",relCoop:"你是突击队长。但要留时间教别人你的打法——团队不能永远靠你一个人冲。",dirName:"闪电突击者",dirDesc:"新品突击、市场抢滩、短周期攻坚。",dirTags:["速度","直觉","闪电者","先手优势"],archNote:"你能在窗口关闭之前把事干完，速度本身就是你的护城河。",gTip:"每次冲刺后强制安排一天复盘与休整。",gEx1:"把最近一次直觉胜仗复盘成可复制的步骤。",gEx2:"本月为身体做一次诚实的体检式盘点。"}
+};
 
-/* ===== 按句累积截取：句子完整优先，字数只做软约束 ===== */
-function trimText(s,max){
-  var parts=[],buf="";
-  for(var i=0;i<s.length;i++){buf+=s[i];if("。！？；".indexOf(s[i])>-1){parts.push(buf);buf="";}}
-  if(buf)parts.push(buf);
-  var out="";
-  for(var j=0;j<parts.length;j++){
-    if(out&&(out+parts[j]).length>max)break;
-    out+=parts[j];
-  }
-  return out||parts[0];
-}
-
-/* ===== 台词清洗：去末尾句号等标点 ===== */
+/* ===== 台词清洗 ===== */
 function cleanQ(s){return s.replace(/[。．.!！?？；;，,、~～…]+$/,"")}
 
 /* ===== 答题 ===== */
@@ -450,10 +508,9 @@ function goBack(){if(cur>0){cur--;renderQ()}}
 
 /* ===== 结果分析 ===== */
 const DIMN=["决断","洞察","表达","担当","谋略","仁心"];
-const SUBS={"决断":"破局者 · 热血破阵者","洞察":"洞察者 · 明察秋毫者","表达":"表达者 · 妙笔生花者","担当":"担当者 · 力挽狂澜者","谋略":"谋略者 · 运筹帷幄者","仁心":"仁心者 · 温柔坚定者"};
-/* 细刻度相似度：六维 0~100 逐一比对，满分 600 */
-function simOf(f,norm){let s=0;const fv=f.v.map(x=>x/3*100);fv.forEach((x,i)=>{s+=100-Math.abs(x-norm[i])});return s}
-/* 答题指纹：由六维得分结构生成，用于同分时的稳定区分（确定性哈希，无随机） */
+/* 细刻度相似度：使用校准向量 RV（六维 0~100 逐一比对，满分 600） */
+function simOf(f,norm){let s=0;const fv=RV[f.name]||f.v.map(x=>x/3*100);fv.forEach((x,i)=>{s+=100-Math.abs(x-norm[i])});return s}
+/* 答题指纹：确定性微扰，用于同分时稳定区分（无随机） */
 function ansSig(norm){
   const s=norm.slice().sort((a,b)=>b-a).join(",");
   let h=0;for(let i=0;i<s.length;i++){h=(h*131+s.charCodeAt(i))%10007}
@@ -462,16 +519,13 @@ function ansSig(norm){
 function showResult(isShare){
   const w=[0,0,0,0,0,0];
   answersIdx.forEach((oi,qi)=>{const o=QS[qi].o[oi];for(let i=0;i<6;i++)w[i]+=o[i+1]||0});
-  const maxD=[0,0,0,0,0,0];
-  QS.forEach(q=>{for(let i=0;i<6;i++){let m=0;q.o.forEach(o=>{if((o[i+1]||0)>m)m=o[i+1]});maxD[i]+=m}});
-  const norm=w.map((x,i)=>Math.min(100,Math.round(x/maxD[i]*100)));
+  const norm=w.map((x,i)=>Math.min(100,Math.round(x/MAXD[i]*100)));
   let pool=FIGS.filter(f=>dir==="all"||f.g===dir);if(!pool.length)pool=FIGS;
-  /* 三级排序：① 细刻度相似度 ② 偏差维度罚分 ③ 答题指纹稳定微扰；fame 仅作完全同分时的兜底 */
   const sig=ansSig(norm);
   pool.forEach(f=>{
     let base=simOf(f,norm);
     let tie=0;
-    f.v.forEach((x,i)=>{tie+=Math.abs(x-norm[i]/34)>1?1:0});
+    (RV[f.name]||[]).forEach((x,i)=>{if(Math.abs(x-norm[i])>18)tie+=1});
     const jit=((sig*7+f.name.charCodeAt(0)*13)%17)/17*0.9;
     f._s=base-tie*2+jit;
   });
@@ -480,47 +534,87 @@ function showResult(isShare){
   const simP=Math.round(simOf(f,norm)/600*100);
   lastFig=f;lastSim=simP;
   const uord=norm.map((u,i)=>({u,i})).sort((a,b)=>b.u-a.u);
+  const lo=uord[uord.length-1];
   document.getElementById("rSim").textContent=simP+"%";
   document.getElementById("rSim2").textContent=simP+"%";
   document.getElementById("rName").textContent=f.name;
-  document.getElementById("rSub").textContent=SUBS[DIMN[uord[0].i]];
+  document.getElementById("rSub").textContent=f.dyn;
   document.getElementById("rQuote").textContent="「 "+cleanQ(f.q[0])+" 」";
   document.getElementById("t3Hi").textContent=norm[uord[0].i];
   document.getElementById("t3HiLab").textContent=DIMN[uord[0].i];
-  const lo=uord[uord.length-1];
   document.getElementById("t3Lo").textContent=norm[lo.i];
   document.getElementById("t3LoLab").textContent=DIMN[lo.i];
-
   document.getElementById("lgBase").textContent=f.name+"原型";
 
-  /* 01 人物自画像（精简 · 按句收尾） */
-  document.getElementById("rBio2").innerHTML="你与 <b style='color:var(--panel)'>"+f.name+"</b> 相似的，不是经历，而是处理世界的方式："+trimText(f.bio,66);
-
-  /* 02 六维能力结构 */
+  /* CORE 01 · 六维能力得分 */
   document.getElementById("rBars").innerHTML=DIMN.map((n,i)=>'<div class="brow"><span class="bl">'+n+'</span><div class="btrack"><i style="width:'+norm[i]+'%"></i></div><span class="bval">'+norm[i]+"</span></div>").join("");
-  const fv=f.v.map(x=>Math.round(x/3*100));
-  const pair=norm.map((u,i)=>({i,u,p:fv[i],both:Math.min(u,fv[i])})).sort((a,b)=>b.both-a.both);
 
-  /* 03 共同底色（精简版） */
-  const roles=["第一底色","隐藏天赋","长期优势"];
-  document.getElementById("rColors").innerHTML=pair.slice(0,3).map((x,k)=>'<div class="subcard"><h4>'+roles[k]+' · <span class="tag8">'+DIMN[x.i]+"</span></h4><p>"+DIM_TIP[DIMN[x.i]]+"</p></div>").join("");
+  /* ===== 内容填充：人物专属 FIG_PACK ===== */
+  const P=FIG_PACK[f.name]||{};
+  /* CORE 02 · 人格内核 */
+  document.getElementById("cCore1").textContent=(P.core[0]||"").replace("{fig}",f.name);
+  document.getElementById("cCore2").textContent=P.core[1]||"";
+  document.getElementById("cTruth").textContent=P.truth;
+  document.getElementById("cAction").textContent=P.action;
+  document.getElementById("cSeen").textContent=P.seen;
+  /* STRENGTH 03 · 三项优势（人物专属） */
+  document.getElementById("cStrengths").innerHTML=(P.str||[]).map((s,k)=>'<div class="srow"><span class="no2">0'+(k+1)+'</span><div><b>'+s[0]+'</b><p>'+s[1]+'</p></div></div>').join("");
+  /* TENSION 04 · 隐藏张力 */
+  document.getElementById("cSideTitle").textContent=P.sideTitle;
+  document.getElementById("cSideBody").textContent=P.sideBody;
+  document.getElementById("cRemindTitle").textContent=P.arch+"需要注意的惯性";
+  document.getElementById("cRemindBody").textContent=P.remind;
+  /* DECISION 05 · 决策方式 */
+  document.getElementById("cDTags").textContent=(P.dTraits||[]).join(" · ");
+  document.getElementById("cDHead").textContent=P.dHead;
+  document.getElementById("cDEnv").textContent=P.dEnv;
+  document.getElementById("cRole").textContent="适合"+(P.roles||"");
+  document.getElementById("cSens").textContent=P.sens;
+  document.getElementById("cLife").textContent="你更适合保留自主节奏的生活。"+DIMN[lo.i]+"是你较少依赖的策略，不必强迫自己变成另一种人，但可以用稳定的小习惯补足它。";
+  /* RELATION 06 · 关系模式 */
+  document.getElementById("cRel1").textContent=P.relKnow;
+  document.getElementById("cRel2").textContent=P.relCoop;
+  /* DIRECTION 07 · 适合深耕的方向 */
+  document.getElementById("cDirName").textContent=P.dirName;
+  document.getElementById("cDirDesc").textContent=P.dirDesc;
+  document.getElementById("cChips").innerHTML=(P.dirTags||[]).map(t=>"<span>"+t+"</span>").join("");
+  document.getElementById("cIdeal").textContent=P.dEnv;
+  document.getElementById("cLife2").textContent="你的原型更依赖"+(P.dTraits||["",""])[0]+"与"+(P.dTraits||["",""])[1]+"，把生活设计成能让它们持续发挥的节奏即可。";
+  /* GROWTH 08 · 成长建议 */
+  document.getElementById("gTip").textContent=P.gTip;
+  document.getElementById("gEx1").textContent=P.gEx1;
+  document.getElementById("gEx2").textContent=P.gEx2;
+  /* 结语 */
+  document.getElementById("cEndNote").textContent=P.archNote;
 
-  /* 04 现实中的你（精简版） */
-  document.getElementById("rReal").textContent=f.real;
-
-  /* 05 盲点与建议（精简版） */
-  document.getElementById("rBlind").textContent=f.blind;
-  document.getElementById("rRisk").textContent=f.risk;
-  document.getElementById("rAdv").textContent=f.adv;
-
-  /* 06 写给你（按句收尾，保留落款与台词卡） */
-  document.getElementById("rLetter").innerHTML=trimText(f.letter,80)+'<div class="sig">—— '+f.name+" · 谨上</div>";
-  document.getElementById("rQuotes").innerHTML=f.q.map(q=>'<div class="qcard">「 '+cleanQ(q)+" 」</div>").join("");
-
-  drawRadarOn(document.getElementById("radar"),norm,fv);
+  drawRadarOn(document.getElementById("radar"),norm,RV[f.name]);
   go(4);
 }
 function retry(){cur=0;answersIdx=[];dir="";document.querySelectorAll(".dir").forEach(d=>d.classList.remove("sel"));const b=document.getElementById("dirBtn");b.style.opacity=.4;b.style.pointerEvents="none";go(1)}
+
+/* ===== 人物覆盖率检测（Console 可选运行：coverageTest()） ===== */
+function coverageTest(N){
+  N=N||200000;
+  var cnt={};FIGS.forEach(function(f){cnt[f.name]=0});
+  for(var t=0;t<N;t++){
+    var w=[0,0,0,0,0,0];
+    for(var qi=0;qi<QS.length;qi++){
+      var o=QS[qi].o[Math.floor(Math.random()*4)];
+      for(var k=0;k<6;k++)w[k]+=(o[k+1]||0);
+    }
+    var norm=w.map(function(x,i){return Math.min(100,Math.round(x/MAXD[i]*100))});
+    var best=null,bs=-1;
+    FIGS.forEach(function(f){
+      var s=0;(RV[f.name]||[]).forEach(function(x,i){s+=100-Math.abs(x-norm[i])});
+      if(s>bs){bs=s;best=f.name}
+    });
+    cnt[best]++;
+  }
+  console.table(Object.keys(cnt).map(function(n){return {人物:n,命中:cnt[n],占比:(cnt[n]/N*100).toFixed(2)+"%"}}));
+  var zero=Object.keys(cnt).filter(function(n){return cnt[n]===0});
+  console.log("测不到的人物：",zero.length?zero.join("、"):"无 ✅ 24人全部可测");
+  return cnt;
+}
 
 /* ===== 长图保存（CDN 兜底修复版） ===== */
 var H2C_URLS=[
@@ -579,7 +673,7 @@ function showModal(type){
 }
 function hideModal(){document.getElementById("mask").classList.remove("show")}
 
-/* ===== 雷达图（放大版 · 无数字 · 跟随主题色 · 高度收紧）===== */
+/* ===== 雷达图（放大版 · 无数字 · 跟随主题色 · 原型虚线用校准向量） ===== */
 function drawRadarOn(c,vu,vt){
   const cs=getComputedStyle(document.body);
   const pri=(cs.getPropertyValue("--pri").trim()||"#3ba38b");
@@ -611,7 +705,7 @@ function drawRadarOn(c,vu,vt){
     x.fillText(labels[i],p[0],p[1]);
   }
 }
-cur=0;renderQ();
+if(!rp){cur=0;renderQ()}else{cur=QS.length}
 </script>
 </body>
 </html>
