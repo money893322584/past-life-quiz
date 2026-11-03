@@ -7,10 +7,6 @@
 <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
 <style>
 :root{--pri:#3ba38b;--prid:#2e7d68;--bg:#edf4f0;--soft:#f7fbf9;--lgt:#eaf5ef;--brd:#cfe4da;--txt:#2e3d38;--mut:#7f938c;--warn:#2e7d68;--cardbg:#f7fbf9;--cardbrd:#d9ece3;--panel:#24574a;--body:#7c9a8e;--acc:#2e9c7f;--base:#e39a66}
-body[data-theme="terra"]{--pri:#b46a3c;--prid:#96522c;--bg:#f6ecdd;--soft:#fcf6ec;--lgt:#f6ead9;--brd:#e6d3b8;--txt:#3d3226;--mut:#9a8a72;--warn:#96522c;--cardbg:#fdfaf4;--cardbrd:#eddfc9;--panel:#5a3520;--body:#a08b78;--acc:#b46a3c;--base:#5f8bb4}
-body[data-theme="crimson"]{--pri:#a8383f;--prid:#8c2b31;--bg:#f7e9e7;--soft:#fcf4f2;--lgt:#f8ecea;--brd:#e8cbc7;--txt:#3a2c2a;--mut:#a38681;--warn:#8c2b31;--cardbg:#fdf6f4;--cardbrd:#f0d5d1;--panel:#5e272c;--body:#a88a86;--acc:#a8383f;--base:#c9963f}
-body[data-theme="violet"]{--pri:#6c5ce7;--prid:#5546c8;--bg:#f1effa;--soft:#f9f8fd;--lgt:#eeecfa;--brd:#d8d3f2;--txt:#2d2a45;--mut:#8b86ab;--warn:#5546c8;--cardbg:#fbfbfe;--cardbrd:#e6e8f5;--panel:#32325d;--body:#8b8ba6;--acc:#5b5bd6;--base:#d98a5f}
-body[data-theme="gold"]{--pri:#c9a227;--prid:#a5821c;--bg:#f5efe0;--soft:#fbf8ef;--lgt:#f6efdc;--brd:#e6d9b8;--txt:#3a3427;--mut:#9a9078;--warn:#a5821c;--cardbg:#fdfbf2;--cardbrd:#eadcc0;--panel:#57491f;--body:#a2946f;--acc:#b08c1e;--base:#5f8bb4}
 *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
 body{font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;background:var(--bg);color:var(--txt);min-height:100vh}
 .page{display:none;max-width:520px;margin:0 auto;padding:20px 14px 60px;min-height:100vh}
@@ -96,13 +92,12 @@ h1 .hl{color:var(--pri);background:linear-gradient(transparent 78%,var(--lgt) 78
 .t3 span{display:block;font-size:13px;margin-top:8px;font-weight:700;color:var(--txt)}
 .t3.mid span{color:#fff;font-weight:400;margin-top:6px;opacity:.92}
 .t3 small{display:block;font-size:11px;color:var(--mut);margin-top:4px}
-.thbtn{position:fixed;left:16px;bottom:20px;width:46px;height:46px;border-radius:50%;background:#fff;border:1.5px solid var(--brd);box-shadow:0 4px 14px rgba(0,0,0,.12);font-size:20px;cursor:pointer;z-index:50;display:flex;align-items:center;justify-content:center}
 .rsec{background:#fff;border:none;border-radius:26px;padding:30px 24px;margin-bottom:22px;box-shadow:0 2px 14px rgba(0,0,0,.06)}
-/* ===== 卡片式章节头（文字前空两格） ===== */
-.sechead{display:flex;align-items:center;gap:10px;margin-bottom:20px;padding-left:2em}
+/* ===== 卡片式章节头（文字+线条整组居中） ===== */
+.sechead{display:flex;align-items:center;justify-content:center;gap:10px;margin-bottom:20px}
 .sechead .zh{font-size:15px;letter-spacing:4px;color:var(--prid);font-weight:700}
 .sechead .en{font-size:15px;letter-spacing:3px;color:var(--pri);font-weight:700}
-.sechead i{flex:1;max-width:80px;height:1.5px;background:var(--brd)}
+.sechead i{width:80px;flex:none;height:1.5px;background:var(--brd)}
 .subcard{background:var(--cardbg);border:1px solid var(--cardbrd);border-radius:20px;padding:24px 22px;margin-bottom:16px}
 .subcard p{color:var(--mut)}
 .subcard:last-child{margin-bottom:0}
@@ -141,7 +136,6 @@ h1 .hl{color:var(--pri);background:linear-gradient(transparent 78%,var(--lgt) 78
 .endbadge{width:64px;height:64px;border:2px solid var(--prid);border-radius:50%;margin:0 auto 16px;display:flex;align-items:center;justify-content:center;color:var(--prid);font-weight:800;font-size:20px;line-height:1.2}
 .endsub{font-size:14px;letter-spacing:4px;color:var(--pri);font-weight:700;margin-bottom:12px}
 .endtxt{font-size:19px;font-weight:800;color:var(--txt);line-height:1.8;margin-bottom:12px}
-.endnote{font-size:13px;color:var(--mut);line-height:1.8}
 /* ===== 维度得分（排名圆号 · 线条贯穿居中） ===== */
 .brow{display:flex;align-items:center;gap:14px;margin-bottom:22px}
 .brow:last-child{margin-bottom:0}
@@ -376,7 +370,6 @@ h1 .hl{color:var(--pri);background:linear-gradient(transparent 78%,var(--lgt) 78
       <div class="endbadge">结<br>语</div>
       <div class="endsub">YOUR ARCHIVE NOTE</div>
       <div class="endtxt" id="cEndNote"></div>
-      <div class="endnote">本报告依据你的 24 道选择生成，用于帮助你观察稳定倾向，而不是定义你的全部可能。</div>
     </div>
 
     <p class="foot">本测试用于趣味性自我探索，不构成心理测评或历史评价。</p>
@@ -389,7 +382,6 @@ h1 .hl{color:var(--pri);background:linear-gradient(transparent 78%,var(--lgt) 78
 
 <!-- 弹窗 -->
 <div class="mask" id="mask" onclick="if(event.target===this)hideModal()"><div class="modal" id="modalBox"></div></div>
-<button class="thbtn" onclick="cycleTheme()" title="切换配色">🎨</button>
 
 <!-- 错误保险 -->
 <script>
@@ -401,12 +393,9 @@ window.onerror=function(msg,src,line){
 </script>
 
 <script>
-/* ===== 主题切换 ===== */
-var THEMES=["mint","terra","crimson","violet","gold"];
+/* ===== 全局状态（固定青绿配色） ===== */
 var lastVu=null,lastVt=null;
-function applyTheme(t){document.body.setAttribute("data-theme",t);try{localStorage.setItem("figatlas_theme",t)}catch(e){};if(lastVu)drawRadarOn(document.getElementById("radar"),lastVu,lastVt)}
-(function(){var t="mint";try{t=localStorage.getItem("figatlas_theme")||"mint"}catch(e){}if(THEMES.indexOf(t)<0)t="mint";applyTheme(t)})();
-function cycleTheme(){var cur=document.body.getAttribute("data-theme")||"mint";var i=THEMES.indexOf(cur);applyTheme(THEMES[(i+1)%THEMES.length])}
+try{localStorage.removeItem("figatlas_theme")}catch(e){}
 
 /* ===== 密码门 ===== */
 var PW="8890";
