@@ -146,10 +146,10 @@ h1 .hl{color:var(--pri);background:linear-gradient(transparent 78%,var(--lgt) 78
 .brow .btrack i{display:block;height:100%;background:var(--acc);border-radius:4.5px}
 .brow .bval{width:44px;flex:none;text-align:right;font-size:15.5px;font-weight:800;color:var(--txt)}
 .brow .bval.hi{color:var(--acc)}
-/* ===== 图例 ===== */
-.legend{display:flex;justify-content:center;gap:28px;font-size:15px;color:var(--panel);margin:8px 0 2px}
-.legend .lg{display:flex;align-items:center;gap:9px}
-.legend .dot{width:16px;height:16px;border-radius:50%;display:inline-block;flex:none}
+/* ===== 图例（缩小 · 与维度标签同字号） ===== */
+.legend{display:flex;justify-content:center;gap:22px;font-size:13.5px;color:var(--panel);margin:8px 0 2px}
+.legend .lg{display:flex;align-items:center;gap:7px}
+.legend .dot{width:12px;height:12px;border-radius:50%;display:inline-block;flex:none}
 .legend .dot.you{background:var(--acc)}
 .legend .dot.base{background:var(--base)}
 .radarwrap{text-align:center;padding:0 0 16px}
@@ -176,14 +176,15 @@ h1 .hl{color:var(--pri);background:linear-gradient(transparent 78%,var(--lgt) 78
 .rank{width:30px;height:30px;font-size:13px}
 .brow .bl{width:50px;font-size:12.5px}
 .brow .bval{font-size:14.5px}
-.legend{font-size:13px;gap:18px}
+.legend{font-size:12px;gap:14px}
+.legend .dot{width:10px;height:10px}
 .f4 b{font-size:13px}
 #radar{max-width:330px}
 .endtxt{font-size:17px}
 }
 </style>
 </head>
-<body data-theme="mint">
+<body>
 
 <!-- 密码页 -->
 <div class="page center-page active" id="pPW">
