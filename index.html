@@ -136,7 +136,7 @@ h1 .hl{color:var(--pri);background:linear-gradient(transparent 78%,var(--lgt) 78
 .endbadge{width:64px;height:64px;border:2px solid var(--prid);border-radius:50%;margin:0 auto 16px;display:flex;align-items:center;justify-content:center;color:var(--prid);font-weight:800;font-size:20px;line-height:1.2}
 .endsub{font-size:14px;letter-spacing:4px;color:var(--pri);font-weight:700;margin-bottom:12px}
 .endtxt{font-size:19px;font-weight:800;color:var(--txt);line-height:1.8;margin-bottom:12px}
-/* ===== 维度得分（排名圆号 · 线条贯穿居中） ===== */
+/* ===== 维度得分（固定顺序 · 圆号为维度编号 · 前三高亮） ===== */
 .brow{display:flex;align-items:center;gap:14px;margin-bottom:22px}
 .brow:last-child{margin-bottom:0}
 .rank{width:34px;height:34px;flex:none;border-radius:50%;background:#e9f0ed;color:var(--mut);font-weight:700;font-size:15px;display:flex;align-items:center;justify-content:center}
@@ -608,14 +608,14 @@ function goBack(){if(cur>0){cur--;renderQ()}}
 const DIMN=["冒险性","理性度","创造力","坚韧度","领导力","同理心"];
 function simOf(f,norm){let s=0;const fv=RV[f.name]||f.v.map(x=>x/3*100);fv.forEach((x,i)=>{s+=100-Math.abs(x-norm[i])});return s}
 
-/* ===== 维度加权匹配（Top1×2.2 · Top2×1.6 · 最低维×1.3） ===== */
+/* ===== 维度加权匹配（Top1×2.8 · Top2×1.8 · 最低维×1.4） ===== */
 function matchScore(f,norm,uord){
   const fv=RV[f.name]||f.v.map(x=>x/3*100);
   const top1=uord[0].i,top2=uord[1].i,lowI=uord[uord.length-1].i;
   let ws=0,wsum=0;
   fv.forEach((x,i)=>{
     let w=1;
-    if(i===top1)w=2.2;else if(i===top2)w=1.6;else if(i===lowI)w=1.3;
+    if(i===top1)w=2.8;else if(i===top2)w=1.8;else if(i===lowI)w=1.4;
     ws+=(100-Math.abs(x-norm[i]))*w;wsum+=w;
   });
   return ws/wsum;
@@ -637,16 +637,26 @@ function showResult(isShare){
   /* 用户维度排序（提前计算，供加权匹配与动态报告使用） */
   const uord=norm.map((u,i)=>({u,i})).sort((a,b)=>b.u-a.u);
 
-  /* 加权匹配打分 */
+  /* 加权匹配打分（测过的人物降权 · 重测换人 · 分享直达不计入） */
+  let seen=[];
+  try{seen=JSON.parse(localStorage.getItem("figatlas_seen")||"[]")}catch(e){}
   pool.forEach(f=>{
     const base=matchScore(f,norm,uord);
     let tie=0;
     (RV[f.name]||[]).forEach((x,i)=>{if(Math.abs(x-norm[i])>18)tie+=1});
     const jit=((sig*7+f.name.charCodeAt(0)*13)%17)/17*0.9;
-    f._s=base-tie*2+jit;
+    const seenPen=seen.indexOf(f.name)>=0?8:0;
+    f._s=base-tie*2+jit-seenPen;
   });
-  pool.sort((a,b)=>b._s-a._s||(b.fame||1)-(a.fame||1));
+  pool.sort((a,b)=>b._s-a._s);
   const f=pool[0];
+  if(!isShare){
+    try{
+      seen.unshift(f.name);
+      seen=seen.filter((n,i)=>seen.indexOf(n)===i).slice(0,6);
+      localStorage.setItem("figatlas_seen",JSON.stringify(seen));
+    }catch(e){}
+  }
 
   /* 契合度：加权分天然落在 75~95 区间，夹在 60~98 */
   const simP=Math.round(Math.max(60,Math.min(98,f._s)));
@@ -672,9 +682,9 @@ function showResult(isShare){
   document.getElementById("t3LoLab").textContent=DIMN[lo.i];
   document.getElementById("lgBase").textContent=f.name+"基准";
 
-  /* 维度得分 · 按分数排名（前3名实心圆号，高分值青绿） */
-  const order=norm.map((v,i)=>({v,i})).sort((a,b)=>b.v-a.v);
-  document.getElementById("rBars").innerHTML=order.map((o,r)=>'<div class="brow"><span class="rank'+(r<3?" top":"")+'">'+(r+1)+'</span><span class="bl">'+DIMN[o.i]+'</span><div class="btrack"><i style="width:'+o.v+'%"></i></div><span class="bval'+(o.v>=50?" hi":"")+'">'+o.v+"</span></div>").join("");
+  /* 维度得分 · 固定维度顺序（得分前三的维度圆号高亮） */
+  const topSet={};uord.slice(0,3).forEach(o=>topSet[o.i]=1);
+  document.getElementById("rBars").innerHTML=norm.map((v,i)=>'<div class="brow"><span class="rank'+(topSet[i]?" top":"")+'">'+(i+1)+'</span><span class="bl">'+DIMN[i]+'</span><div class="btrack"><i style="width:'+v+'%"></i></div><span class="bval'+(v>=50?" hi":"")+'">'+v+'</span></div>').join("");
 
   /* ===== 以下正文全部由「用户分数结构」动态生成（叙述区纯文字 · 无数字无括号） ===== */
 
